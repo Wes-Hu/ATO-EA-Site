@@ -8,6 +8,8 @@ export default {
       colors: {
       'azure': '#487FC0',
       'old-gold': '#FFAE3B',
+      'dark-blue': '#2F6BA4',
+      'dark-gold': '#D08735',
       },
     },
 
