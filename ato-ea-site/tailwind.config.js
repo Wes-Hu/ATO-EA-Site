@@ -5,6 +5,10 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}',],
   theme: {
     extend: {},
+    colors: {
+      'azure': '#487FC0',
+      'old-gold': '#FFAE3B',
+    },
   },
   plugins: [],
 }
