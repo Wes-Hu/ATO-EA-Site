@@ -11,6 +11,10 @@ export default {
       'dark-blue': '#2F6BA4',
       'dark-gold': '#D08735',
       },
+      screens: {
+        'cus': '1170px',
+        // => @media (min-width: 992px) { ... }
+      },
     },
 
   },
