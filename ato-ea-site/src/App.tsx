@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-8 flex flex-row justify-between items-center z-50">
+      <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-8 flex flex-row justify-evenly items-center z-50">
         <a href="/" className="HomeButton flex flex-row">
           <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
           <div className="h-14 flex flex-col">

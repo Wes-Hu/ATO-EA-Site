@@ -1,8 +1,11 @@
 function HomePage() {
     return (
-        <div className="w-screen h-screen">
-            <div className="text-center">Home</div>
+        <div>
+            <div className="w-screen h-[80vh] bg-gray-200 flex justify-center items-center">
+                <div className="bg-azure text-center w">Home</div>
+            </div>
         </div>
+        
     );
 }
 export default HomePage
