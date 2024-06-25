@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-screen h-28 bg-azure  flex flex-row justify-evenly items-center z-50">
+      <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-3 xl:px-0  flex flex-row justify-evenly items-center z-50">
         <a href="/" className="HomeButton flex flex-row gap-2">
           <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
           <div className="h-14 flex flex-col">
@@ -43,15 +43,14 @@ function App() {
           </a>
 
         </div>
-        <button onClick={toggleMenu} className="Menu cursor-pointer flex md:hidden h-6 w-8 items-center justify-center">
+        <button onClick={toggleMenu} className="Menu cursor-pointer flex opacity-100 md:opacity-0 h-6 w-8 items-center justify-center">
           <div className={`space-y-2.5 ${menuOpen ? 'open' : ''}`}>
             <span className={`menu-line block h-0.5 w-8 origin-center rounded-full bg-white transition-transform ease-in-out ${menuOpen ? 'transform translate-y-3 rotate-45' : ''}`}></span>
             <span className={`menu-line block h-0.5 w-8 origin-center rounded-full bg-white transition-transform ease-in-out ${menuOpen ? 'transform scale-0' : ''}`}></span>
             <span className={`menu-line block h-0.5 w-8 origin-center rounded-full bg-white transition-transform ease-in-out ${menuOpen ? 'transform -translate-y-3 -rotate-45' : ''}`}></span>
           </div>
         </button>
-        <div className="w-6 h-6 bg-white hidden md:flex">
-        </div>
+
       </header>
       <div className="pt-28"> {/* Add padding to avoid content being hidden behind the fixed header */}
         <Routes>
