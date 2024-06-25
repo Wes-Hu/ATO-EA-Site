@@ -11,12 +11,12 @@ function App() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-8 flex flex-row justify-evenly items-center z-50">
-        <a href="/" className="HomeButton flex flex-row">
+      <header className="fixed top-0 left-0 w-screen h-28 bg-azure  flex flex-row justify-evenly items-center z-50">
+        <a href="/" className="HomeButton flex flex-row gap-2">
           <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
           <div className="h-14 flex flex-col">
-            <div className="text-white text-xl font-bold font-['Arial']">&nbsp;Epsilon</div>
-            <div className="text-white text-xl font-bold font-['Arial']">&nbsp;Alpha</div>
+            <div className="text-white text-xl font-bold font-['Arial']">Epsilon</div>
+            <div className="text-white text-xl font-bold font-['Arial']">Alpha</div>
           </div>
         </a>
         <div className="MainBar h-full hidden md:flex flex-row flex-wrap justify-center items-center">
