@@ -57,6 +57,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
         </Routes>
       </div>
+      <footer className="w-screen h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
+        <div className="CR text-nowrap text-dark-blue text-sm font-normal font-['Arial'] leading-tight">© 2024 ATO Epsilon Alpha. All rights reserved</div>
+        <div className="CR text-nowrap text-dark-blue text-sm font-normal font-['Arial'] leading-tight">Website created by ATO member Wesley Hu.</div>
+      </footer>
     </>
   );
 }

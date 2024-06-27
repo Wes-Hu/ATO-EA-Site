@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from '../utils/supabaseClient';
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { FaInstagram } from "react-icons/fa";
 
 //Define types for Images
 type ImageItem = {
@@ -108,7 +109,7 @@ function HomePage() {
                 </a>
             </div>
 
-            <div className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col-reverse lg:flex-row gap-0 lg:gap-5 relative">
+            <div id="AboutUs" className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col-reverse lg:flex-row gap-0 lg:gap-5 relative">
                 <div className="w-full lg:w-3/5 h-auto p-5 flex flex-col bg-azure rounded-br-3xl rounded-bl-3xl rounded-tl-none lg:rounded-tl-3xl rounded-tr-none lg:rounded-3xl">
                     <div className="mb-5 text-white text-3xl font-bold font-['Arial'] leading-10">Who We Are</div>
                     <div className="mb-5 text-white text-xl font-medium font-['Arial'] leading-normal">Founded on September 11, 1865, at the Virginia Military Institute, Alpha Tau Omega (ATO) was established by Otis Allan Glazebrook, Erskine Mayo Ross, and Alfred Marshall to promote unity and brotherhood after the Civil War. ATO was the first fraternity founded as a national organization, emphasizing leadership, scholarship, and service.<br/><br/>The Epsilon Alpha chapter was established in 1929 at the Colorado School of Mines. Dedicated to the fraternity's core values, the chapter has built a reputation for academic excellence, leadership, and community service. Over the years, Epsilon Alpha has actively engaged in philanthropic activities and campus involvement, fostering a strong sense of brotherhood and making a positive impact on both the university and the Golden, Colorado community.</div>
@@ -121,11 +122,11 @@ function HomePage() {
                 <div className="w-full lg:w-2/5 h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl" style={{backgroundImage: `url("src/assets/ATOold.jpg")`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}></div>
             </div>
 
-            <div className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 relative">
+            <div id="Philo" className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 relative">
                 <div className="w-full lg:w-[45%] h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl" style={{backgroundImage: `url("src/assets/HomepagePhilo.jpeg")`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}></div>
                 <div className="w-full lg:w-[55%] h-auto p-5 flex flex-col bg-azure rounded-br-3xl rounded-bl-3xl rounded-tl-none lg:rounded-tl-3xl rounded-tr-none lg:rounded-3xl">
                     <div className="mb-5 text-white text-3xl font-bold font-['Arial'] leading-10">Philanthropy and Service</div>
-                    <div className="mb-5 text-white text-xl font-medium font-['Arial'] leading-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    <div className="mb-5 text-white text-xl font-medium font-['Arial'] leading-normal">At the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy is a key part of our mission to support our community and make a positive difference. Our brothers are deeply involved in both local service projects and national initiatives, dedicating their time and efforts to various causes. Each year, we proudly collaborate with respected organizations such as Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation, working together to create meaningful change and improve lives.</div>
                     <div className="w-full flex justify-center lg:justify-start">
                         <a href="/philantrophy" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
                             <div className="text-xl font-medium font-['Arial'] leading-loose">Learn More</div>
@@ -134,39 +135,39 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className="w-screen lg:mb-20 flex flex-col items-center justify-center lg:gap-14 py-3 lg:py-14 lg:px-20 bg-azure">
+            <div id="JoinUs" className="w-screen mb-20 flex flex-col items-center justify-center lg:gap-14 py-3 lg:py-14 lg:px-20 bg-azure">
                 <div className="text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Interested in Joining ?</div>
-                <div className="mb-5 lg:mb-0 w-80 h-24 scale-75 lg:scale-100 bg-old-gold rounded-full flex items-center justify-center">
+                <a href="/how-to-join" className="mb-5 lg:mb-0 w-80 h-24 scale-75 lg:scale-100 bg-old-gold rounded-full flex items-center justify-center transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
                     <div className="text-black text-4xl font-bold font-['Arial'] leading-10">Start Here</div>
-                </div>
+                </a>
             </div>
 
-            <div className="w-full 2xl:max-w-[50%] h-auto px-0 lg:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 justify-center">
-                <div className="w-full p-5 rounded-none lg:rounded-3xl flex flex-col justify-center items-center bg-azure">
-                    <div className="mb-6 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Get in Contact</div>
+            <div id="Contact" className="w-full 2xl:max-w-[50%] h-auto px-0 lg:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 justify-center">
+                <div className="w-full py-10 px-5 lg:px-20 rounded-none lg:rounded-3xl flex flex-col justify-center items-center bg-azure">
+                    <div className="mb-10 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Get in Contact</div>
 
-                    <div className="mb-3 w-full flex flex-col gap-3 justify-center">
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
+                    <div className="mb-5 w-full flex flex-col gap-3 justify-center">
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">President</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                            <div className="flex flex-col flex-wrap md:flex-row justify-between">
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">Tate Morrison</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
                             </div>
-                        </div>
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
+                        </a>
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Vice President</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                            <div className="flex flex-col flex-wrap md:flex-row justify-between">
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">First Last</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
                             </div>
-                        </div>
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
+                        </a>
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Recruitment Chair</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                            <div className="flex flex-col flex-wrap md:flex-row justify-between">
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">First Last</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div className="flex flex-col gap-3 lg:flex-row justify-center items-center">
                         <div className="text-white text-xl lg:text-2xl font-medium font-['Arial'] leading-9">Contact Us Here</div>
@@ -176,37 +177,42 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div className="w-full p-5 rounded-none lg:rounded-3xl flex flex-col justify-center items-center bg-azure">
-                    <div className="mb-6 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Get in Contact</div>
+                <div id="RecentNews" className="w-full py-10 px-5 md:px-20 rounded-none lg:rounded-3xl flex flex-col justify-center items-center bg-azure">
+                    <div className="mb-10 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Recent News</div>
 
-                    <div className="mb-3 w-full flex flex-col gap-3 justify-center">
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">President</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                    <div className="mb-5 w-full flex flex-col gap-3 justify-center">
+                        <a href="recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                            <div className="flex flex-row justify-between">
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
                             </div>
-                        </div>
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Vice President</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                            <div className="text-left text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">brief description</div>
+                        </a>
+                        <a href="recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                            <div className="flex flex-row justify-between">
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
                             </div>
-                        </div>
-                        <div className="w-full flex flex-col justify-center bg-dark-blue rounded-3xl">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Recruitment Chair</div>
-                            <div className="flex flex-col md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-3xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                            <div className="text-left text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">brief description</div>
+                        </a>
+                        <a href="recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                            <div className="flex flex-row justify-between">
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
+                                <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
                             </div>
-                        </div>
+                            <div className="text-left text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">brief description</div>
+                        </a>
+
                     </div>
                     <div className="flex flex-col gap-3 lg:flex-row justify-center items-center">
-                        <div className="text-white text-xl lg:text-2xl font-medium font-['Arial'] leading-9">Contact Us Here</div>
-                        <a href="/philantrophy" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
-                            <div className="text-xl font-medium font-['Arial'] leading-loose">Contact Form</div>
+                        <div className="text-white text-xl lg:text-2xl font-medium font-['Arial'] leading-9">Follow Our Instagram</div>
+                        <a href="https://www.instagram.com/ato_mines/" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
+                            <div className="flex items-center">
+                                <FaInstagram size="24" />
+                                <div className="text-xl text-nowrap text-center font-medium font-['Arial'] leading-loose ml-2">@ato_mines</div>
+                            </div>
                         </a>
+
                     </div>
                 </div>
             </div>
