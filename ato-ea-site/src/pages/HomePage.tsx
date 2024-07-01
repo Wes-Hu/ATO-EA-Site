@@ -9,10 +9,19 @@ type ImageItem = {
     img_src: string | null;
 };
 type ImageUrls = string[];
+//Define types for exec board
+type ExecBoard = {
+    email: string | null;
+    grade: string | null;
+    major: string | null;
+    name: string | null;
+    position: string;
+  };
 
 function HomePage() {
     const [images, setImages] = useState<ImageUrls>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [exec, setExec] = useState<ExecBoard[]>([]);
 
     // Function to preload images
     const preloadImages = (imageUrls: string[]) => {
@@ -43,9 +52,25 @@ function HomePage() {
             setIsLoading(false);
         }
     }
+    // Pull Exec Info
+    async function fetchExec() {
+        try {
+            const { data, error } = await supabase
+                .from("ExecBoard")
+                .select("*");
+            if (error) {
+                console.error('Error from Supabase:', error);
+                throw error;
+            }
+            setExec(data ?? []); // Ensure data is an array
+        } catch (error) {
+            console.error("Error fetching exec board info", error);
+        }
+    }
 
     useEffect(() => {
         fetchImages();
+        fetchExec();
     }, []);
 
     // Carousel functions
@@ -142,30 +167,30 @@ function HomePage() {
                 </a>
             </div>
 
-            <div id="Contact" className="w-full 2xl:max-w-[50%] h-auto px-0 lg:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 justify-center">
+            <div id="Contact" className="w-full 2xl:max-w-[60%] h-auto px-0 lg:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 justify-center">
                 <div className="w-full py-10 px-5 lg:px-20 rounded-none lg:rounded-3xl flex flex-col justify-center items-center bg-azure">
                     <div className="mb-10 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Get in Contact</div>
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">President</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[0]?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">Tate Morrison</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[0]?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[0]?.email}</div>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Vice President</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[1]?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[1]?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[1]?.email}</div>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Recruitment Chair</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[13]?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">First Last</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">email@mines.edu</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[13]?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[13]?.email}</div>
                             </div>
                         </a>
                     </div>
