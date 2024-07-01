@@ -67,7 +67,9 @@ function HomePage() {
             console.error("Error fetching exec board info", error);
         }
     }
-
+    useEffect(() => {
+        console.log(exec);
+    }, [exec]);
     useEffect(() => {
         fetchImages();
         fetchExec();
@@ -173,24 +175,24 @@ function HomePage() {
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[0]?.position}</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[0]?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[0]?.email}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.email}</div>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[1]?.position}</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[1]?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[1]?.email}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.email}</div>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
-                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec[13]?.position}</div>
+                            <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[13]?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec[13]?.email}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.name}</div>
+                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.email}</div>
                             </div>
                         </a>
                     </div>
