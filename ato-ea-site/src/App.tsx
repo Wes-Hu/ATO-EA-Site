@@ -20,12 +20,23 @@ function App() {
           </div>
         </a>
         <div className="MainBar h-full hidden md:flex flex-row flex-wrap justify-center items-center">
-          <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+          <div className="relative h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold group">
             <p>ABOUT US</p>
-          </a>
-          <a href="/" className="h-1/2 cus:h-full  flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+            <div className="absolute top-full left-0 bg-dark-blue text-black shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+              <a href="/history" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">HISTORY</a>
+              <a href="/chapter-values" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">CHAPTER VALUES</a>
+              <a href="/leadership" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">LEADERSHIP</a>
+              <a href="/recent" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">RECENT NEWS</a>
+            </div>
+          </div>
+          <div className="relative h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold group">
             <p>MEMBERSHIP</p>
-          </a>
+            <div className="absolute top-full left-0 bg-dark-blue text-black shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+              <a href="/how-to-join" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">HOW TO JOIN</a>
+              <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">RUSH & RECRUITMENT</a>
+              <a href="/faq" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">FAQ</a>
+            </div>
+          </div>
           <a href="/" className="h-1/2 cus:h-full  flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
             <p>PHILANTHROPY</p>
           </a>
@@ -41,7 +52,6 @@ function App() {
           <a href="/" className="h-1/2 cus:h-full  flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
             <p>JOIN US</p>
           </a>
-
         </div>
         <button onClick={toggleMenu} className="Menu cursor-pointer flex opacity-100 md:opacity-0 h-6 w-8 items-center justify-center">
           <div className={`space-y-2.5 ${menuOpen ? 'open' : ''}`}>
