@@ -182,21 +182,21 @@ function HomePage() {
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.email}</div>
+                                <a href={`mailto:${exec.find(member => member.position === 'President')?.email}`} className="text-center text-white hover:text-old-gold text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.email}</a>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.email}</div>
+                                <a href={`mailto:${exec.find(member => member.position === 'Vice President')?.email}`} className="text-center text-white hover:text-old-gold text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.email}</a>
                             </div>
                         </a>
                         <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.name}</div>
-                                <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.email}</div>
+                                <a href={`mailto:${exec.find(member => member.position === 'Recruitment Chair')?.email}`} className="text-center text-white hover:text-old-gold text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.email}</a>
                             </div>
                         </a>
                     </div>
