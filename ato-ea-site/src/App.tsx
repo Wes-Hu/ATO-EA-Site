@@ -19,7 +19,7 @@ function App() {
             <div className="text-white text-xl font-bold font-['Arial']">Alpha</div>
           </div>
         </a>
-        <div className="MainBar h-full hidden md:flex flex-row flex-wrap justify-center items-center">
+        <div className="MainBar h-full hidden lg:flex flex-row flex-wrap justify-center items-center">
           <div className="relative h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold group">
             <p>ABOUT US</p>
             <div className="absolute top-full left-0 bg-dark-blue text-black shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
@@ -53,7 +53,14 @@ function App() {
             <p>JOIN US</p>
           </a>
         </div>
-        <button onClick={toggleMenu} className="Menu cursor-pointer flex opacity-100 md:opacity-0 h-6 w-8 items-center justify-center">
+        <div className="relative  h-1/2 cus:h-full hidden lg:flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium font-['Arial'] ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold group">
+            <p>MEMBER LOGIN</p>
+            <div className="absolute top-full left-0 bg-dark-blue text-black shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+              <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">MEMBER PORTAL</a>
+              <a href="" className="block px-4 py-2 text-white text-lg font-medium font-['Arial'] hover:bg-azure hover:text-old-gold">ADMIN PORTAL</a>
+            </div>
+          </div>
+        <button onClick={toggleMenu} className="Menu cursor-pointer flex lg:hidden h-6 w-8 items-center justify-center">
           <div className={`space-y-2.5 ${menuOpen ? 'open' : ''}`}>
             <span className={`menu-line block h-0.5 w-8 origin-center rounded-full bg-white transition-transform ease-in-out ${menuOpen ? 'transform translate-y-3 rotate-45' : ''}`}></span>
             <span className={`menu-line block h-0.5 w-8 origin-center rounded-full bg-white transition-transform ease-in-out ${menuOpen ? 'transform scale-0' : ''}`}></span>
