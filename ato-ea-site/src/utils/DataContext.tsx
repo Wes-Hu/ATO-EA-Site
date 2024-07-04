@@ -18,6 +18,7 @@ interface DataContextProps {
     images: ImageUrls;
     exec: ExecBoard[];
     isLoading: boolean;
+    fetchImages: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -36,7 +37,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     // Fetch image URLs from Supabase
-    async function fetchImages() {
+    const fetchImages = async () => {
         try {
             const { data, error } = await supabase
                 .from("HomePage")
@@ -54,10 +55,10 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
             console.error("Error fetching images", error);
             setIsLoading(false);
         }
-    }
+    };
 
     // Fetch exec board info from Supabase
-    async function fetchExec() {
+    const fetchExec = async () => {
         try {
             const { data, error } = await supabase
                 .from("ExecBoard")
@@ -70,7 +71,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         } catch (error) {
             console.error("Error fetching exec board info", error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchImages();
@@ -78,7 +79,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, []);
 
     return (
-        <DataContext.Provider value={{ images, exec, isLoading }}>
+        <DataContext.Provider value={{ images, exec, isLoading, fetchImages }}>
             {children}
         </DataContext.Provider>
     );

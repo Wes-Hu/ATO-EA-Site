@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import './App.css';
+import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
 import { DataProvider } from "./utils/DataContext";
+
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -73,6 +75,7 @@ function App() {
       <div className="pt-28"> {/* Add padding to avoid content being hidden behind the fixed header */}
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<AdminPage/>} />
         </Routes>
       </div>
       <footer className="w-screen h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
