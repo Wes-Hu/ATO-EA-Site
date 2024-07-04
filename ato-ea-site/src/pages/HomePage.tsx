@@ -178,21 +178,21 @@ function HomePage() {
                     <div className="mb-10 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Get in Contact</div>
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
-                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.name}</div>
                                 <a href={`mailto:${exec.find(member => member.position === 'President')?.email}`} className="text-center text-white hover:text-old-gold text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'President')?.email}</a>
                             </div>
                         </a>
-                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.name}</div>
                                 <a href={`mailto:${exec.find(member => member.position === 'Vice President')?.email}`} className="text-center text-white hover:text-old-gold text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Vice President')?.email}</a>
                             </div>
                         </a>
-                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/leadership" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.position}</div>
                             <div className="flex flex-col flex-wrap md:flex-row justify-between">
                                 <div className="text-center text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">{exec.find(member => member.position === 'Recruitment Chair')?.name}</div>
@@ -212,21 +212,21 @@ function HomePage() {
                     <div className="mb-10 text-white text-center text-4xl lg:text-5xl font-bold font-['Arial'] leading-normal">Recent News</div>
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="flex flex-row justify-between">
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
                             </div>
                             <div className="text-left text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">brief description</div>
                         </a>
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="flex flex-row justify-between">
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
                             </div>
                             <div className="text-left text-white text-xl md:text-2xl font-medium font-['Arial'] leading-10">brief description</div>
                         </a>
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 duration-300 ease-in-out transition-all">
+                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="flex flex-row justify-between">
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">Header</div>
                                 <div className="text-center text-white text-3xl font-medium font-['Arial'] leading-10">XX/XX/XX</div>
