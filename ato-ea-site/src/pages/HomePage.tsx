@@ -1,86 +1,16 @@
-import { useEffect, useState } from "react";
-import { supabase } from '../utils/supabaseClient';
+import { useEffect, useState } from 'react';
+import { useDataContext } from '../utils/DataContext';
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { FaInstagram } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-//Define types for Images
-type ImageItem = {
-    img_src: string | null;
-};
-type ImageUrls = string[];
-//Define types for exec board
-type ExecBoard = {
-    email: string | null;
-    grade: string | null;
-    major: string | null;
-    name: string | null;
-    position: string;
-  };
-
 function HomePage() {
-    const [images, setImages] = useState<ImageUrls>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [exec, setExec] = useState<ExecBoard[]>([]);
-
-    // Function to preload images
-    const preloadImages = (imageUrls: string[]) => {
-        imageUrls.forEach((url) => {
-            const img = new Image();
-            img.src = url;
-        });
-    };
-
-    // Pull image urls from supabase
-    async function fetchImages() {
-        try {
-            const { data, error } = await supabase
-                .from("HomePage")
-                .select("img_src")
-                .eq("display", true);
-            if (error) {
-                console.error('Error from Supabase:', error);
-                throw error;
-            }
-
-            const imageUrls = (data as ImageItem[]).map((item: ImageItem) => item.img_src).filter((src): src is string => Boolean(src));
-            setImages(imageUrls);
-            preloadImages(imageUrls); // Preload images
-            setIsLoading(false);
-        } catch (error) {
-            console.error("Error fetching images", error);
-            setIsLoading(false);
-        }
-    }
-    // Pull Exec Info
-    async function fetchExec() {
-        try {
-            const { data, error } = await supabase
-                .from("ExecBoard")
-                .select("*");
-            if (error) {
-                console.error('Error from Supabase:', error);
-                throw error;
-            }
-            setExec(data ?? []); // Ensure data is an array
-        } catch (error) {
-            console.error("Error fetching exec board info", error);
-        }
-    }
-    useEffect(() => {
-        fetchImages();
-        fetchExec();
-        AOS.init({
-            duration: 1000,
-            once: true, // Ensures the animation happens only once
-        });
-    }, []);
-
-    // Carousel functions
+    const { images, exec, isLoading } = useDataContext();
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Carousel functions
     const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
@@ -101,10 +31,16 @@ function HomePage() {
         return () => clearInterval(interval);
     }, [currentIndex]);
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true, // Ensures the animation happens only once
+        });
+    }, []);
+
     if (isLoading) {
         return <div className="w-screen h-screen flex items-center justify-center"></div>;
     }
-
 
     return (
         <div id="HomepageContainer" className="flex flex-col justify-center items-center">

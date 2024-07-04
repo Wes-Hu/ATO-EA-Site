@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/HomePage";
+import { DataProvider } from "./utils/DataContext";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ function App() {
   };
 
   return (
-    <>
+    <DataProvider>
       <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-3 xl:px-0  flex flex-row justify-evenly items-center z-50">
         <a href="/" className="HomeButton flex flex-row gap-2">
           <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
@@ -78,7 +79,7 @@ function App() {
         <div className="CR text-nowrap text-dark-blue text-sm font-normal font-['Arial'] leading-tight">© 2024 ATO Epsilon Alpha. All rights reserved</div>
         <div className="CR text-nowrap text-dark-blue text-sm font-normal font-['Arial'] leading-tight">Website created by ATO member Wesley Hu.</div>
       </footer>
-    </>
+    </DataProvider>
   );
 }
 
