@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
-import { Session } from '@supabase/supabase-js';
 
 // Define types for Images and ExecBoard
 type ImageItem = {
@@ -28,7 +27,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [images, setImages] = useState<ImageUrls>([]);
     const [exec, setExec] = useState<ExecBoard[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [session, setSession] = useState<Session | null>(null);
 
     // Function to preload images
     const preloadImages = (imageUrls: string[]) => {
