@@ -165,8 +165,8 @@ const AdminPage: React.FC = () => {
                         <div className="flex justify-center items-center">
                             <div className='flex flex-row flex-wrap justify-center gap-3 '>
                                 {images.map((img) => (
-                                    <div key={img.id} className="image-item flex flex-col bg-azure gap-2">
-                                        <img className='' src={img.img_src} alt="Home Page" style={{ width: '200px', height: '200px' }} />
+                                    <div key={img.id} className="image-item flex flex-col border-black border-2 p-3 rounded-3xl gap-2">
+                                        <img className='rounded-3xl' src={img.img_src} alt="Home Page" style={{ width: '200px', height: '200px' }} />
                                         <div className='flex flex-row gap-3'>
                                             <button onClick={() => handleDeleteImage(img.id, img.img_src)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Delete</button>
                                             <button onClick={() => handleReplaceImage(img.id)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Replace</button>
