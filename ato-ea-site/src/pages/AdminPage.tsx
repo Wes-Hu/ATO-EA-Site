@@ -159,8 +159,12 @@ const AdminPage: React.FC = () => {
       console.error('Error logging out:', error.message);
     } else {
       navigate('/');
+      setTimeout(() => {
+        alert('Successfully logged out');
+      }, 100); // Delay the alert to ensure it shows after navigation
     }
   };
+  
 
   if (!authenticated) {
     return <p>Loading...</p>; // Show a loading state while checking authentication

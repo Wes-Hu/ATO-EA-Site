@@ -26,19 +26,19 @@ function App() {
           <div className="MainBar h-full hidden lg:flex flex-row flex-wrap justify-center items-center">
             <div className="relative group h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <a href="/about-us" className="relative w-full h-full flex items-center">ABOUT US</a>
-              <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-dark-blue text-black shadow-lg transition-all duration-300 ease-in-out">
-                <a href="/history" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">HISTORY</a>
-                <a href="/chapter-values" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">CHAPTER VALUES</a>
-                <a href="/leadership" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">LEADERSHIP</a>
-                <a href="/recent" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">RECENT NEWS</a>
+              <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
+                <a href="/history" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HISTORY</a>
+                <a href="/chapter-values" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">CHAPTER VALUES</a>
+                <a href="/leadership" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">LEADERSHIP</a>
+                <a href="/recent" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RECENT NEWS</a>
               </div>
             </div>
             <div className="relative group h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <a href="/membership" className="relative w-full h-full flex items-center">MEMBERSHIP</a>
-              <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-dark-blue text-black shadow-lg transition-all duration-300 ease-in-out">
-                <a href="/how-to-join" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">HOW TO JOIN</a>
-                <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">RUSH & RECRUITMENT</a>
-                <a href="/faq" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">FAQ</a>
+              <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
+                <a href="/how-to-join" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HOW TO JOIN</a>
+                <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RUSH & RECRUITMENT</a>
+                <a href="/faq" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">FAQ</a>
               </div>
             </div>
             <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
@@ -59,9 +59,9 @@ function App() {
           </div>
           <div className="relative group h-1/2 cus:h-full hidden lg:flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
             <a href="/login" className="relative w-full h-full flex items-center">LOGIN</a>
-            <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-dark-blue text-black shadow-lg transition-all duration-300 ease-in-out">
-              <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">MEMBER PORTAL</a>
-              <a href="/admin" className="block px-4 py-2 text-white text-lg font-medium hover:bg-azure hover:text-old-gold transition-all duration-300">ADMIN PORTAL</a>
+            <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
+              <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">MEMBER PORTAL</a>
+              <a href="/admin" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">ADMIN PORTAL</a>
             </div>
           </div>
           <button onClick={toggleMenu} className="Menu cursor-pointer flex lg:hidden h-6 w-8 items-center justify-center">
