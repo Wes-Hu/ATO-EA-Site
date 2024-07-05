@@ -105,7 +105,7 @@ function HomePage() {
             <div data-aos="fade-up" id="JoinUs" className="w-screen mb-20 flex flex-col items-center justify-center lg:gap-14 py-3 lg:py-14 lg:px-20 bg-azure">
                 <div className="text-white text-center text-4xl lg:text-5xl font-bold leading-normal">Interested in Joining ?</div>
                 <a href="/how-to-join" className="mb-5 lg:mb-0 w-80 h-24 scale-75 lg:scale-100 bg-old-gold rounded-full flex items-center justify-center transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
-                    <div className="text-black text-4xl font-bold leading-10">Start Here</div>
+                    <div className="text-black text-4xl font-bold leading-10 hover:text-neutral-700">Start Here</div>
                 </a>
             </div>
 
