@@ -60,8 +60,8 @@ function App() {
           <div className="relative group h-1/2 cus:h-full hidden lg:flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
             <a href="/login" className="relative w-full h-full flex items-center">LOGIN</a>
             <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
-              <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">MEMBER PORTAL</a>
-              <a href="/admin" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">ADMIN PORTAL</a>
+              <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300 text-wrap">MEMBER PORTAL</a>
+              <a href="/admin" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300 text-wrap">ADMIN PORTAL</a>
             </div>
           </div>
           <button onClick={toggleMenu} className="Menu cursor-pointer flex lg:hidden h-6 w-8 items-center justify-center">
