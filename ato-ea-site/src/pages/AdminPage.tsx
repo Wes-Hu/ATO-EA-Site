@@ -145,26 +145,44 @@ const AdminPage: React.FC = () => {
     };
 
     return (
-        <div className="admin-page mt-40">
-            <h1 className='mb-10'>Admin Page</h1>
-            <input className='mb-10' type="file" accept="image/*" onChange={handleImageChange} />
-            <button onClick={handleImageUpload} disabled={uploading}>
-                {uploading ? 'Uploading...' : 'Upload New Image'}
-            </button>
-
-            {loading ? (
-                <p>Loading images...</p>
-            ) : (
-                <div className="image-list">
-                    {images.map((img) => (
-                        <div key={img.id} className="image-item flex gap-2">
-                            <img src={img.img_src} alt="Home Page" style={{ width: '200px', height: '200px' }} />
-                            <button onClick={() => handleDeleteImage(img.id, img.img_src)}>Delete</button>
-                            <button onClick={() => handleReplaceImage(img.id)}>Replace</button>
+        <div className="flex flex-col justify-center items-center">
+            <h1 className='mt-10 mb-5 text-black text-4xl md:text-5xl text-center font-bold leading-normal'>Welcome To The Admin Page</h1>
+            <p className='w-screen md:w-1/2 mb-10 text-center'>Here you can update changable parts of the website directly such as changing rotating photos on home page, update the executive board list, and make posts to recent news.</p>
+            <hr className="border-t-1 border-gray-300 w-full" />
+            <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col mb-10 justify-center items-center'>
+                <h2 className='mt-10 text-black text-3xl  font-bold text-center leading-normal'>Home Page Carousel</h2>
+                <p className='mb-10 text-center'>Upload a new image or replace/delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image or click "Replace" on any of the existing image to replace it</p>
+                <div className='w-scren md:w-1/2 flex flex-col justify-center items-center'>
+                    <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={handleImageChange} />
+                        <button onClick={handleImageUpload} disabled={uploading} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+                            {uploading ? 'Uploading...' : 'Upload New Image'}
+                        </button>
+                    </div>
+                    <p>Current Images</p>
+                    {loading ? (
+                        <p>Loading images...</p>
+                    ) : (
+                        <div className="flex justify-center items-center">
+                            <div className='flex flex-row flex-wrap justify-center gap-3 '>
+                                {images.map((img) => (
+                                    <div key={img.id} className="image-item flex flex-col bg-azure gap-2">
+                                        <img className='' src={img.img_src} alt="Home Page" style={{ width: '200px', height: '200px' }} />
+                                        <div className='flex flex-row gap-3'>
+                                            <button onClick={() => handleDeleteImage(img.id, img.img_src)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Delete</button>
+                                            <button onClick={() => handleReplaceImage(img.id)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Replace</button>
+                                        </div>
+                                        
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    ))}
-                </div>
-            )}
+                    )}
+            </div>
+            <hr className="border-t-1 border-gray-300 w-full" />
+            <div id="ExecUpdate">
+
+            </div>
+
         </div>
     );
 };

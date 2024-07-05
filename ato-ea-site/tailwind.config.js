@@ -12,7 +12,7 @@ export default {
       'dark-gold': '#D08735',
       },
       screens: {
-        'cus': '1170px',
+        'cus': '1237px',
         // => @media (min-width: 992px) { ... }
       },
     },
