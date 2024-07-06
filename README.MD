@@ -1,4 +1,4 @@
-Welcome to ATO webiste
+Welcome to the ATO-EA website 
 
 If you are working on this please run: npm install
 make sure to also run the install command in ./ato-ea-site
