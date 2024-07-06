@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 
-// Define types for Images and ExecBoard
+// Define types for each table
 type ImageItem = {
     img_src: string | null;
 };
 type ImageUrls = string[];
 type ExecBoard = {
-    id: number | null;
+    id: number;
     email: string | null;
     grade: string | null;
     major: string | null;
@@ -15,21 +15,32 @@ type ExecBoard = {
     position: string;
     picture: string;
 };
+type RecentNews = {
+    id:number;
+    title: string | null;
+    date: Date | null;
+    brief_description: string | null;
+    description: string | null;
+    image_src: string | null;
+}
 
 interface DataContextProps {
+    isLoading: boolean;
     images: ImageUrls;
     exec: ExecBoard[];
-    isLoading: boolean;
+    recentNews: RecentNews[];
     fetchImages: () => Promise<void>;
     fetchExec: () => Promise<void>;
+    fetchRecentNews: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState<ImageUrls>([]);
     const [exec, setExec] = useState<ExecBoard[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [recentNews, setRecentNews] = useState<RecentNews[]>([]);
 
     // Function to preload images
     const preloadImages = (imageUrls: string[]) => {
@@ -77,13 +88,31 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    // Fetch recent news from Supabase
+    const fetchRecentNews = async () => {
+        try {
+            const { data, error } = await supabase
+                .from("RecentNews")
+                .select("*")
+                .order("date", {ascending: false});
+            if (error) {
+                console.error('Error from Supabase:', error);
+                throw error;
+            }
+            setRecentNews(data);
+        } catch (error) {
+            console.error("Error Fetching recent news", error);
+        }
+    };
+
     useEffect(() => {
         fetchImages();
         fetchExec();
+        fetchRecentNews();
     }, []);
 
     return (
-        <DataContext.Provider value={{ images, exec, isLoading, fetchImages, fetchExec }}>
+        <DataContext.Provider value={{ images, exec, recentNews, isLoading, fetchImages, fetchExec, fetchRecentNews }}>
             {children}
         </DataContext.Provider>
     );
