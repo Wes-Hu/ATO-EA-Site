@@ -7,11 +7,13 @@ type ImageItem = {
 };
 type ImageUrls = string[];
 type ExecBoard = {
+    id: number | null;
     email: string | null;
     grade: string | null;
     major: string | null;
     name: string | null;
     position: string;
+    picture: string;
 };
 
 interface DataContextProps {
@@ -19,6 +21,7 @@ interface DataContextProps {
     exec: ExecBoard[];
     isLoading: boolean;
     fetchImages: () => Promise<void>;
+    fetchExec: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -67,7 +70,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 console.error('Error from Supabase:', error);
                 throw error;
             }
-            setExec(data ?? []); // Ensure data is an array
+            const sortedData = (data as ExecBoard[]).sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+            setExec(sortedData); // Ensure data is an array
         } catch (error) {
             console.error("Error fetching exec board info", error);
         }
@@ -79,7 +83,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, []);
 
     return (
-        <DataContext.Provider value={{ images, exec, isLoading, fetchImages }}>
+        <DataContext.Provider value={{ images, exec, isLoading, fetchImages, fetchExec }}>
             {children}
         </DataContext.Provider>
     );
