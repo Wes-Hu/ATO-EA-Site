@@ -18,7 +18,7 @@ type ExecBoard = {
 type RecentNews = {
     id:number;
     title: string | null;
-    date: Date | null;
+    date: string | null;
     brief_description: string | null;
     description: string | null;
     image_src: string | null;

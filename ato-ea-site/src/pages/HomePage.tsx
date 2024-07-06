@@ -5,10 +5,12 @@ import { RxDotFilled } from "react-icons/rx";
 import { FaInstagram } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { parseISO, format } from 'date-fns';
 
 function HomePage() {
-    const { images, exec, isLoading } = useDataContext();
+    const { images, exec, isLoading, recentNews } = useDataContext();
     const [currentIndex, setCurrentIndex] = useState(0);
+    const mostRecentNews = recentNews.slice(0, 3);
 
     // Carousel functions
     const prevSlide = () => {
@@ -148,28 +150,17 @@ function HomePage() {
                     <div className="mb-10 text-white text-center text-4xl text-nowrap lg:text-5xl font-bold leading-normal">Recent News</div>
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
+                        {mostRecentNews.map((news) => (
+                            <a key={news.id} href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="flex flex-col md:flex-row justify-between flex-wrap">
-                                <div className="text-left text-white text-3xl font-medium leading-10">Header</div>
-                                <div className="text-left text-white text-xl font-medium leading-10">Date Posted:XX/XX/XX</div>
+                                <div className="text-left text-white text-3xl font-medium leading-10">{news.title}</div>
+                                <div className="text-left text-white text-xl font-medium leading-10">
+                                Date Posted: {news.date ? format(parseISO(news.date), 'MM/dd/yyyy') : ''}
+                                </div>
                             </div>
-                            <div className="text-left text-white text-xl md:text-xl font-medium leading-10">brief description</div>
-                        </a>
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
-                            <div className="flex flex-col md:flex-row justify-between flex-wrap">
-                                <div className="text-left text-white text-3xl font-medium leading-10">Header</div>
-                                <div className="text-left text-white text-xl font-medium leading-10">Date Posted: XX/XX/XX</div>
-                            </div>
-                            <div className="text-left text-white text-xl md:text-xl font-medium leading-10">brief description</div>
-                        </a>
-                        <a href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
-                            <div className="flex flex-col md:flex-row justify-between flex-wrap">
-                                <div className="text-left text-white text-3xl font-medium leading-10">Header</div>
-                                <div className="text-left text-white text-xl font-medium leading-10">Date Posted: XX/XX/XX</div>
-                            </div>
-                            <div className="text-left text-white text-xl md:text-xl font-medium leading-10">brief description</div>
-                        </a>
-
+                            <div className="text-left text-white text-xl md:text-xl font-medium leading-10">{news.brief_description}</div>
+                            </a>
+                        ))}
                     </div>
                     <div className="flex flex-col gap-3 lg:flex-row flex-wrap justify-center items-center">
                         <div className="text-white text-xl lg:text-2xl text-nowrap font-medium leading-9">Follow Our Instagram</div>
