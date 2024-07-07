@@ -21,7 +21,7 @@ type RecentNews = {
     date: string | null;
     brief_description: string | null;
     description: string | null;
-    image_src: string | null;
+    image_src: string | undefined;
 }
 
 interface DataContextProps {

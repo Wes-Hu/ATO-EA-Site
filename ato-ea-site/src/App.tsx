@@ -5,6 +5,7 @@ import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import { DataProvider } from "./utils/DataContext";
+import RecentNewsPage from "./pages/RecentNewsPage";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -75,6 +76,7 @@ function App() {
         <main className="flex-grow pt-28">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/recent-news" element={<RecentNewsPage />} />
             <Route path="/admin-login" element={<AdminLoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
           </Routes>

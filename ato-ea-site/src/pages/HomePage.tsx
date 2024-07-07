@@ -36,6 +36,7 @@ function HomePage() {
     useEffect(() => {
         AOS.init({
             duration: 1000,
+            offset: 200,
             once: true, // Ensures the animation happens only once
         });
     }, []);
@@ -151,7 +152,7 @@ function HomePage() {
 
                     <div className="mb-5 w-full flex flex-col gap-3 justify-center">
                         {mostRecentNews.map((news) => (
-                            <a key={news.id} href="/recent" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
+                            <a key={news.id} href="/recent-news" className="w-full p-5 flex flex-col justify-center gap-5 bg-dark-blue rounded-3xl hover:scale-110 hover:shadow-lg duration-300 ease-in-out transition-all">
                             <div className="flex flex-col md:flex-row justify-between flex-wrap">
                                 <div className="text-left text-white text-3xl font-medium leading-10">{news.title}</div>
                                 <div className="text-left text-white text-xl font-medium leading-10">
