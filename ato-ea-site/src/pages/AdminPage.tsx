@@ -391,6 +391,11 @@ const AdminPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <hr className="border-t-1 border-gray-300 w-full" />
+      <div id="ExecUpdate" className='flex flex-col mb-10 justify-center items-center'>
+        <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Recent News</h2>
+        <p className='w-screen md:w-1/2 mb-10 text-center'>You can view a list of all posts in recent news here that you can edit or delete. You can also make a new post to recent news here.</p>
+      </div>
     </div>
   );
 };
