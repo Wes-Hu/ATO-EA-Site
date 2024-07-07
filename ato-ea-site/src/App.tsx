@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import './App.css';
+import MobileMenu from "./components/MobileMenu";
 import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
 import AdminLoginPage from "./pages/AdminLoginPage";
@@ -9,6 +10,7 @@ import RecentNewsPage from "./pages/RecentNewsPage";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const handleOnClose = () => setMenuOpen(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -16,7 +18,7 @@ function App() {
   return (
     <DataProvider>
       <div className="flex flex-col min-h-screen">
-        <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-3 xl:px-0 flex flex-row justify-evenly items-center z-50">
+        <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-3 md:px-20 lg:px-3 xl:px-0 flex flex-row justify-between lg:justify-evenly items-center z-50">
           <a href="/" className="HomeButton flex flex-row gap-2">
             <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
             <div className="h-14 flex flex-col">
@@ -73,6 +75,7 @@ function App() {
             </div>
           </button>
         </header>
+        <MobileMenu open={menuOpen} onClose={handleOnClose}/>
         <main className="flex-grow pt-28">
           <Routes>
             <Route path="/" element={<HomePage />} />
