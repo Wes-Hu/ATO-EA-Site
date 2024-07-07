@@ -31,7 +31,7 @@ function App() {
                 <a href="/history" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HISTORY</a>
                 <a href="/chapter-values" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">CHAPTER VALUES</a>
                 <a href="/leadership" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">LEADERSHIP</a>
-                <a href="/recent" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RECENT NEWS</a>
+                <a href="/recent-news" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RECENT NEWS</a>
               </div>
             </div>
             <div className="relative group h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
