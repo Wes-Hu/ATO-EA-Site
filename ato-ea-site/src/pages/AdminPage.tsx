@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { useDataContext } from '../utils/DataContext'; // Adjust the import path as needed
+import { useDataContext } from '../utils/DataContext';
 
 const AdminPage: React.FC = () => {
   const { images, exec, isLoading, fetchImages: refreshImages, fetchExec } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState<string | null>(null); // Modify to track which member is uploading
   const [saving, setSaving] = useState(false); // New state for saving
   const [authenticated, setAuthenticated] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editedExec, setEditedExec] = useState(exec);
+  const [selectedImages, setSelectedImages] = useState<{ [key: number]: File | null }>({}); // Track selected images for each exec member
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -72,9 +73,9 @@ const AdminPage: React.FC = () => {
     }
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+      setSelectedImages((prev) => ({ ...prev, [index]: e.target.files[0] }));
     }
   };
 
@@ -82,7 +83,7 @@ const AdminPage: React.FC = () => {
     if (!image) return;
 
     try {
-      setUploading(true);
+      setUploading('home'); // Use a unique identifier for home page upload
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -111,14 +112,14 @@ const AdminPage: React.FC = () => {
       console.error('Error uploading image:', error);
       alert(`Error uploading image: ${error.message}`);
     } finally {
-      setUploading(false);
+      setUploading(null);
       setImage(null);
     }
   };
 
   const handleDeleteImage = async (imgSrc: string) => {
     try {
-      setUploading(true);
+      setUploading('delete'); // Use a unique identifier for delete operation
 
       const fileName = imgSrc.split('/').pop();
       const filePath = `HomePageImages/${fileName}`;
@@ -139,7 +140,7 @@ const AdminPage: React.FC = () => {
       console.error('Error deleting image:', error);
       alert('Error deleting image');
     } finally {
-      setUploading(false);
+      setUploading(null);
     }
   };
 
@@ -147,7 +148,7 @@ const AdminPage: React.FC = () => {
     if (!image) return;
 
     try {
-      setUploading(true);
+      setUploading('replace'); // Use a unique identifier for replace operation
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -177,16 +178,17 @@ const AdminPage: React.FC = () => {
       console.error('Error replacing image:', error);
       alert('Error replacing image');
     } finally {
-      setUploading(false);
+      setUploading(null);
       setImage(null);
     }
   };
 
   const handleExecImageUpload = async (index: number) => {
+    const image = selectedImages[index];
     if (!image) return;
 
     try {
-      setUploading(true);
+      setUploading(`exec_${index}`); // Use a unique identifier for each exec member's upload
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -221,12 +223,12 @@ const AdminPage: React.FC = () => {
       }
 
       alert('Executive Board image updated successfully!');
-      setImage(null);
+      setSelectedImages((prev) => ({ ...prev, [index]: null })); // Clear the selected image for the member
     } catch (error) {
       console.error('Error uploading executive board image:', error);
       alert('Error uploading executive board image');
     } finally {
-      setUploading(false);
+      setUploading(null);
     }
   };
 
@@ -258,9 +260,9 @@ const AdminPage: React.FC = () => {
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Home Page Carousel</h2>
         <p className='mb-10 text-center'>Upload a new image or replace/delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image or click "Replace" on any of the existing image to replace it</p>
         <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
-          <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={handleImageChange} />
-          <button onClick={handleImageUpload} disabled={uploading} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
-            {uploading ? 'Uploading...' : 'Upload New Image'}
+          <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
+          <button onClick={handleImageUpload} disabled={uploading === 'home'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+            {uploading === 'home' ? 'Uploading...' : 'Upload New Image'}
           </button>
         </div>
         <p>Current Images</p>
@@ -285,7 +287,7 @@ const AdminPage: React.FC = () => {
       <hr className="border-t-1 border-gray-300 w-full" />
       <div id="ExecUpdate" className='flex flex-col mb-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Executive Board</h2>
-        <p className='w-screen md:w-1/2 mb-10 text-center'>Here you can update changable parts of the website directly such as changing rotating photos on home page, update the executive board list, and make posts to recent news. Make sure to logout when finished.</p>
+        <p className='w-screen md:w-1/2 mb-10 text-center'>Edit the executive board list here by clicking the "Edit" button. You can change all the fields including uploading a new image.</p>
         <div className="overflow-x-auto px-10 lg:px-0 w-screen lg:w-auto flex flex-col flex-start">
           <table className="table-auto w-full border-collapse border border-gray-300 mb-5">
             <thead>
@@ -357,9 +359,9 @@ const AdminPage: React.FC = () => {
                   {editMode && (
                     <td className="border border-gray-300 px-4 py-2">
                       <div className='flex flex-col gap-2'>
-                        <input className='w-full' type="file" accept="image/*" onChange={handleImageChange} />
-                        <button onClick={() => handleExecImageUpload(index)} disabled={uploading} className='w-24 h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>
-                          {uploading ? 'Uploading...' : 'Upload'}
+                        <input className='w-full' type="file" accept="image/*" onChange={(e) => handleImageChange(index, e)} />
+                        <button onClick={() => handleExecImageUpload(index)} disabled={uploading === `exec_${index}`} className='w-24 h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>
+                          {uploading === `exec_${index}` ? 'Uploading...' : 'Upload'}
                         </button>
                       </div>
                     </td>
@@ -383,8 +385,6 @@ const AdminPage: React.FC = () => {
                 'Save'
               )}
             </button>
-            
-            
             ) : (
               <button onClick={() => setEditMode(true)} className='w-20 h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Edit</button>
             )}
