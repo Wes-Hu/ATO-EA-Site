@@ -2,16 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useDataContext } from '../utils/DataContext';
+import { FaPen, FaRegTrashAlt } from "react-icons/fa";
+import EditNewsModal from '../components/EditNewsModal';
+import CreateNewsModal from '../components/CreateNewsModal'; // Import CreateNewsModal
 
 const AdminPage: React.FC = () => {
-  const { images, exec, isLoading, fetchImages: refreshImages, fetchExec } = useDataContext();
+  const { images, exec, recentNews, isLoading, fetchImages: refreshImages, fetchExec, fetchRecentNews } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
-  const [uploading, setUploading] = useState<string | null>(null); // Modify to track which member is uploading
-  const [saving, setSaving] = useState(false); // New state for saving
+  const [uploading, setUploading] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editedExec, setEditedExec] = useState(exec);
-  const [selectedImages, setSelectedImages] = useState<{ [key: number]: File | null }>({}); // Track selected images for each exec member
+  const [selectedImages, setSelectedImages] = useState<{ [key: number]: File | null }>({});
+  const [selectedNews, setSelectedNews] = useState<number[]>([]);
+  const [editingNews, setEditingNews] = useState<any | null>(null); // State to track the news being edited
+  const [creatingNews, setCreatingNews] = useState(false); // State to control creating news modal
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +27,7 @@ const AdminPage: React.FC = () => {
         setAuthenticated(true);
         refreshImages();
         fetchExec();
+        fetchRecentNews();
       } else {
         setAuthenticated(false);
         navigate('/admin-login');
@@ -28,9 +35,8 @@ const AdminPage: React.FC = () => {
     };
 
     checkUser();
-  }, [navigate, refreshImages, fetchExec]);
+  }, [navigate, refreshImages, fetchExec, fetchRecentNews]);
 
-  // Use a separate useEffect to update editedExec only when exec changes and we are not in edit mode
   useEffect(() => {
     if (!editMode) {
       const sortedExec = exec.slice().sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
@@ -45,12 +51,12 @@ const AdminPage: React.FC = () => {
   };
 
   const handleSave = async () => {
-    setSaving(true); // Set saving state to true
+    setSaving(true);
     try {
       for (const member of editedExec) {
         const { error } = await supabase
           .from('ExecBoard')
-          .update({ 
+          .update({
             name: member.name,
             grade: member.grade,
             major: member.major,
@@ -69,7 +75,7 @@ const AdminPage: React.FC = () => {
       console.error('Error updating executive board:', error);
       alert('Error updating executive board');
     } finally {
-      setSaving(false); // Set saving state to false after operation completes
+      setSaving(false);
     }
   };
 
@@ -83,7 +89,7 @@ const AdminPage: React.FC = () => {
     if (!image) return;
 
     try {
-      setUploading('home'); // Use a unique identifier for home page upload
+      setUploading('home');
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -107,7 +113,7 @@ const AdminPage: React.FC = () => {
       if (insertError) throw insertError;
 
       alert('Image uploaded successfully!');
-      refreshImages(); // Fetch images from context after uploading
+      refreshImages();
     } catch (error) {
       console.error('Error uploading image:', error);
       alert(`Error uploading image: ${error.message}`);
@@ -119,7 +125,7 @@ const AdminPage: React.FC = () => {
 
   const handleDeleteImage = async (imgSrc: string) => {
     try {
-      setUploading('delete'); // Use a unique identifier for delete operation
+      setUploading('delete');
 
       const fileName = imgSrc.split('/').pop();
       const filePath = `HomePageImages/${fileName}`;
@@ -135,7 +141,7 @@ const AdminPage: React.FC = () => {
       if (deleteError) throw deleteError;
 
       alert('Image deleted successfully!');
-      refreshImages(); // Fetch images from context after deleting
+      refreshImages();
     } catch (error) {
       console.error('Error deleting image:', error);
       alert('Error deleting image');
@@ -148,7 +154,7 @@ const AdminPage: React.FC = () => {
     if (!image) return;
 
     try {
-      setUploading('replace'); // Use a unique identifier for replace operation
+      setUploading('replace');
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -173,7 +179,7 @@ const AdminPage: React.FC = () => {
       if (updateError) throw updateError;
 
       alert('Image replaced successfully!');
-      refreshImages(); // Fetch images from context after replacing
+      refreshImages();
     } catch (error) {
       console.error('Error replacing image:', error);
       alert('Error replacing image');
@@ -188,7 +194,7 @@ const AdminPage: React.FC = () => {
     if (!image) return;
 
     try {
-      setUploading(`exec_${index}`); // Use a unique identifier for each exec member's upload
+      setUploading(`exec_${index}`);
 
       const fileName = `${Date.now()}_${image.name}`;
       const { error: uploadError } = await supabase.storage
@@ -223,7 +229,7 @@ const AdminPage: React.FC = () => {
       }
 
       alert('Executive Board image updated successfully!');
-      setSelectedImages((prev) => ({ ...prev, [index]: null })); // Clear the selected image for the member
+      setSelectedImages((prev) => ({ ...prev, [index]: null }));
     } catch (error) {
       console.error('Error uploading executive board image:', error);
       alert('Error uploading executive board image');
@@ -240,12 +246,59 @@ const AdminPage: React.FC = () => {
       navigate('/');
       setTimeout(() => {
         alert('Successfully logged out');
-      }, 100); // Delay the alert to ensure it shows after navigation
+      }, 100);
     }
   };
 
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      const allNewsIds = recentNews.map(news => news.id);
+      setSelectedNews(allNewsIds);
+    } else {
+      setSelectedNews([]);
+    }
+  };
+
+  const handleSelect = (id: number) => {
+    setSelectedNews(prev =>
+      prev.includes(id) ? prev.filter(newsId => newsId !== id) : [...prev, id]
+    );
+  };
+
+  const handleDeleteSelected = async () => {
+    try {
+      const { error } = await supabase
+        .from('RecentNews')
+        .delete()
+        .in('id', selectedNews);
+
+      if (error) {
+        throw error;
+      }
+
+      alert('Selected news deleted successfully!');
+      setSelectedNews([]); // Clear the selection
+      fetchRecentNews(); // Refresh the news list
+    } catch (error) {
+      console.error('Error deleting selected news:', error);
+      alert('Error deleting selected news');
+    }
+  };
+
+  const handleEditNews = (news: any) => {
+    setEditingNews(news);
+  };
+
+  const handleSaveNews = () => {
+    fetchRecentNews(); // Refresh the news list
+  };
+
+  const handleCreateNews = () => {
+    setCreatingNews(true);
+  };
+
   if (!authenticated) {
-    return <p>Loading...</p>; // Show a loading state while checking authentication
+    return <p>Loading...</p>;
   }
 
   return (
@@ -345,7 +398,7 @@ const AdminPage: React.FC = () => {
                     {editMode ? (
                       <input
                         type="text"
-                        value={member.email  || ''}
+                        value={member.email || ''}
                         onChange={(e) => handleExecChange(index, 'email', e.target.value)}
                         className="w-full px-2 py-1"
                       />
@@ -373,18 +426,18 @@ const AdminPage: React.FC = () => {
           <div className='flex flex-row gap-3 justify-end'>
             {editMode ? (
               <button onClick={handleSave} disabled={saving} className='w-auto h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold flex items-center justify-center'>
-              {saving ? (
-                <>
-                  <svg aria-hidden="true" className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-old-gold mr-2" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                  </svg>
-                  <span>Saving...</span>
-                </>
-              ) : (
-                'Save'
-              )}
-            </button>
+                {saving ? (
+                  <>
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-old-gold mr-2" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                    </svg>
+                    <span>Saving...</span>
+                  </>
+                ) : (
+                  'Save'
+                )}
+              </button>
             ) : (
               <button onClick={() => setEditMode(true)} className='w-20 h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Edit</button>
             )}
@@ -392,10 +445,57 @@ const AdminPage: React.FC = () => {
         </div>
       </div>
       <hr className="border-t-1 border-gray-300 w-full" />
-      <div id="ExecUpdate" className='flex flex-col mb-10 justify-center items-center'>
+      <div id="RecentNewsUpdate" className='flex flex-col mb-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Recent News</h2>
         <p className='w-screen md:w-1/2 mb-10 text-center'>You can view a list of all posts in recent news here that you can edit or delete. You can also make a new post to recent news here.</p>
       </div>
+      <div className='flex flex-row gap-3'>
+        <button onClick={handleDeleteSelected} disabled={selectedNews.length === 0} ><FaRegTrashAlt/></button>
+        <button onClick={handleCreateNews} className='flex flex-row justify-center items-center gap-3 rounded-md border border-gray-600 px-2'><FaPen/>Make New Post</button>
+      </div>
+      <div className='mt-3 overflow-x-auto px-10 lg:px-0 w-screen lg:w-auto flex flex-col flex-start'>
+        <table className="table-auto w-full border-collapse border border-gray-300 mb-5">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className='border border-gray-300 px-4 py-2'><input type="checkbox" id="select-all" onChange={handleSelectAll} checked={selectedNews.length === recentNews.length} /></th>
+              <th className="border border-gray-300 px-4 py-2">Title</th>
+              <th className="border border-gray-300 px-4 py-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recentNews.map((news) => (
+              <tr key={news.id}>
+                <td className='border border-gray-300 px-4 py-2'>
+                  <input
+                    type="checkbox"
+                    checked={selectedNews.includes(news.id)}
+                    onChange={() => handleSelect(news.id)}
+                  />
+                </td>
+                <td className="border border-gray-300 px-4 py-2">{news.title}</td>
+                <td className='border border-gray-300 px-4 py-2'>
+                  <button onClick={() => handleEditNews(news)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {editingNews && (
+        <EditNewsModal
+          news={editingNews}
+          isOpen={!!editingNews}
+          onClose={() => setEditingNews(null)}
+          onSave={handleSaveNews}
+        />
+      )}
+      {creatingNews && (
+        <CreateNewsModal
+          isOpen={creatingNews}
+          onClose={() => setCreatingNews(false)}
+          onSave={handleSaveNews}
+        />
+      )}
     </div>
   );
 };
