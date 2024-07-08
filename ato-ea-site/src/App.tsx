@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import { DataProvider } from "./utils/DataContext";
 import RecentNewsPage from "./pages/RecentNewsPage";
-import TestPage from "./pages/TestPage";
+import HistoryPage from "./pages/HistoryPage";
+
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,7 +84,7 @@ function App() {
             <Route path="/recent-news" element={<RecentNewsPage />} />
             <Route path="/admin-login" element={<AdminLoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
-            <Route path="/test" element={<TestPage />} />
+            <Route path="/history" element={<HistoryPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">

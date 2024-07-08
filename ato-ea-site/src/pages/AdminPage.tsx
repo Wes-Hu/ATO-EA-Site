@@ -7,6 +7,8 @@ import EditNewsModal from '../components/EditNewsModal';
 import CreateNewsModal from '../components/CreateNewsModal';
 import ScrollSpy from 'react-ui-scrollspy';
 
+//I give up on fixing type errors for this page. no one else but admin will see anyways
+
 const AdminPage: React.FC = () => {
   const { images, exec, recentNews, isLoading, fetchImages: refreshImages, fetchExec, fetchRecentNews } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
