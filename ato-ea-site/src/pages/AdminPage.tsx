@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDataContext } from '../utils/DataContext';
 import { FaPen, FaRegTrashAlt } from "react-icons/fa";
 import EditNewsModal from '../components/EditNewsModal';
-import CreateNewsModal from '../components/CreateNewsModal'; // Import CreateNewsModal
+import CreateNewsModal from '../components/CreateNewsModal';
+import ScrollSpy from 'react-ui-scrollspy';
 
 const AdminPage: React.FC = () => {
   const { images, exec, recentNews, isLoading, fetchImages: refreshImages, fetchExec, fetchRecentNews } = useDataContext();
@@ -16,8 +17,8 @@ const AdminPage: React.FC = () => {
   const [editedExec, setEditedExec] = useState(exec);
   const [selectedImages, setSelectedImages] = useState<{ [key: number]: File | null }>({});
   const [selectedNews, setSelectedNews] = useState<number[]>([]);
-  const [editingNews, setEditingNews] = useState<any | null>(null); // State to track the news being edited
-  const [creatingNews, setCreatingNews] = useState(false); // State to control creating news modal
+  const [editingNews, setEditingNews] = useState<any | null>(null);
+  const [creatingNews, setCreatingNews] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -297,9 +298,21 @@ const AdminPage: React.FC = () => {
     setCreatingNews(true);
   };
 
-  if (!authenticated) {
-    return <p>Loading...</p>;
-  }
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href')?.split('#')[1];
+    const targetElement = targetId ? document.getElementById(targetId) : null;
+    if (targetElement) {
+      const headerOffset = 112; // height of the header (28 * 4px = 112px)
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -308,7 +321,27 @@ const AdminPage: React.FC = () => {
       <button onClick={handleLogout} className='w-auto h-auto p-3 rounded-full bg-red-500 text-white text-lg mb-10 transition-all duration-300 hover:bg-red-700'>
         Logout
       </button>
-      <hr className="border-t-1 border-gray-300 w-full" />
+      
+      <div className='className="w-screen bg-white z-10"'>
+        <hr className="border-t-1 mb-5 border-gray-300 w-screen" />
+        <ScrollSpy>
+          <ul className="nav-list h-14 flex flex-col md:flex-row gap-3 justify-center items-center px-3">
+            <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
+              <a href="#HomePageUpdate" onClick={handleSmoothScroll}>Home Page Carousel</a>
+            </li>
+            <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
+              <a href="#ExecUpdate" onClick={handleSmoothScroll}>Executive Board</a>
+            </li>
+            <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
+              <a href="#RecentNewsUpdate" onClick={handleSmoothScroll}>Recent News</a>
+            </li>
+          </ul>
+        </ScrollSpy>
+        <hr className="border-t-1 mt-5 border-gray-300 w-screen" />
+      </div>
+      
+
+
       <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col mb-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Home Page Carousel</h2>
         <p className='mb-10 text-center'>Upload a new image or replace/delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image or click "Replace" on any of the existing image to replace it</p>
@@ -459,6 +492,7 @@ const AdminPage: React.FC = () => {
             <tr className="bg-gray-200">
               <th className='border border-gray-300 px-4 py-2'><input type="checkbox" id="select-all" onChange={handleSelectAll} checked={selectedNews.length === recentNews.length} /></th>
               <th className="border border-gray-300 px-4 py-2">Title</th>
+              <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Action</th>
             </tr>
           </thead>
@@ -473,6 +507,7 @@ const AdminPage: React.FC = () => {
                   />
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{news.title}</td>
+                <td className="border border-gray-300 px-4 py-2">{news.date}</td>
                 <td className='border border-gray-300 px-4 py-2'>
                   <button onClick={() => handleEditNews(news)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                 </td>

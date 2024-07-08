@@ -64,7 +64,7 @@ const CreateNewsModal: React.FC<CreateNewsModalProps> = ({ isOpen, onClose, onSa
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-1/2">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-screen md:w-3/5">
         <h2 className="text-2xl mb-5">Create News Post</h2>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Title</label>
