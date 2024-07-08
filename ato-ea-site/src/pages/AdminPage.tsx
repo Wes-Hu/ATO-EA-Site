@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useDataContext } from '../utils/DataContext';
@@ -303,7 +303,7 @@ const AdminPage: React.FC = () => {
     const targetId = e.currentTarget.getAttribute('href')?.split('#')[1];
     const targetElement = targetId ? document.getElementById(targetId) : null;
     if (targetElement) {
-      const headerOffset = 112; // height of the header (28 * 4px = 112px)
+      const headerOffset = 224; // height of the header (28 * 4px = 112px)
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -314,6 +314,44 @@ const AdminPage: React.FC = () => {
     }
   };
 
+  const navBarRef = useRef<HTMLDivElement | null>(null);
+  const placeholderRef = useRef<HTMLDivElement | null>(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const headerHeight = 7 * 16; // h-28 in Tailwind CSS (28 * 0.25rem = 7rem, 1rem = 16px)
+
+  useEffect(() => {
+      const handleStickyScroll = () => {
+          const navBar = navBarRef.current;
+          const placeholder = placeholderRef.current;
+          if (navBar && placeholder) {
+              const rect = navBar.getBoundingClientRect();
+              const offsetTop = placeholder.offsetTop;
+              const parentWidth = placeholder.parentElement?.clientWidth;
+
+              if (rect.top <= headerHeight && !isSticky) {
+                  setIsSticky(true);
+                  placeholder.style.height = `${navBar.offsetHeight}px`;
+                  placeholder.style.display = 'block';
+                  navBar.style.position = 'fixed';
+                  navBar.style.top = `${headerHeight}px`;
+                  navBar.style.width = `${parentWidth}px`; // Set width to match parent
+              } else if (window.scrollY < offsetTop - headerHeight) {
+                  setIsSticky(false);
+                  navBar.style.position = 'relative';
+                  navBar.style.top = 'auto';
+                  navBar.style.width = '100%';
+                  placeholder.style.display = 'none';
+              }
+          }
+      };
+
+      window.addEventListener('scroll', handleStickyScroll);
+      
+      return () => {
+          window.removeEventListener('scroll', handleStickyScroll);
+      };
+  }, [isSticky, headerHeight]);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className='mt-10 mb-5 text-black text-4xl md:text-5xl text-center font-bold leading-normal'>Welcome To The Admin Page</h1>
@@ -322,8 +360,8 @@ const AdminPage: React.FC = () => {
         Logout
       </button>
       
-      <div className='className="w-screen bg-white z-10"'>
-        <hr className="border-t-1 mb-5 border-gray-300 w-screen" />
+      <div ref={placeholderRef} style={{ height: '0' }}></div>
+      <div ref={navBarRef} className='h-28 w-screen bg-gray-300 flex justify-center items-center'>
         <ScrollSpy>
           <ul className="nav-list h-14 flex flex-col md:flex-row gap-3 justify-center items-center px-3">
             <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
@@ -337,12 +375,11 @@ const AdminPage: React.FC = () => {
             </li>
           </ul>
         </ScrollSpy>
-        <hr className="border-t-1 mt-5 border-gray-300 w-screen" />
       </div>
       
 
 
-      <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col mb-10 justify-center items-center'>
+      <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col my-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Home Page Carousel</h2>
         <p className='mb-10 text-center'>Upload a new image or replace/delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image or click "Replace" on any of the existing image to replace it</p>
         <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
