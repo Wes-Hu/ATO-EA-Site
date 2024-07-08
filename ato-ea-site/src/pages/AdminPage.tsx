@@ -352,6 +352,26 @@ const AdminPage: React.FC = () => {
       };
   }, [isSticky, headerHeight]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  // Calculate the current items to show
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = recentNews.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Handle page change
+  const handleClick = (event, pageNumber) => {
+    event.preventDefault();
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(recentNews.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className='mt-10 mb-5 text-black text-4xl md:text-5xl text-center font-bold leading-normal'>Welcome To The Admin Page</h1>
@@ -527,14 +547,16 @@ const AdminPage: React.FC = () => {
         <table className="table-auto w-full border-collapse border border-gray-300 mb-5">
           <thead>
             <tr className="bg-gray-200">
-              <th className='border border-gray-300 px-4 py-2'><input type="checkbox" id="select-all" onChange={handleSelectAll} checked={selectedNews.length === recentNews.length} /></th>
+              <th className='border border-gray-300 px-4 py-2'>
+                <input type="checkbox" id="select-all" onChange={handleSelectAll} checked={selectedNews.length === recentNews.length} />
+              </th>
               <th className="border border-gray-300 px-4 py-2">Title</th>
               <th className="border border-gray-300 px-4 py-2">Date</th>
               <th className="border border-gray-300 px-4 py-2">Action</th>
             </tr>
           </thead>
           <tbody>
-            {recentNews.map((news) => (
+            {currentItems.map((news) => (
               <tr key={news.id}>
                 <td className='border border-gray-300 px-4 py-2'>
                   <input
@@ -552,6 +574,14 @@ const AdminPage: React.FC = () => {
             ))}
           </tbody>
         </table>
+
+        <div className="pagination">
+          {pageNumbers.map(number => (
+            <button key={number} onClick={(event) => handleClick(event, number)} className="mx-1 px-3 py-1 border rounded">
+              {number}
+            </button>
+          ))}
+        </div>
       </div>
       {editingNews && (
         <EditNewsModal
