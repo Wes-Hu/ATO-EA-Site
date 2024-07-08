@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { parseISO, format } from 'date-fns';
 import { useDataContext } from '../utils/DataContext';
-
+import { motion, AnimatePresence } from 'framer-motion';
 
 function RecentNewsPage() {
     const { recentNews } = useDataContext();
@@ -35,16 +35,24 @@ function RecentNewsPage() {
                                 </div>
                             </div>
                         </div>
-                        <div className={`w-full overflow-hidden transition-all duration-500 ${expandedIndex === index ? 'max-h-[1000px]' : 'max-h-0'}`}>
-                            <div className={`w-full bg-old-gold text-black shadow-lg ${expandedIndex === index ? 'rounded-bl-3xl rounded-br-3xl p-3 md:p-10' : 'p-0'}`}>
-                                {expandedIndex === index && (
-                                    <div className="w-full bg-white rounded-3xl flex flex-col md:flex-row justify-normal p-3 md:p-10 gap-3 md:gap-14">
-                                        <img className="rounded-3xl" src={news.image_src} />
-                                        <div className="text-black text-xl font-medium font">{news.description}</div>
+                        <AnimatePresence initial={false}>
+                            {expandedIndex === index && (
+                                <motion.div
+                                    initial={{ height: 0 }}
+                                    animate={{ height: 'auto' }}
+                                    exit={{ height: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="w-full overflow-hidden"
+                                >
+                                    <div className="w-full bg-old-gold text-black shadow-lg rounded-bl-3xl rounded-br-3xl p-3 md:p-10">
+                                        <div className="w-full bg-white rounded-3xl flex flex-col md:flex-row justify-normal p-3 md:p-10 gap-3 md:gap-14">
+                                            <img className="rounded-3xl" src={news.image_src} />
+                                            <div className="text-black text-xl font-medium">{news.description}</div>
+                                        </div>
                                     </div>
-                                )}
-                            </div>
-                        </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 ))}
             </div>
