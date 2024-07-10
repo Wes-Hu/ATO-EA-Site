@@ -383,7 +383,7 @@ const AdminPage: React.FC = () => {
       </button>
       
       <div ref={placeholderRef} style={{ height: '0' }}></div>
-      <div ref={navBarRef} className='h-28 w-screen bg-gray-300 flex justify-center items-center'>
+      <div ref={navBarRef} className='hidden h-28 w-screen bg-gray-300 md:flex justify-center items-center'>
         <ScrollSpy>
           <ul className="nav-list h-14 flex flex-col md:flex-row gap-3 justify-center items-center px-3">
             <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
