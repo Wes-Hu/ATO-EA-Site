@@ -8,6 +8,7 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import { DataProvider } from "./utils/DataContext";
 import RecentNewsPage from "./pages/RecentNewsPage";
 import HistoryPage from "./pages/HistoryPage";
+import ChapterValuesPage from "./pages/ChapterValuesPage";
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
             <Route path="/admin-login" element={<AdminLoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/history" element={<HistoryPage />} />
+            <Route path="/chapter-values" element={<ChapterValuesPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
