@@ -4,6 +4,8 @@ import ScrollSpy from 'react-ui-scrollspy';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaUsers } from "react-icons/fa";
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 function ChapterValuesPage() {
     const [activeSection, setActiveSection] = useState('');
@@ -58,6 +60,13 @@ function ChapterValuesPage() {
 
     return (
         <div id="HistoryPageContainer" className="flex flex-col justify-center items-center">
+            <div id="Image" className="w-screen h-[60vh] mb-24 md:h-[80vh] relative bg-azure group">
+                <div style={{ backgroundImage: `url(src/assets/ATOHouse.png)` }} className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center">
+                    <div className="bg-azure bg-opacity-50 py-16 px-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
+                        <div className="text-white text-4xl font-bold leading-9">Chapter Values</div>
+                    </div>
+                </div>
+            </div>
             <div id="SideBar" className="w-screen 2xl:w-3/5 px-3 mt-10 md:px-10 flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-2 mb-10">
                 <div className="w-screen hidden md:w-[25%] md:flex flex-col">
                     <Sticky enabled={true} top={144}>
@@ -65,19 +74,32 @@ function ChapterValuesPage() {
                             <ScrollSpy>
                                 <ul className="nav-list flex flex-col gap-3">
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#TheCreed" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'TheCreed' ? 'text-black text-3xl' : ' text-2xl'}`}>The Creed</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'TheCreed' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#TheCreed" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'TheCreed' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">The Creed</motion.div>
+                                        </motion.a >
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'TheCreed' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className="w-full h-2 bg-old-gold origin-left"></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#OurValues" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'OurValues' ? 'text-black text-3xl' : ' text-2xl'}`}>Our Values</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'OurValues' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#OurValues" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'OurValues' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">Our Values</motion.div>
+                                        </motion.a >
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'OurValues' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className={`w-full h-2 bg-old-gold origin-left`}></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#DEIA" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'DEIA' ? 'text-black text-3xl' : ' text-2xl'}`}>DEIA Statement</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'DEIA' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#DEIA" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'DEIA' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">DEIA Statement</motion.div>
+                                        </motion.a>
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'DEIA' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className="w-full h-2 bg-old-gold origin-left"></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                 </ul>
                             </ScrollSpy>
+                            
                         </div>
                     </Sticky>
                 </div>
@@ -86,10 +108,10 @@ function ChapterValuesPage() {
                         <h1 className="text-white text-5xl font-bold mb-10">The Creed of Alpha Tau Omega</h1>
                         <p className=" text-white text-xl font-medium leading-loose">To bind men together in a brotherhood based upon eternal and immutable principles, with a bond as strong as right itself and as lasting as humanity; to know no North, no South, no East, no West, but to know man as man, to teach that true men the world over should stand together and contend for supremacy of good over evil; to teach, not politics, but morals; to foster, not partisanship, but the recognition of true merit wherever found; to have no narrower limits within which to work together for the elevation of man than the outlines of the world: these were the thoughts and hopes uppermost in the minds of the founders of the Alpha Tau Omega Fraternity.<br/><br/>-Otis Allan Glazebrook<br/>1880</p>
                     </div>
-                    <div data-aos="fade-up" id="OurValues" className="flex flex-col justify-center items-start gap-5">
+                    <div data-aos="fade-left" id="OurValues" className="flex flex-col justify-center items-start gap-5">
                         <h1 className="text-5xl font-bold mb-5">Our Values</h1>
                         <p className="text-xl font-medium leading-loose">At the Epsilon Alpha chapter of Alpha Tau Omega, our core values are the foundation of our brotherhood. They guide our actions, shape our community, and inspire us to make a positive impact. Here are the values that define who we are:</p>
-                        <div className='h-screen flex flex-col md:flex-row'>
+                        <div className='flex flex-col md:flex-row'>
                         </div>
                     </div>
                     <div data-aos="fade-up" id="DEIA" className="bg-azure mb-96 p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">

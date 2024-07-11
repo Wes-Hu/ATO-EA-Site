@@ -3,6 +3,7 @@ import Sticky from 'react-stickynode';
 import ScrollSpy from 'react-ui-scrollspy';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function HistoryPage() {
     const [activeSection, setActiveSection] = useState('');
@@ -81,16 +82,28 @@ function HistoryPage() {
                             <ScrollSpy>
                                 <ul className="nav-list flex flex-col gap-3">
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#ATOFounders" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'ATOFounders' ? 'text-black text-3xl' : ' text-2xl'}`}>ATO Founders</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'ATOFounders' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#ATOFounders" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'ATOFounders' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">ATO Founders</motion.div>
+                                        </motion.a >
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'ATOFounders' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className="w-full h-2 bg-old-gold origin-left"></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#ATOHistory" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'ATOHistory' ? 'text-black text-3xl' : ' text-2xl'}`}>ATO History</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'ATOHistory' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#ATOHistory" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'ATOHistory' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">ATO History</motion.div>
+                                        </motion.a >
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'ATOHistory' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className={`w-full h-2 bg-old-gold origin-left`}></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                     <li className="nav-item text-center md:text-left font-bold">
-                                        <a href="#EAHistory" onClick={handleSmoothScroll} className={`transition-all duration-500 ease-in-out ${activeSection === 'EAHistory' ? 'text-black text-3xl' : ' text-2xl'}`}>Local History</a>
-                                        <div className={`w-full h-2 bg-old-gold origin-left transition-opacity duration-500 ease-in-out ${activeSection === 'EAHistory' ? 'opacity-100' : 'opacity-0'}`}></div>
+                                        <motion.a layout href="#EAHistory" onClick={handleSmoothScroll}>
+                                            <motion.div  initial={{ scale: 1 }} animate={{ scale: activeSection === 'EAHistory' ? 1.1 : 1 }} transition={{ duration: 0.5 }} className="text-2xl origin-left mb-1">Local History</motion.div>
+                                        </motion.a>
+                                        <AnimatePresence mode="popLayout">
+                                            {activeSection === 'EAHistory' && (<motion.div initial={{scaleX:0,}} animate={{scaleX:1,}} exit={{scaleX:0,}} transition={{duration:0.3}} className="w-full h-2 bg-old-gold origin-left"></motion.div>)}
+                                        </AnimatePresence>
                                     </li>
                                 </ul>
                             </ScrollSpy>
