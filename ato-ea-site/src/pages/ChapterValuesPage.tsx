@@ -245,7 +245,7 @@ function ChapterValuesPage() {
                             </div>
                         </div>
                     </div>
-                    <div data-aos="zoom-in" id="DEIA" className="bg-azure mb-[439px] p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
+                    <div data-aos="zoom-in" id="DEIA" className="bg-azure md:mb-[439px] p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
                         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Diversity, Equity, Inclusion, and Accessibility Position statement</h1>
                         <div className="flex flex-col lg:flex-row justify-center text-white items-center">
 
