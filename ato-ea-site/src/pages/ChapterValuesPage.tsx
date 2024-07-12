@@ -3,30 +3,26 @@ import Sticky from 'react-stickynode';
 import ScrollSpy from 'react-ui-scrollspy';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaUsers } from "react-icons/fa";
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { MdGroups, MdGroups3, MdHandshake } from 'react-icons/md';
+import { MdGroups, MdHandshake } from 'react-icons/md';
+import { FaBalanceScale, FaBook, FaHandsHelping, FaHeart, FaUserGraduate } from 'react-icons/fa';
 
 
 function ChapterValuesPage() {
     const [activeSection, setActiveSection] = useState('');
 
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     useEffect(() => {
-    const handleResize = () => {
-        setIsMobile(window.innerWidth < 768); // md breakpoint is 768px in TailwindCSS
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Set the initial state
-    handleResize();
-
-    // Cleanup event listener on component unmount
-    return () => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
         window.removeEventListener('resize', handleResize);
-    };
+      };
     }, []);
 
     useEffect(() => {
@@ -141,11 +137,11 @@ function ChapterValuesPage() {
                         </div>
                         
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-40 flex-grow flex items-center justify-center bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none text-azure">
+                            <div className="w-screen md:w-40 flex-grow py-5 flex items-center justify-center bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none text-azure">
                                 <MdHandshake size={100} />
                             </div>
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[0]} initial={{ x: '-100%' }} animate={{ x: inViews[0] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                <motion.div ref={refs[0]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[0] ? '0%' : '-100%' }: { x: inViews[0] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Brotherhood</h1>
                                         <p className="text-white text-left text-xl font-medium">Brotherhood is at the heart of Alpha Tau Omega. We believe in fostering strong, lasting relationships built on mutual respect, trust, and support. Our fraternity creates a sense of belonging and unity that extends beyond college life, forming lifelong friendships and a supportive network.</p>
@@ -155,7 +151,7 @@ function ChapterValuesPage() {
                         </div>
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[1]} initial={{ x: '100%' }} animate={{ x: inViews[1] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                <motion.div ref={refs[1]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[1] ? '0%' : '-100%' }: { x: inViews[1] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Leadership</h1>
                                         <p className="text-white text-left text-xl font-medium">We encourage our members to take on leadership roles within the chapter, on campus, and in the wider community. Developing leadership skills prepares our brothers to become effective, ethical leaders who make a difference in the world.</p>
@@ -163,7 +159,7 @@ function ChapterValuesPage() {
                                 </motion.div>
                             </div>
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
                                     <MdGroups size={100} />
                                 </div>
                             </div>
@@ -171,12 +167,12 @@ function ChapterValuesPage() {
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
-                                    <MdHandshake size={100} />
+                                <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                    <FaBook size={80} />
                                 </div>
                             </div>
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[2]} initial={{ x: '-100%' }} animate={{ x: inViews[2] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                <motion.div ref={refs[2]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[2] ? '0%' : '-100%' }: { x: inViews[2] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Scholarship</h1>
                                         <p className="text-white text-left text-xl font-medium">Academic excellence is a priority for Alpha Tau Omega. We strive to create an environment that promotes intellectual growth and success. Our members are dedicated to their studies, committed to achieving their educational goals, and support each other's academic endeavors.</p>
@@ -187,7 +183,7 @@ function ChapterValuesPage() {
 
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[3]} initial={{ x: '100%' }} animate={{ x: inViews[3] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                <motion.div ref={refs[3]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[3] ? '0%' : '-100%' }: { x: inViews[3] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Service</h1>
                                         <p className="text-white text-left text-xl font-medium">Service to others is fundamental to our fraternity. We are committed to giving back to our communities through various philanthropic and service activities. Our brothers are dedicated to making a positive impact and improving the lives of those in need.</p>
@@ -195,20 +191,20 @@ function ChapterValuesPage() {
                                 </motion.div>
                             </div>
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
-                                    <MdGroups size={100} />
+                                <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                    <FaHandsHelping size={100} />
                                 </div>
                             </div>
                         </div>
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
-                                    <MdHandshake size={100} />
+                                <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                    <FaBalanceScale size={80} />
                                 </div>
                             </div>
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[4]} initial={{ x: '-100%' }} animate={{ x: inViews[4] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                <motion.div ref={refs[4]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[4] ? '0%' : '-100%' }: { x: inViews[4] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Integrity</h1>
                                         <p className="text-white text-left text-xl font-medium">Integrity is essential to the character of an Alpha Tau Omega brother. We hold ourselves to the highest standards of honesty, ethics, and personal responsibility. By upholding these principles, we build a fraternity that is respected and trusted.</p>
@@ -219,7 +215,7 @@ function ChapterValuesPage() {
 
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[5]} initial={{ x: '100%' }} animate={{ x: inViews[5] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                <motion.div ref={refs[5]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[5] ? '0%' : '-100%' }: { x: inViews[5] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Respect</h1>
                                         <p className="text-white text-left text-xl font-medium">We embrace diversity and inclusivity, recognizing the value of different perspectives and backgrounds. By treating everyone with respect and dignity, we create a welcoming and supportive environment for all.</p>
@@ -227,20 +223,20 @@ function ChapterValuesPage() {
                                 </motion.div>
                             </div>
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
-                                    <MdGroups size={100} />
+                                <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                    <FaHeart size={80} />
                                 </div>
                             </div>
                         </div>
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
                             <div className="w-screen md:w-40 flex-grow flex items-stretch">
-                                <div className="flex-grow bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
-                                    <MdHandshake size={100} />
+                                <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                    <FaUserGraduate size={80} />
                                 </div>
                             </div>
                             <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
-                                <motion.div ref={refs[6]} initial={{ x: '-100%' }} animate={{ x: inViews[6] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                <motion.div ref={refs[6]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[6] ? '0%' : '-100%' }: { x: inViews[6] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Personal Development</h1>
                                         <p className="text-white text-left text-xl font-medium">We are dedicated to the personal development of our members, providing opportunities for growth in all areas of life, including social, emotional, and professional development. Our fraternity helps members become well-rounded individuals prepared for success in their future endeavors.</p>
@@ -249,11 +245,11 @@ function ChapterValuesPage() {
                             </div>
                         </div>
                     </div>
-                    <div data-aos="zoom-in" id="DEIA" className="bg-azure mb-96 p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
+                    <div data-aos="zoom-in" id="DEIA" className="bg-azure mb-[439px] p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
                         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Diversity, Equity, Inclusion, and Accessibility Position statement</h1>
-                        <div className="flex flex-col lg:flex-row justify-center text-white items-center gap-10">
-                            <MdGroups3 className='w-full md:w-1/4' size={200}/>
-                            <p className="w-full md:w-3/4 text-white text-xl font-medium leading-loose">Alpha Tau Omega is a place of acceptance, where people from all backgrounds are welcome. We strive to uphold the highest standards when it comes to all aspects of inclusion and access as well as ensuring that we provide equal opportunities to everyone. We believe that diversity is critical to the fabric of our organization and therefore, it is and will always be a top priority</p>
+                        <div className="flex flex-col lg:flex-row justify-center text-white items-center">
+
+                            <p className="w-full text-white text-xl font-medium leading-loose">Alpha Tau Omega is a place of acceptance, where people from all backgrounds are welcome. We strive to uphold the highest standards when it comes to all aspects of inclusion and access as well as ensuring that we provide equal opportunities to everyone. We believe that diversity is critical to the fabric of our organization and therefore, it is and will always be a top priority</p>
                         </div>
                         
                     </div>
