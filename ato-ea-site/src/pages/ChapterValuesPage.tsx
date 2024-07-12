@@ -10,6 +10,28 @@ import { MdGroups, MdGroups3, MdHandshake } from 'react-icons/md';
 
 function ChapterValuesPage() {
     const [activeSection, setActiveSection] = useState('');
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 768); // md breakpoint is 768px in TailwindCSS
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Set the initial state
+    handleResize();
+
+    // Cleanup event listener on component unmount
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+    }, []);
+
+    useEffect(() => {
+        console.log(isMobile)
+    }, [isMobile]);
     
     useEffect(() => {
         const handleScroll = () => {
@@ -36,7 +58,7 @@ function ChapterValuesPage() {
     }, []);
 
     const refs = Array.from({ length: 7 }, () => useRef(null));
-    const inViews = refs.map(ref => useInView(ref, { once: false }));
+    const inViews = refs.map(ref => useInView(ref, { once: true }));
 
     const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
@@ -107,33 +129,108 @@ function ChapterValuesPage() {
                         </div>
                     </Sticky>
                 </div>
-                <div className="w-[75%] md:w-full flex flex-col gap-20">
+                <div className="w-full md:w-[75%] flex flex-col gap-20">
                     <div data-aos="zoom-in"  id="TheCreed" className="bg-azure p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
                         <h1 className="text-white text-5xl font-bold mb-10">The Creed of Alpha Tau Omega</h1>
                         <p className=" text-white text-xl font-medium leading-loose">To bind men together in a brotherhood based upon eternal and immutable principles, with a bond as strong as right itself and as lasting as humanity; to know no North, no South, no East, no West, but to know man as man, to teach that true men the world over should stand together and contend for supremacy of good over evil; to teach, not politics, but morals; to foster, not partisanship, but the recognition of true merit wherever found; to have no narrower limits within which to work together for the elevation of man than the outlines of the world: these were the thoughts and hopes uppermost in the minds of the founders of the Alpha Tau Omega Fraternity.<br/><br/>-Otis Allan Glazebrook<br/>1880</p>
                     </div>
-                    <div id="OurValues" className="flex flex-col justify-center items-start gap-5">
+                    <div id="OurValues" className="flex flex-col justify-center items-center md:items-start gap-5">
                         <div data-aos="zoom-in">
                             <h1 className="text-5xl font-bold mb-5">Our Values</h1>
                             <p className="text-xl font-medium leading-loose">At the Epsilon Alpha chapter of Alpha Tau Omega, our core values are the foundation of our brotherhood. They guide our actions, shape our community, and inspire us to make a positive impact. Here are the values that define who we are:</p>
                         </div>
                         
-                        <div className="w-full flex flex-col md:flex-row justify-start items-start">
-                            <div className="w-40 h-40 bg-old-gold rounded-tl-3xl rounded-bl-3xl flex items-center justify-center text-azure">
-                                <MdHandshake size={100}/>
+                        <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                <MdHandshake size={100} />
                             </div>
-                            <motion.div ref={refs[0]} initial={{ scaleX: 0 }} animate={{ scaleX: inViews[0] ? 1 : 0 }} transition={{ duration: 1 }} className="w-4/5 h-40 bg-azure rounded-tr-3xl rounded-br-3xl origin-left">
-                            </motion.div>
-                        </div>
-                        <div className="w-full flex flex-col md:flex-row justify-start items-start">
-                            <motion.div ref={refs[1]} initial={{ scaleX: 0 }} animate={{ scaleX: inViews[1] ? 1 : 0 }} transition={{ duration: 1 }} className="w-4/5 h-40 bg-azure rounded-tl-3xl rounded-bl-3xl origin-right">
-                            </motion.div>
-                            <div className="w-40 h-40 bg-old-gold rounded-tr-3xl rounded-br-3xl flex items-center justify-center text-azure">
-                                <MdGroups size={100}/>
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[0]} initial={{ x: '-100%' }} animate={{ x: inViews[0] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Brotherhood</h1>
+                                        <p className="text-white text-left text-xl font-medium">Brotherhood is at the heart of Alpha Tau Omega. We believe in fostering strong, lasting relationships built on mutual respect, trust, and support. Our fraternity creates a sense of belonging and unity that extends beyond college life, forming lifelong friendships and a supportive network.</p>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
-                        
-
+                        <div className="w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[1]} initial={{ x: '100%' }} animate={{ x: inViews[1] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Leadership</h1>
+                                        <p className="text-white text-left text-xl font-medium">We encourage our members to take on leadership roles within the chapter, on campus, and in the wider community. Developing leadership skills prepares our brothers to become effective, ethical leaders who make a difference in the world.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                <MdGroups size={100} />
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                <MdHandshake size={100} />
+                            </div>
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[2]} initial={{ x: '-100%' }} animate={{ x: inViews[2] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Scholarship</h1>
+                                        <p className="text-white text-left text-xl font-medium">Academic excellence is a priority for Alpha Tau Omega. We strive to create an environment that promotes intellectual growth and success. Our members are dedicated to their studies, committed to achieving their educational goals, and support each other's academic endeavors.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[3]} initial={{ x: '100%' }} animate={{ x: inViews[3] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Service</h1>
+                                        <p className="text-white text-left text-xl font-medium">Service to others is fundamental to our fraternity. We are committed to giving back to our communities through various philanthropic and service activities. Our brothers are dedicated to making a positive impact and improving the lives of those in need.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                <MdGroups size={100} />
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                <MdHandshake size={100} />
+                            </div>
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[4]} initial={{ x: '-100%' }} animate={{ x: inViews[4] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Integrity</h1>
+                                        <p className="text-white text-left text-xl font-medium">Integrity is essential to the character of an Alpha Tau Omega brother. We hold ourselves to the highest standards of honesty, ethics, and personal responsibility. By upholding these principles, we build a fraternity that is respected and trusted.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col-reverse md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[5]} initial={{ x: '100%' }} animate={{ x: inViews[5] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Respect</h1>
+                                        <p className="text-white text-left text-xl font-medium">We embrace diversity and inclusivity, recognizing the value of different perspectives and backgrounds. By treating everyone with respect and dignity, we create a welcoming and supportive environment for all.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
+                                <MdGroups size={100} />
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-start md:items-start">
+                            <div className="w-screen md:w-40 h-40 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
+                                <MdHandshake size={100} />
+                            </div>
+                            <div className="w-screen md:w-4/5 overflow-hidden">
+                                <motion.div ref={refs[6]} initial={{ x: '-100%' }} animate={{ x: inViews[6] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-auto py-5 md:h-40 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
+                                    <div className="flex flex-col justify-start items-start px-3 gap-1">
+                                        <h1 className="text-white text-left text-2xl font-bold">Personal Development</h1>
+                                        <p className="text-white text-left text-xl font-medium">We are dedicated to the personal development of our members, providing opportunities for growth in all areas of life, including social, emotional, and professional development. Our fraternity helps members become well-rounded individuals prepared for success in their future endeavors.</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
                     </div>
                     <div data-aos="zoom-in" id="DEIA" className="bg-azure mb-96 p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
                         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Diversity, Equity, Inclusion, and Accessibility Position statement</h1>
