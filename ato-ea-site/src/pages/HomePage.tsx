@@ -74,7 +74,7 @@ function HomePage() {
             <div data-aos="fade-up" id="ChapterValues" className="w-full h-auto lg:scale-100 px-3 mb-10 lg:mb-20 flex flex-col justify-center items-center text-center">
                 <h1 className="mb-10 text-black text-4xl md:text-5xl font-bold leading-normal">Welcome to the Epsilon Alpha Chapter</h1>
                 <p className=" lg:w-[65%] mb-10 text-center text-black text-xl font-medium leading-normal">The Alpha Tau Omega fraternity is a tight-knit community dedicated to fostering strong bonds of brotherhood and cultivating leadership skills among its members. With a rich history rooted in tradition and a commitment to service, ATO provides a supportive environment where young men can grow personally and professionally. Through a variety of social, philanthropic, and educational activities, ATO empowers its brothers to become confident leaders who make a positive impact in their communities and beyond. Joining ATO means joining a lifelong brotherhood built on friendship, integrity, and a shared vision for a brighter future.</p>
-                <a href="/values" className="w-44 h-14 flex justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
+                <a href="/chapter-values" className="w-44 h-14 flex justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
                     <div className=" text-xl font-medium leading-loose">Chapter Values</div>
                 </a>
             </div>
@@ -98,7 +98,7 @@ function HomePage() {
                     <div className="mb-5 text-white text-3xl font-bold leading-10">Philanthropy and Service</div>
                     <div className="mb-5 text-white text-xl font-medium leading-normal">At the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy is a key part of our mission to support our community and make a positive difference. Our brothers are deeply involved in both local service projects and national initiatives, dedicating their time and efforts to various causes. Each year, we proudly collaborate with respected organizations such as Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation, working together to create meaningful change and improve lives.</div>
                     <div className="w-full flex justify-center lg:justify-start">
-                        <a href="/philantrophy" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
+                        <a href="/philanthropy" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
                             <div className="text-xl font-medium leading-loose">Learn More</div>
                         </a>
                     </div>

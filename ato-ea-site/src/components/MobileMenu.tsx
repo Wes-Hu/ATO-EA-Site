@@ -91,9 +91,9 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                                     <button onClick={() => setCurrentMenu("membershipMenu")}><BsChevronRight size={23}/></button>
                                 </div>
                                 <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/" className="text-white text-lg font-medium">PHILANTHROPY</a>
+                                <a href="/philanthropy" className="text-white text-lg font-medium">PHILANTHROPY</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/" className="text-white text-lg font-medium">GALLERY</a>
+                                <a href="/recent-news" className="text-white text-lg font-medium">RECENT NEWS</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
                                 <a href="/" className="text-white text-lg font-medium">ALUMNI</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
@@ -136,8 +136,6 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                                 <a href="/chapter-values" className="text-white text-lg font-medium">CHAPTER VALUES</a>
                                 <hr className="border-t-2 border-old-gold w-full" /> 
                                 <a href="/leadership" className="text-white text-lg font-medium">LEADERSHIP</a>
-                                <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/recent-news" className="text-white text-lg font-medium">RECENT NEWS</a>
                             </div>
                         </div>
                     )}
