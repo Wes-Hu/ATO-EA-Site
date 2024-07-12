@@ -24,10 +24,6 @@ function ChapterValuesPage() {
         window.removeEventListener('resize', handleResize);
       };
     }, []);
-
-    useEffect(() => {
-        console.log(isMobile)
-    }, [isMobile]);
     
     useEffect(() => {
         const handleScroll = () => {
