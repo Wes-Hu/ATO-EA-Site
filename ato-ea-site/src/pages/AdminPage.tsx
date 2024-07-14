@@ -7,10 +7,8 @@ import EditNewsModal from '../components/EditNewsModal';
 import CreateNewsModal from '../components/CreateNewsModal';
 import ScrollSpy from 'react-ui-scrollspy';
 
-//I give up on fixing type errors for this page. no one else but admin will see anyways
-
 const AdminPage: React.FC = () => {
-  const { images, exec, recentNews, isLoading, fetchImages: refreshImages, fetchExec, fetchRecentNews } = useDataContext();
+  const { images, exec, recentNews, isLoading, leadershipImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -22,23 +20,30 @@ const AdminPage: React.FC = () => {
   const [editingNews, setEditingNews] = useState<any | null>(null);
   const [creatingNews, setCreatingNews] = useState(false);
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        setAuthenticated(true);
-        refreshImages();
-        fetchExec();
-        fetchRecentNews();
-      } else {
-        setAuthenticated(false);
-        navigate('/admin-login');
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          setAuthenticated(true);
+          fetchImages();
+          fetchExec();
+          fetchRecentNews();
+          fetchLeadershipImage();
+        } else {
+          setAuthenticated(false);
+          navigate('/admin-login');
+        }
+      } catch (error) {
+        console.error('Error checking user session:', error);
+        setError('Failed to check user session');
       }
     };
 
     checkUser();
-  }, [navigate, refreshImages, fetchExec, fetchRecentNews]);
+  }, []);
 
   useEffect(() => {
     if (!editMode) {
@@ -116,7 +121,7 @@ const AdminPage: React.FC = () => {
       if (insertError) throw insertError;
 
       alert('Image uploaded successfully!');
-      refreshImages();
+      fetchImages();
     } catch (error) {
       console.error('Error uploading image:', error);
       alert(`Error uploading image: ${error.message}`);
@@ -144,7 +149,7 @@ const AdminPage: React.FC = () => {
       if (deleteError) throw deleteError;
 
       alert('Image deleted successfully!');
-      refreshImages();
+      fetchImages();
     } catch (error) {
       console.error('Error deleting image:', error);
       alert('Error deleting image');
@@ -182,7 +187,7 @@ const AdminPage: React.FC = () => {
       if (updateError) throw updateError;
 
       alert('Image replaced successfully!');
-      refreshImages();
+      fetchImages();
     } catch (error) {
       console.error('Error replacing image:', error);
       alert('Error replacing image');
@@ -280,8 +285,8 @@ const AdminPage: React.FC = () => {
       }
 
       alert('Selected news deleted successfully!');
-      setSelectedNews([]); // Clear the selection
-      fetchRecentNews(); // Refresh the news list
+      setSelectedNews([]);
+      fetchRecentNews();
     } catch (error) {
       console.error('Error deleting selected news:', error);
       alert('Error deleting selected news');
@@ -293,7 +298,7 @@ const AdminPage: React.FC = () => {
   };
 
   const handleSaveNews = () => {
-    fetchRecentNews(); // Refresh the news list
+    fetchRecentNews();
   };
 
   const handleCreateNews = () => {
@@ -305,7 +310,7 @@ const AdminPage: React.FC = () => {
     const targetId = e.currentTarget.getAttribute('href')?.split('#')[1];
     const targetElement = targetId ? document.getElementById(targetId) : null;
     if (targetElement) {
-      const headerOffset = 224; // height of the header (28 * 4px = 112px)
+      const headerOffset = 224;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -319,7 +324,7 @@ const AdminPage: React.FC = () => {
   const navBarRef = useRef<HTMLDivElement | null>(null);
   const placeholderRef = useRef<HTMLDivElement | null>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const headerHeight = 7 * 16; // h-28 in Tailwind CSS (28 * 0.25rem = 7rem, 1rem = 16px)
+  const headerHeight = 7 * 16;
 
   useEffect(() => {
       const handleStickyScroll = () => {
@@ -336,7 +341,7 @@ const AdminPage: React.FC = () => {
                   placeholder.style.display = 'block';
                   navBar.style.position = 'fixed';
                   navBar.style.top = `${headerHeight}px`;
-                  navBar.style.width = `${parentWidth}px`; // Set width to match parent
+                  navBar.style.width = `${parentWidth}px`;
               } else if (window.scrollY < offsetTop - headerHeight) {
                   setIsSticky(false);
                   navBar.style.position = 'relative';
@@ -357,22 +362,68 @@ const AdminPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Calculate the current items to show
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = recentNews.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Handle page change
   const handleClick = (event, pageNumber) => {
     event.preventDefault();
     setCurrentPage(pageNumber);
   };
 
-  // Calculate page numbers
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(recentNews.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
+
+  const handleLeadershipImageUpload = async () => {
+    if (!image) return;
+
+    try {
+        setUploading('leadership');
+
+        // Step 1: Delete existing leadership image if it exists
+        if (leadershipImage) {
+            const oldFileName = leadershipImage.split('/').pop();
+            const oldFilePath = `LeadershipImage/${oldFileName}`;
+
+            const { error: deleteOldError } = await supabase.storage
+                .from('ImageStorage')
+                .remove([oldFilePath]);
+
+            if (deleteOldError) {
+                console.error('Error deleting old leadership image:', deleteOldError);
+                throw deleteOldError;
+            }
+        }
+
+        // Step 2: Upload new leadership image
+        const fileName = `${Date.now()}_${image.name}`;
+        const { error: uploadError } = await supabase.storage
+            .from('ImageStorage')
+            .upload(`LeadershipImage/${fileName}`, image);
+
+        if (uploadError) throw uploadError;
+
+        // Step 3: Get the public URL of the new leadership image
+        const { data: publicUrlData, error: urlError } = supabase.storage
+            .from('ImageStorage')
+            .getPublicUrl(`LeadershipImage/${fileName}`);
+
+        if (urlError) throw urlError;
+
+        const publicUrl = publicUrlData.publicUrl;
+
+        alert('Leadership image uploaded successfully!');
+        fetchLeadershipImage(); // Refresh the leadership image
+    } catch (error) {
+        console.error('Error uploading leadership image:', error);
+        alert(`Error uploading leadership image: ${error.message}`);
+    } finally {
+        setUploading(null);
+        setImage(null);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -398,8 +449,6 @@ const AdminPage: React.FC = () => {
           </ul>
         </ScrollSpy>
       </div>
-      
-
 
       <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col my-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Home Page Carousel</h2>
@@ -433,6 +482,21 @@ const AdminPage: React.FC = () => {
       <div id="ExecUpdate" className='flex flex-col mb-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Executive Board</h2>
         <p className='w-screen md:w-1/2 mb-10 text-center'>Edit the executive board list here by clicking the "Edit" button. You can change all the fields including uploading a new image.</p>
+        <div id="LeadershipImageUpdate" className='flex flex-col mb-10 justify-center items-center'>
+          <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Leadership Page Image</h2>
+          <p className='w-screen md:w-1/2 mb-10 text-center'>You can view and update the leadership page image here.</p>
+          {leadershipImage && (
+            <div className='mb-10'>
+              <img src={leadershipImage} alt="Leadership" style={{ width: '200px', height: '200px' }} />
+            </div>
+          )}
+          <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
+            <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
+            <button onClick={handleLeadershipImageUpload} disabled={uploading === 'leadership'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+              {uploading === 'leadership' ? 'Uploading...' : 'Upload New Leadership Image'}
+            </button>
+          </div>
+        </div>
         <div className="overflow-x-auto px-10 lg:px-0 w-screen lg:w-auto flex flex-col flex-start">
           <table className="table-auto w-full border-collapse border border-gray-300 mb-5">
             <thead>
@@ -600,6 +664,7 @@ const AdminPage: React.FC = () => {
           onSave={handleSaveNews}
         />
       )}
+
     </div>
   );
 };

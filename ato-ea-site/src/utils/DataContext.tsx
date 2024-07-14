@@ -1,10 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 
-// Define types for each table
-type ImageItem = {
-    img_src: string | null;
-};
 type ImageUrls = string[];
 type ExecBoard = {
     id: number;
@@ -16,7 +12,7 @@ type ExecBoard = {
     picture: string;
 };
 type RecentNews = {
-    id:number;
+    id: number;
     title: string | null;
     date: string | null;
     brief_description: string | null;
@@ -29,9 +25,11 @@ interface DataContextProps {
     images: ImageUrls;
     exec: ExecBoard[];
     recentNews: RecentNews[];
+    leadershipImage: string | null;
     fetchImages: () => Promise<void>;
     fetchExec: () => Promise<void>;
     fetchRecentNews: () => Promise<void>;
+    fetchLeadershipImage: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -41,8 +39,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [images, setImages] = useState<ImageUrls>([]);
     const [exec, setExec] = useState<ExecBoard[]>([]);
     const [recentNews, setRecentNews] = useState<RecentNews[]>([]);
+    const [leadershipImage, setLeadershipImage] = useState<string | null>(null);
 
-    // Function to preload images
     const preloadImages = (imageUrls: string[]) => {
         imageUrls.forEach((url) => {
             const img = new Image();
@@ -50,12 +48,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         });
     };
 
-    // Fetch image URLs from Supabase
     const fetchImages = async () => {
         try {
             const { data, error } = await supabase
                 .from("HomePage")
-                .select("img_src")
+                .select("img_src");
             if (error) {
                 console.error('Error from Supabase:', error);
                 throw error;
@@ -63,7 +60,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
             const imageUrls = (data as ImageItem[]).map((item: ImageItem) => item.img_src).filter((src): src is string => Boolean(src));
             setImages(imageUrls);
-            preloadImages(imageUrls); // Preload images
+            preloadImages(imageUrls);
             setIsLoading(false);
         } catch (error) {
             console.error("Error fetching images", error);
@@ -71,7 +68,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
-    // Fetch exec board info from Supabase
     const fetchExec = async () => {
         try {
             const { data, error } = await supabase
@@ -82,19 +78,18 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 throw error;
             }
             const sortedData = (data as ExecBoard[]).sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
-            setExec(sortedData); // Ensure data is an array
+            setExec(sortedData);
         } catch (error) {
             console.error("Error fetching exec board info", error);
         }
     };
 
-    // Fetch recent news from Supabase
     const fetchRecentNews = async () => {
         try {
             const { data, error } = await supabase
                 .from("RecentNews")
                 .select("*")
-                .order("date", {ascending: false});
+                .order("date", { ascending: false });
             if (error) {
                 console.error('Error from Supabase:', error);
                 throw error;
@@ -105,14 +100,51 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    const fetchLeadershipImage = async () => {
+        try {
+            // List files in the 'LeadershipImage' folder
+            const { data: listData, error: listError } = await supabase
+                .storage
+                .from('ImageStorage')
+                .list('LeadershipImage', { limit: 1 });
+    
+            if (listError) {
+                console.error('Error listing leadership images from Supabase:', listError);
+                throw listError;
+            }
+    
+            if (listData && listData.length > 0) {
+                const fileName = listData[0].name;
+    
+                // Fetch the public URL of the listed file
+                const { data: publicUrlData, error: urlError } = supabase
+                    .storage
+                    .from('ImageStorage')
+                    .getPublicUrl(`LeadershipImage/${fileName}`);
+    
+                if (urlError) {
+                    console.error('Error fetching public URL for leadership image from Supabase:', urlError);
+                    throw urlError;
+                }
+                setLeadershipImage(publicUrlData.publicUrl);
+            } else {
+                console.warn('No images found in the LeadershipImage folder.');
+                setLeadershipImage(null);
+            }
+        } catch (error) {
+            console.error("Error fetching leadership image", error);
+        }
+    };
+
     useEffect(() => {
         fetchImages();
         fetchExec();
         fetchRecentNews();
+        fetchLeadershipImage();
     }, []);
 
     return (
-        <DataContext.Provider value={{ images, exec, recentNews, isLoading, fetchImages, fetchExec, fetchRecentNews }}>
+        <DataContext.Provider value={{ images, exec, recentNews, isLoading, leadershipImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage }}>
             {children}
         </DataContext.Provider>
     );
