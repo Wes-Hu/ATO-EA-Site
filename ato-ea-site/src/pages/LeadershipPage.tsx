@@ -1,7 +1,18 @@
+import { useEffect } from 'react';
 import { useDataContext } from '../utils/DataContext';
+import AOS from 'aos';
 
 function LeadershipPage () {
     const { exec, leadershipImage } = useDataContext();
+    const currentYear = new Date().getFullYear();
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            offset: 200,
+            once: true,
+        });
+    }, []);
     
     return (
         <div className="flex flex-col justify-center items-center">
@@ -12,7 +23,8 @@ function LeadershipPage () {
                     </div>
                 </div>
             </div>
-            <div className="w-screen flex flex-row flex-wrap gap-9 justify-center items-center px-3 md:px-16">
+            <h1 data-aos="fade-up" className="text-black font-bold text-5xl mb-12 text-center">{currentYear} Executive Board</h1>
+            <div data-aos="fade-up" id="ExecPositions" className="w-screen flex flex-row flex-wrap gap-9 justify-center items-center px-3 md:px-16">
                 {exec.map((member)=> (
                     <div className="w-full md:w-[413px] bg-azure flex flex-col justify-start items-center mt-10 py-5 rounded-3xl">
                         <h1 className="text-white text-4xl font-bold mb-5 text-center ">{member.position}</h1>
