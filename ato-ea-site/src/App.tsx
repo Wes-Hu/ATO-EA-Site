@@ -44,7 +44,6 @@ function App() {
               <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
                 <a href="/how-to-join" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HOW TO JOIN</a>
                 <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RUSH & RECRUITMENT</a>
-                <a href="/faq" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">FAQ</a>
               </div>
             </div>
             <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">

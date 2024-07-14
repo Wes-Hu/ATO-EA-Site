@@ -153,9 +153,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                                 <a href="/how-to-join" className="text-white text-lg font-medium">HOW TO JOIN</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
                                 <a href="/rush" className="text-white text-lg font-medium">RUSH & RECRUITMENT</a>
-                                <hr className="border-t-2 border-old-gold w-full" /> 
-                                <a href="faq" className="text-white text-lg font-medium">FAQ</a>
-                                </div>
+                            </div>
                         </div>
                     )}
                 </motion.div>
