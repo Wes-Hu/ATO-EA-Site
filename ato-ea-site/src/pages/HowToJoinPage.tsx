@@ -62,7 +62,12 @@ function HowToJoinPage() {
 
     return (
         <div id="ChapterValues" className="flex flex-col justify-center items-center">
-            
+            <h1 className="text-center mt-10 mb-5 text-black text-5xl font-bold">Interested in Joining?</h1>
+            <p className="w-screen lg:w-1/2 mb-10 text-center text-black text-xl font-medium">If you're seeking a place to belong, have fun, and grow alongside like-minded individuals in meaningful ways, Alpha Tau Omega is that place. As America’s Leadership Development Fraternity, ATO offers a unique fraternity experience and a tremendous opportunity for young men.</p>
+            <a href="/join-us" className="h-14 mb-20 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
+                <div className=" text-xl font-medium leading-loose">Join Us</div>
+            </a>
+            <div className="w-screen h-28 mb-28 bg-azure items-center flex justify-center text-center text-white font-bold text-4xl md:text-5xl">How To Join ATO</div>
             <div id="SideBar" className="w-screen 2xl:w-3/5 px-3 mt-10 md:px-10 flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-2 mb-10">
                 <div className="w-screen hidden md:w-[25%] md:flex flex-col">
                     <Sticky enabled={true} top={140}>
@@ -109,17 +114,25 @@ function HowToJoinPage() {
                 </div>
                 <div className="w-full md:w-[75%] flex flex-col gap-20">
                     <div data-aos="zoom-in"  id="RushWeek" className="bg-azure p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
-                        <h1 className="text-white text-5xl font-bold mb-10">The Creed of Alpha Tau Omega</h1>
-                        <p className=" text-white text-xl font-medium leading-loose">To bind men together in a brotherhood based upon eternal and immutable principles, with a bond as strong as right itself and as lasting as humanity; to know no North, no South, no East, no West, but to know man as man, to teach that true men the world over should stand together and contend for supremacy of good over evil; to teach, not politics, but morals; to foster, not partisanship, but the recognition of true merit wherever found; to have no narrower limits within which to work together for the elevation of man than the outlines of the world: these were the thoughts and hopes uppermost in the minds of the founders of the Alpha Tau Omega Fraternity.<br/><br/>-Otis Allan Glazebrook<br/>1880</p>
+                        <h1 className="text-white text-5xl font-bold mb-10">Rush Week</h1>
+                        <p className=" text-white text-xl font-medium leading-loose mb-10">Each semester, ATO hosts a series of rush events designed to help you get to know our members and understand what our fraternity stands for. These events are a great opportunity to meet current brothers, ask questions, and see if ATO is the right fit for you. Our rush week always concludes with a fun invite only event as well as bid dinner where you will receive an official invitation to become a member. Bid dinner is a celebration where you will meet all of your new brothers and begin your journey with ATO.</p>
+                        <a href="/rush" className="w-auto px-5 h-auto py-2 md:py-0 md:h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
+                            <div className="text-xl font-medium text-center">View Current Rush Schedule</div>
+                        </a>
                     </div>
-                    <div id="PledgeExperience" className="h-screen bg-black flex flex-col justify-center items-center md:items-start gap-5">
+                    <div id="PledgeExperience" className="flex flex-col justify-center items-start">
+                        <div data-aos="zoom-in">
+                            <h1 className="text-black mb-10 text-5xl font-bold">Pledge Experience</h1>
+                            <p className="text-black text-xl font-medium leading-loose mb-10">At Alpha Tau Omega, the pledge experience is designed to introduce new members to the values, traditions, and brotherhood that define our fraternity. This journey is an opportunity for personal growth, leadership development, and forging lifelong friendships.</p>
+                        </div>
                         
                     </div>
                     <div data-aos="zoom-in" id="Initiation" className="bg-azure p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
-                        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Diversity, Equity, Inclusion, and Accessibility Position statement</h1>
-                        <div className="flex flex-col lg:flex-row justify-center text-white items-center">
-
-                            <p className="w-full text-white text-xl font-medium leading-loose">Alpha Tau Omega is a place of acceptance, where people from all backgrounds are welcome. We strive to uphold the highest standards when it comes to all aspects of inclusion and access as well as ensuring that we provide equal opportunities to everyone. We believe that diversity is critical to the fabric of our organization and therefore, it is and will always be a top priority</p>
+                        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Initiation and Membership Requirements</h1>
+                        <p className="w-full text-white text-xl text-left font-medium leading-loose mb-5">At the end of each semester, an initiation ceremony is held, welcoming pledges as newly initiated members and marking their official entry into our brotherhood. If a pledge chooses not to initiate or does not meet the membership requirements, they will not have to repeat a pledge semester but will rather become a NIM (non-initiated member) and will be considered apart of the chapter, but are not recognized as a full initiated member.</p>
+                        <div className="flex justify-center text-white items-center">
+                            <div className="text-white text-2xl font-bold leading-9">Membership Requirements</div>
+                            <div className="w-96 h-56"><span className="text-white text-xl font-medium font-['Inter'] leading-loose">To ensure a smooth transition and active participation in our fraternity, please note the following requirements:<br/></span><span className="text-white text-xl font-medium font-['Inter'] leading-loose">Academic Requirements: Minimum GPA of 2.5 is required for initiation and membership<br/>Financial Commitment: Membership dues are required each semester. Financial assistance is available for those in need.<br/>Active Participation: Regular attendance at chapter meetings and community service activities is expected. Ten total hours are required for initiation and 15 total hours are expected per semester.</span></div>
                         </div>
                         
                     </div>
