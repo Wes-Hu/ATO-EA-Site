@@ -129,7 +129,7 @@ function HowToJoinPage() {
             <div className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
                 <h1 className="text-black text-5xl font-bold mt-10 text-center mb-10">Have More Questions?</h1>
                 <p className="md:w-1/2 text-center text-black text-xl font-medium leading-loose mb-10">Contact our current recruitment chair {exec.find(member => member.position === 'Recruitment Chair')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Recruitment Chair')?.email}`} className="hover:text-azure duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Recruitment Chair')?.email}</a> or visit our contact form</p>
-                <a href="/contact-us" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">
+                <a href="/contact-us" className="w-auto px-5 h-14 mb-10 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">
                     <div className="text-xl text-nowrap font-medium leading-loose">Contact Form</div>
                 </a>
             </div>
