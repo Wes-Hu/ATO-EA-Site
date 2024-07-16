@@ -13,6 +13,7 @@ export default {
       },
       screens: {
         'cus': '1237px',
+        'cusxl': '1440px'
         // => @media (min-width: 992px) { ... }
       },
     },

@@ -22,7 +22,7 @@ function RecentNewsPage() {
                         <div className="w-full flex flex-col">
                             <div className={`w-full h-auto md:h-44 flex flex-row bg-azure ${expandedIndex === index ? 'rounded-tl-3xl rounded-tr-3xl' : 'rounded-3xl'} py-10 pl-4 md:pl-10`}>
                                 <div className="w-4/5 h-full flex flex-col justify-between">
-                                    <div className="w-full flex flex-col md:flex-row justify-start md:justify-between">
+                                    <div className="w-full flex flex-row flex-wrap justify-start md:justify-between">
                                         <div className="text-left text-white text-3xl font-medium leading-10">{news.title}</div>
                                         <div className="text-left text-white text-md text-nowrap md:text-3xl font-medium leading-10">Date Posted: {news.date ? format(parseISO(news.date), 'MM/dd/yyyy') : ''}</div>
                                     </div>
@@ -45,8 +45,8 @@ function RecentNewsPage() {
                                     className="w-full overflow-hidden"
                                 >
                                     <div className="w-full bg-old-gold text-black shadow-lg rounded-bl-3xl rounded-br-3xl p-3 md:p-10">
-                                        <div className="w-full bg-white rounded-3xl flex flex-col md:flex-row justify-normal p-3 md:p-10 gap-3 md:gap-14">
-                                            <img className={`${news.image_src==="" ? 'w-0' : 'w-2/5'} rounded-3xl`} src={news.image_src} alt="" />
+                                        <div className="w-full bg-white rounded-3xl flex flex-col cusxl:flex-row justify-normal p-3 md:p-10 gap-3 md:gap-14">
+                                            <img className={`${news.image_src==="" ? 'w-0' : 'w-full cusxl:w-2/5'} rounded-3xl`} src={news.image_src} alt="" />
                                             <div className="text-black text-xl font-medium">{news.description}</div>
                                         </div>
                                     </div>
