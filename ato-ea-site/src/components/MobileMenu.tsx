@@ -95,11 +95,11 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                                 <hr className="border-t-2 border-old-gold w-full" />
                                 <a href="/recent-news" className="text-white text-lg font-medium">RECENT NEWS</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/" className="text-white text-lg font-medium">ALUMNI</a>
+                                <a href="/alumni" className="text-white text-lg font-medium">ALUMNI</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/" className="text-white text-lg font-medium">CONTACT</a>
+                                <a href="/contact-us" className="text-white text-lg font-medium">CONTACT</a>
                                 <hr className="border-t-2 border-old-gold w-full" />
-                                <a href="/" className="text-white text-lg font-medium">JOIN US</a>
+                                <a href="/join-us" className="text-white text-lg font-medium">JOIN US</a>
                             </div>
                         </div>
                     )}

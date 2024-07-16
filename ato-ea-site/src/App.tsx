@@ -10,6 +10,7 @@ import RecentNewsPage from "./pages/RecentNewsPage";
 import HistoryPage from "./pages/HistoryPage";
 import ChapterValuesPage from "./pages/ChapterValuesPage";
 import LeadershipPage from "./pages/LeadershipPage";
+import HowToJoinPage from "./pages/HowToJoinPage";
 
 
 function App() {
@@ -46,19 +47,19 @@ function App() {
                 <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RUSH & RECRUITMENT</a>
               </div>
             </div>
-            <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+            <a href="/philanthropy" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <p>PHILANTHROPY</p>
             </a>
             <a href="recent-news" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <p>RECENT NEWS</p>
             </a>
-            <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+            <a href="/alumni" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <p>ALUMNI</p>
             </a>
-            <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+            <a href="/contact-us" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <p>CONTACT</p>
             </a>
-            <a href="/" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
+            <a href="/join-us" className="h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
               <p>JOIN US</p>
             </a>
           </div>
@@ -87,6 +88,7 @@ function App() {
             <Route path="/history" element={<HistoryPage />} />
             <Route path="/chapter-values" element={<ChapterValuesPage />} />
             <Route path="/leadership" element={<LeadershipPage />} />
+            <Route path="/how-to-join" element={<HowToJoinPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">

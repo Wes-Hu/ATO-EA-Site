@@ -141,7 +141,7 @@ function HomePage() {
                     </div>
                     <div className="flex flex-col gap-3 lg:flex-row flex-wrap justify-center items-center">
                         <div className="text-white text-xl lg:text-2xl text-nowrap font-medium leading-9">Contact Us Here</div>
-                        <a href="/philantrophy" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
+                        <a href="/contact-us" className="w-auto px-5 h-14 flex justify-center items-center text-black bg-old-gold rounded-full transition-all duration-300 hover:bg-dark-gold hover:text-neutral-700">
                             <div className="text-xl text-nowrap font-medium leading-loose">Contact Form</div>
                         </a>
                     </div>
