@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useDataContext } from '../utils/DataContext';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 
 function HowToJoinPage() {
@@ -59,6 +60,19 @@ function HowToJoinPage() {
             once: true, // Ensures the animation happens only once
         });
     }, []);
+
+    const refs = Array.from({ length: 3 }, () => useRef(null));
+    const inViews = refs.map(ref => useInView(ref, { once: true }));
+
+    const [isOpen, setIsOpen] = useState<boolean[]>([false]);
+
+    const toggleAccordion = (index: number) => {
+        setIsOpen((prevState) => {
+          const newState = [...prevState];
+          newState[index] = !newState[index];
+          return newState;
+        });
+      };
 
     return (
         <div id="ChapterValues" className="flex flex-col justify-center items-center">
@@ -123,20 +137,127 @@ function HowToJoinPage() {
                     <div id="PledgeExperience" className="flex flex-col justify-center items-start">
                         <div data-aos="zoom-in">
                             <h1 className="text-black mb-10 text-5xl font-bold">Pledge Experience</h1>
-                            <p className="text-black text-xl font-medium leading-loose mb-10">At Alpha Tau Omega, the pledge experience is designed to introduce new members to the values, traditions, and brotherhood that define our fraternity. This journey is an opportunity for personal growth, leadership development, and forging lifelong friendships.</p>
+                            <p className="text-black text-xl font-medium leading-loose mb-5">At Alpha Tau Omega, the pledge experience is designed to introduce new members to the values, traditions, and brotherhood that define our fraternity. This journey is an opportunity for personal growth, leadership development, and forging lifelong friendships.</p>
+                            <div className="w-full flex flex-col items-center md:items-stretch justify-center md:justify-start mb-6">
+                                <div className="w-full flex-grow flex items-stretch">
+                                    <div className="w-full text-dark-blue bg-old-gold py-3 text-2xl font-bold px-3 md:px-6 rounded-tl-3xl rounded-tr-3xl">Orientation and Education</div>
+                                </div>
+                                <div className="w-full flex-grow overflow-hidden">
+                                    <motion.div ref={refs[0]} initial={{ y: '-100%' }} animate={{ y: inViews[0] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-3 px-3 md:px-6 bg-azure rounded-bl-3xl rounded-br-3xl flex items-center">
+                                        <p className="w-full text-white  text-xl font-medium  rounded-bl-3xl rounded-br-3xl">The pledge experience begins with an orientation period where all new pledges are welcomed into the fraternity. This phase includes an introduction to the history of Alpha Tau Omega, its core values, and the expectations of membership. Throughout this period, new members participate in a series of weekly educational sessions and workshops. These sessions cover various topics, including leadership skills, academic excellence, community service, and personal development. Pledges also learn about the fraternity's governance, rituals, and the significance of our symbols and traditions.</p>
+                                    </motion.div>
+                                </div>
+                            </div>
+                            <div className="w-full flex flex-col items-center md:items-stretch justify-center md:justify-start mb-6">
+                                <div className="w-full flex-grow flex items-stretch">
+                                    <div className="w-full text-dark-blue bg-old-gold py-3 text-2xl font-bold px-3 md:px-6 rounded-tl-3xl rounded-tr-3xl">Brotherhood and Bonding</div>
+                                </div>
+                                <div className="w-full flex-grow overflow-hidden">
+                                    <motion.div ref={refs[1]} initial={{ y: '-100%' }} animate={{ y: inViews[1] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-3 px-3 md:px-6 bg-azure rounded-bl-3xl rounded-br-3xl flex items-center">
+                                        <p className="w-full text-white  text-xl font-medium  rounded-bl-3xl rounded-br-3xl">Building strong relationships is a key aspect of the pledge experience. Pledges will have many opportunities to engage in brotherhood events, including team-building activities and social gatherings designed to foster camaraderie and trust among new members and the existing brotherhood. These experiences create a sense of unity and belonging that extends beyond the pledge period.</p>
+                                    </motion.div>
+                                </div>
+                            </div>
+                            <div className="w-full flex flex-col items-center md:items-stretch justify-center md:justify-start mb-6">
+                                <div className="w-full flex-grow flex items-stretch">
+                                    <div className="w-full text-dark-blue bg-old-gold py-3 text-2xl font-bold px-3 md:px-6 rounded-tl-3xl rounded-tr-3xl">Orientation and Education</div>
+                                </div>
+                                <div className="w-full flex-grow overflow-hidden">
+                                    <motion.div ref={refs[2]} initial={{ y: '-100%' }} animate={{ y: inViews[2] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-3 px-3 md:px-6 bg-azure rounded-bl-3xl rounded-br-3xl flex items-center">
+                                        <p className="w-full text-white  text-xl font-medium  rounded-bl-3xl rounded-br-3xl">Service is an important aspect of Alpha Tau Omega. Pledges are encouraged participate in community service projects and philanthropic events, helping to make a positive impact on the community and learning the importance of giving back. This commitment to service is an integral part of the fraternity's mission and helps instill a lifelong dedication to helping others.</p>
+                                    </motion.div>
+                                </div>
+                            </div>
+                            <p className="text-black text-xl font-medium leading-loose">Ultimately, the pledge experience is unique to each individual, defined solely by what the pledge makes of it. The journey is shaped by personal effort, engagement, and the decisions one makes, reflecting their own aspirations and dedication within the chapter.</p>
+               
                         </div>
                         
                     </div>
                     <div data-aos="zoom-in" id="Initiation" className="bg-azure p-3 md:p-8 lg:p-14 flex flex-col justify-center items-start rounded-3xl">
                         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-10">Initiation and Membership Requirements</h1>
                         <p className="w-full text-white text-xl text-left font-medium leading-loose mb-5">At the end of each semester, an initiation ceremony is held, welcoming pledges as newly initiated members and marking their official entry into our brotherhood. If a pledge chooses not to initiate or does not meet the membership requirements, they will not have to repeat a pledge semester but will rather become a NIM (non-initiated member) and will be considered apart of the chapter, but are not recognized as a full initiated member.</p>
-                        <div className="flex justify-center text-white items-center">
-                            <div className="text-white text-2xl font-bold leading-9">Membership Requirements</div>
-                            <div className="w-96 h-56"><span className="text-white text-xl font-medium font-['Inter'] leading-loose">To ensure a smooth transition and active participation in our fraternity, please note the following requirements:<br/></span><span className="text-white text-xl font-medium font-['Inter'] leading-loose">Academic Requirements: Minimum GPA of 2.5 is required for initiation and membership<br/>Financial Commitment: Membership dues are required each semester. Financial assistance is available for those in need.<br/>Active Participation: Regular attendance at chapter meetings and community service activities is expected. Ten total hours are required for initiation and 15 total hours are expected per semester.</span></div>
+                        <div className="flex flex-col justify-center text-white items-start">
+                            <div className="text-white text-2xl font-bold leading-9 mb-5">Membership Requirements</div>
+                            <div className="text-white text-xl font-medium leading-loose mb-3">To ensure a smooth transition and active participation in our fraternity, please note the following requirements:</div>
+                            <ul className="list-disc pl-5 space-y-2">
+                                <li className="text-white text-xl font-medium leading-loose flex items-start">
+                                    <span className="mr-2">&#8226;</span>
+                                    <span>Academic Requirements: Minimum GPA of 2.5 is required for initiation and membership.</span>
+                                </li>
+                                <li className="text-white text-xl font-medium leading-loose flex items-start">
+                                    <span className="mr-2">&#8226;</span>
+                                    <span>Financial Commitment: Membership dues are required each semester. Financial assistance may be available for those in need.</span>
+                                </li>
+                                <li className="text-white text-xl font-medium leading-loose flex items-start">
+                                    <span className="mr-2">&#8226;</span>
+                                    <span>Active Participation: Regular attendance at chapter meetings and community service activities is expected. Ten total hours are required for initiation and 15 total hours are expected per semester.</span>
+                                </li>
+                            </ul>
                         </div>
                         
                     </div>
-                    <div id="FAQ" className="h-screen bg-black"></div>
+                    <div id="FAQ" className="flex flex-col mb-20">
+                        <h1 className="text-black mb-10 text-5xl font-bold">Frequently Asked Questions</h1>
+                        <hr className="border-2 border-black mb-4"></hr>
+                        <div className="w-full">
+                        <div className="w-full flex flex-col">
+                            <button onClick={() => toggleAccordion(0)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
+                            <div className="text-3xl font-bold font-['Inter'] leading-10">What is the time commitment?</div>
+                            <motion.div key={isOpen[0] ? 'minus0' : 'plus0'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[0] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
+                            </button>
+                            <AnimatePresence>
+                                {isOpen[0] && (
+                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                                    <div className="text-black text-xl font-medium mt-5 leading-loose">There is not much of a weekly time commitment but expect to set aside 2-3 hours for required weekly chapter meetings.</div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        <hr className="border-2 border-black my-4"></hr>
+                        </div>
+                        <div className="w-full flex flex-col">
+                            <button onClick={() => toggleAccordion(1)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
+                                <div className="text-3xl font-bold font-['Inter'] leading-10">Is living in House a requirement?</div>
+                                <motion.div key={isOpen[1] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[1] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
+                            </button>
+                            <AnimatePresence>
+                                {isOpen[1] && (
+                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                                    <div className="text-black text-xl font-medium mt-5 leading-loose">Living in the house is not a requirement, but many members enjoy it for the social atmosphere and significantly lower rent compared to other off-campus and on-campus housing options.</div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        <hr className="border-2 border-black my-4"></hr>
+                        <div className="w-full flex flex-col">
+                            <button onClick={() => toggleAccordion(2)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
+                                <div className="text-3xl font-bold font-['Inter'] leading-10">How much are dues?</div>
+                                <motion.div key={isOpen[2] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[2] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
+                            </button>
+                            <AnimatePresence>
+                                {isOpen[2] && (
+                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                                    <div className="text-black text-xl font-medium mt-5 leading-loose">Dues are split between local dues and national dues. Our local dues average about $400 a semster and national dues change every semester and can range anywhere from $40 to $260. Dues for pledges however are less than initiated members. Out of the rest of the fraternity houses on campus, ATO has one of the cheaper dues on campus.</div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        <hr className="border-2 border-black my-4"></hr>
+                        <div className="w-full flex flex-col">
+                            <button onClick={() => toggleAccordion(3)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
+                                <div className="text-3xl font-bold font-['Inter'] leading-10">How do I pay dues?</div>
+                                <motion.div key={isOpen[3] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[3] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
+                            </button>
+                            <AnimatePresence>
+                                {isOpen[3] && (
+                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                                    <div className="text-black text-xl font-medium mt-5 leading-loose">Dues are paid through the GreekBill service which can be accessed through the member login at <a href="https://portal.ato.org/" className="hover:text-dark-blue duration-300 transition-all ease-in-out underline">https://portal.ato.org/</a>. Contact our treasurer {exec.find(member => member.position === 'Treasurer')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Treasurer')?.email}`} className="hover:text-dark-blue duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Treasurer')?.email}</a> for all GreekBill and payment questions.</div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        <hr className="border-2 border-black my-4"></hr>
+                    </div>
                 </div>
             </div>
             <div className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
