@@ -11,6 +11,7 @@ import HistoryPage from "./pages/HistoryPage";
 import ChapterValuesPage from "./pages/ChapterValuesPage";
 import LeadershipPage from "./pages/LeadershipPage";
 import HowToJoinPage from "./pages/HowToJoinPage";
+import RushPage from "./pages/RushPage";
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
           </a>
           <div className="MainBar h-full hidden lg:flex flex-row flex-wrap justify-center items-center">
             <div className="relative group h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
-              <a href="/about-us" className="relative w-full h-full flex items-center">ABOUT US</a>
+              <div className="relative w-full h-full flex items-center cursor-pointer">ABOUT US</div>
               <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
                 <a href="/history" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HISTORY</a>
                 <a href="/chapter-values" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">CHAPTER VALUES</a>
@@ -41,7 +42,7 @@ function App() {
               </div>
             </div>
             <div className="relative group h-1/2 cus:h-full flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
-              <a href="/membership" className="relative w-full h-full flex items-center">MEMBERSHIP</a>
+              <div className="relative w-full h-full flex items-center cursor-pointer">MEMBERSHIP</div>
               <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
                 <a href="/how-to-join" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">HOW TO JOIN</a>
                 <a href="/rush" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300">RUSH & RECRUITMENT</a>
@@ -64,7 +65,7 @@ function App() {
             </a>
           </div>
           <div className="relative group h-1/2 cus:h-full hidden lg:flex justify-center items-center px-4 text-nowrap text-white text-lg font-medium ease-in-out duration-300 transition-all hover:bg-dark-blue hover:text-old-gold">
-            <a href="/login" className="relative w-full h-full flex items-center">LOGIN</a>
+            <div className="relative w-full h-full flex items-center cursor-pointer">LOGIN</div>
             <div className="absolute top-full left-0 max-h-0 overflow-hidden group-hover:max-h-96 bg-azure text-black shadow-lg transition-all duration-300 ease-in-out">
               <a href="https://portal.ato.org/" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300 text-wrap">MEMBER PORTAL</a>
               <a href="/admin" className="block px-4 py-2 text-white text-lg font-medium hover:bg-dark-blue hover:text-old-gold transition-all duration-300 text-wrap">ADMIN PORTAL</a>
@@ -89,6 +90,7 @@ function App() {
             <Route path="/chapter-values" element={<ChapterValuesPage />} />
             <Route path="/leadership" element={<LeadershipPage />} />
             <Route path="/how-to-join" element={<HowToJoinPage />} />
+            <Route path="/rush" element={<RushPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">

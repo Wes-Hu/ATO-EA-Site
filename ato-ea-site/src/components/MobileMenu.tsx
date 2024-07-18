@@ -76,20 +76,20 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                                 <hr className="border-t-2 border-old-gold" />
                             </div>                        
                             <div className="w-full mt-2 mb-2 px-3 flex flex-col gap-2">
-                                <div className="flex flex-row items-center text-white justify-between">
-                                    <a href="/login" className="w-4/5 text-white text-lg font-medium">LOGIN</a>
-                                    <button onClick={() => setCurrentMenu("loginMenu")}><BsChevronRight size={23}/></button>
-                                </div>
+                                <button onClick={() => setCurrentMenu("loginMenu")} className="flex flex-row items-center text-white justify-between">
+                                    <div className="text-white text-lg font-medium">LOGIN</div>
+                                    <div ><BsChevronRight size={23}/></div>
+                                </button>
                                 <hr className="border-t-2 border-old-gold" />
-                                <div className="flex flex-row items-center text-white justify-between">
-                                    <a href="/login" className="w-4/5 text-white text-lg font-medium">ABOUT US</a>
-                                    <button onClick={() => setCurrentMenu("aboutMenu")}><BsChevronRight size={23}/></button>
-                                </div>
+                                <button onClick={() => setCurrentMenu("aboutMenu")} className="flex flex-row items-center text-white justify-between">
+                                    <div className="text-white text-lg font-medium">ABOUT US</div>
+                                    <div><BsChevronRight size={23}/></div>
+                                </button>
                                 <hr className="border-t-2 border-old-gold" />
-                                <div className="flex flex-row items-center text-white justify-between">
-                                    <a href="/login" className="w-4/5 text-white text-lg font-medium">MEMBERSHIP</a>
-                                    <button onClick={() => setCurrentMenu("membershipMenu")}><BsChevronRight size={23}/></button>
-                                </div>
+                                <button onClick={() => setCurrentMenu("membershipMenu")} className="flex flex-row items-center text-white justify-between">
+                                    <div className="text-white text-lg font-medium">MEMBERSHIP</div>
+                                    <div><BsChevronRight size={23}/></div>
+                                </button>
                                 <hr className="border-t-2 border-old-gold w-full" />
                                 <a href="/philanthropy" className="text-white text-lg font-medium">PHILANTHROPY</a>
                                 <hr className="border-t-2 border-old-gold w-full" />

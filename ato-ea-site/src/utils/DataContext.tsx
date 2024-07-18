@@ -40,6 +40,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [exec, setExec] = useState<ExecBoard[]>([]);
     const [recentNews, setRecentNews] = useState<RecentNews[]>([]);
     const [leadershipImage, setLeadershipImage] = useState<string | null>(null);
+    const [rushImage, setRushImage] = useState<string | null>(null);
 
     const preloadImages = (imageUrls: string[]) => {
         imageUrls.forEach((url) => {
