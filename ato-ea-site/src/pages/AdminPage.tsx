@@ -8,7 +8,7 @@ import CreateNewsModal from '../components/CreateNewsModal';
 import ScrollSpy from 'react-ui-scrollspy';
 
 const AdminPage: React.FC = () => {
-  const { images, exec, recentNews, isLoading, leadershipImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage } = useDataContext();
+  const { images, exec, recentNews, isLoading, leadershipImage, rushImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage, fetchRushImage } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -32,6 +32,7 @@ const AdminPage: React.FC = () => {
           fetchExec();
           fetchRecentNews();
           fetchLeadershipImage();
+          fetchRushImage();
         } else {
           setAuthenticated(false);
           navigate('/admin-login');
@@ -425,10 +426,59 @@ const AdminPage: React.FC = () => {
     }
   };
 
+  const handleRushImageUpload = async () => {
+    if (!image) return;
+
+    try {
+        setUploading('rush');
+
+        // Step 1: Delete existing rush image if it exists
+        if (rushImage) {
+            const oldFileName = rushImage.split('/').pop();
+            const oldFilePath = `RushImage/${oldFileName}`;
+
+            const { error: deleteOldError } = await supabase.storage
+                .from('ImageStorage')
+                .remove([oldFilePath]);
+
+            if (deleteOldError) {
+                console.error('Error deleting old rush image:', deleteOldError);
+                throw deleteOldError;
+            }
+        }
+
+        // Step 2: Upload new rush image
+        const fileName = `${Date.now()}_${image.name}`;
+        const { error: uploadError } = await supabase.storage
+            .from('ImageStorage')
+            .upload(`RushImage/${fileName}`, image);
+
+        if (uploadError) throw uploadError;
+
+        // Step 3: Get the public URL of the new rush image
+        const { data: publicUrlData, error: urlError } = supabase.storage
+            .from('ImageStorage')
+            .getPublicUrl(`RushImage/${fileName}`);
+
+        if (urlError) throw urlError;
+
+        const publicUrl = publicUrlData.publicUrl;
+
+        alert('Rush image uploaded successfully!');
+        fetchRushImage(); // Refresh the rush image
+    } catch (error) {
+        console.error('Error uploading rush image:', error);
+        alert(`Error uploading rush image: ${error.message}`);
+    } finally {
+        setUploading(null);
+        setImage(null);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className='mt-10 mb-5 text-black text-4xl md:text-5xl text-center font-bold leading-normal'>Welcome To The Admin Page</h1>
-      <p className='w-screen md:w-1/2 mb-10 text-center'>Here you can update changable parts of the website directly such as changing rotating photos on home page, update the executive board list, and make posts to recent news. Make sure to logout when finished.</p>
+      <p className='w-screen md:w-1/2 mb-10 text-center'>Here you can update changable parts of the website directly such as changing rotating photos on home page, update the executive board list, make posts to recent news, and update the rush schedule image. Make sure to logout when finished.</p>
       <button onClick={handleLogout} className='w-auto h-auto p-3 rounded-full bg-red-500 text-white text-lg mb-10 transition-all duration-300 hover:bg-red-700'>
         Logout
       </button>
@@ -445,6 +495,9 @@ const AdminPage: React.FC = () => {
             </li>
             <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
               <a href="#RecentNewsUpdate" onClick={handleSmoothScroll}>Recent News</a>
+            </li>
+            <li className="nav-item h-full flex items-center justify-center px-3 rounded-3xl bg-azure text-white font-bold">
+              <a href="#RushImageUpdate" onClick={handleSmoothScroll}>Rush</a>
             </li>
           </ul>
         </ScrollSpy>
@@ -664,7 +717,22 @@ const AdminPage: React.FC = () => {
           onSave={handleSaveNews}
         />
       )}
-
+      <hr className="border-t-1 border-gray-300 w-full mt-10" />
+      <div id="RushImageUpdate" className='flex flex-col mb-10 justify-center items-center'>
+          <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Rush Page</h2>
+          <p className='w-screen md:w-1/2 mb-10 text-center'>You can view and update the rush schedule here.</p>
+          {rushImage && (
+            <div className='mb-10'>
+              <img src={rushImage} alt="Rush" style={{ width: '200px', height: '200px' }} />
+            </div>
+          )}
+          <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
+            <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
+            <button onClick={handleRushImageUpload} disabled={uploading === 'rush'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+              {uploading === 'rush' ? 'Uploading...' : 'Upload New Rush Image'}
+            </button>
+          </div>
+        </div>
     </div>
   );
 };
