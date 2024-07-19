@@ -12,6 +12,7 @@ import ChapterValuesPage from "./pages/ChapterValuesPage";
 import LeadershipPage from "./pages/LeadershipPage";
 import HowToJoinPage from "./pages/HowToJoinPage";
 import RushPage from "./pages/RushPage";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
             <Route path="/leadership" element={<LeadershipPage />} />
             <Route path="/how-to-join" element={<HowToJoinPage />} />
             <Route path="/rush" element={<RushPage />} />
+            <Route path="/contact-us" element={<ContactPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
