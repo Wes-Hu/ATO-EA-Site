@@ -13,6 +13,9 @@ import LeadershipPage from "./pages/LeadershipPage";
 import HowToJoinPage from "./pages/HowToJoinPage";
 import RushPage from "./pages/RushPage";
 import ContactPage from "./pages/ContactPage";
+import PhilanthropyPage from "./pages/PhilanthropyPage";
+import JoinUsPage from "./pages/JoinUsPage";
+import AlumniPage from "./pages/AlumniPage";
 
 
 function App() {
@@ -92,7 +95,10 @@ function App() {
             <Route path="/leadership" element={<LeadershipPage />} />
             <Route path="/how-to-join" element={<HowToJoinPage />} />
             <Route path="/rush" element={<RushPage />} />
+            <Route path="/philanthropy" element={<PhilanthropyPage />} />
+            <Route path="/alumni" element={<AlumniPage />} />
             <Route path="/contact-us" element={<ContactPage />} />
+            <Route path="/join-us" element={<JoinUsPage />} />
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">

@@ -196,7 +196,7 @@ function HowToJoinPage() {
                         </div>
                         
                     </div>
-                    <div id="FAQ" className="flex flex-col mb-20">
+                    <div data-aos="fade-up" id="FAQ" className="flex flex-col mb-20">
                         <h1 className="text-black mb-10 text-5xl font-bold">Frequently Asked Questions</h1>
                         <hr className="border-2 border-black mb-4"></hr>
                         <div className="w-full">
