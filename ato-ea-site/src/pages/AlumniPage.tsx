@@ -1,7 +1,7 @@
 function AlumniPage() {
     return (
         <div className="">
-            sup
+
         </div>
     );
 }

@@ -89,11 +89,11 @@ function HomePage() {
                         </a>
                     </div>
                 </div>
-                <div className="w-full lg:w-2/5 h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl" style={{backgroundImage: `url("src/assets/ATOold.jpeg")`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}></div>
+                <div className="w-full lg:w-2/5 h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl bg-[url(src/assets/ATOold.jpeg)] bg-cover bg-no-repeat bg-center"></div>
             </div>
 
             <div data-aos="fade-up" id="Philo" className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 relative">
-                <div className="w-full lg:w-[45%] h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl" style={{backgroundImage: `url("src/assets/HomepagePhilo.jpeg")`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}></div>
+                <div className="w-full lg:w-[45%] h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl bg-[url(src/assets/philo/Philo.jpg)] bg-cover bg-no-repeat bg-center"></div>
                 <div className="w-full lg:w-[55%] h-auto p-5 flex flex-col bg-azure rounded-br-3xl rounded-bl-3xl rounded-tl-none lg:rounded-tl-3xl rounded-tr-none lg:rounded-3xl">
                     <div className="mb-5 text-white text-3xl font-bold leading-10">Philanthropy and Service</div>
                     <div className="mb-5 text-white text-xl font-medium leading-normal">At the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy is a key part of our mission to support our community and make a positive difference. Our brothers are deeply involved in both local service projects and national initiatives, dedicating their time and efforts to various causes. Each year, we proudly collaborate with respected organizations such as Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation, working together to create meaningful change and improve lives.</div>
