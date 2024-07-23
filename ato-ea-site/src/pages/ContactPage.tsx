@@ -143,12 +143,13 @@ function ContactPage() {
                             <option value="" disabled selected>Select a reason</option>
                             <option value="Rush and Recruitment">Rush and Recruitment</option>
                             <option value="Philanthropy">Philanthropy</option>
+                            <option value="Alumni">Alumni</option>
                             <option value="PR">PR</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-white text-xl">Let Us Know What's on Your Mind</label>
+                        <label className="block text-white text-xl">Let Us Know What's on Your Mind.</label>
                         <textarea
                             name="message"
                             placeholder="Enter your message"
