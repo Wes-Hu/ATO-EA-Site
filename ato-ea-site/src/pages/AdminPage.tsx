@@ -54,9 +54,11 @@ const AdminPage: React.FC = () => {
   }, [exec, editMode]);
 
   const handleExecChange = (index: number, field: keyof typeof exec[0], value: string) => {
-    const updatedExec = [...editedExec];
-    updatedExec[index] = { ...updatedExec[index], [field]: value };
-    setEditedExec(updatedExec);
+    setEditedExec(prevExec => {
+      const updatedExec = [...prevExec];
+      updatedExec[index] = { ...updatedExec[index], [field]: value };
+      return updatedExec;
+    });
   };
 
   const handleSave = async () => {
@@ -80,6 +82,7 @@ const AdminPage: React.FC = () => {
       }
       alert('Executive Board updated successfully!');
       setEditMode(false);
+      fetchExec();
     } catch (error) {
       console.error('Error updating executive board:', error);
       alert('Error updating executive board');
@@ -565,7 +568,7 @@ const AdminPage: React.FC = () => {
             </thead>
             <tbody>
               {editedExec.map((member, index) => (
-                <tr key={member.email}>
+                <tr key={member.id}>
                   <td className="border border-gray-300 px-4 py-2">{member.position}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     {editMode ? (

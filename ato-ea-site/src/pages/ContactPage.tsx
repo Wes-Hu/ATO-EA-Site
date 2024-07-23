@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
 import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
@@ -11,19 +11,46 @@ function ContactPage() {
     const [presidentEmail, setPresidentEmail] = useState<string>('');
     const [vicePresidentEmail, setVicePresidentEmail] = useState<string>('');
     const [rushChairEmail, setRushChairEmail] = useState<string>('');
-    const [philoChairEEmail, setPhiloChairEmail] = useState<string>('');
+    const [philoChairEmail, setPhiloChairEmail] = useState<string>('');
+    const [selectedReason, setSelectedReason] = useState<string>('');
+
+
+    useEffect(() => {
+        if (exec && exec.length > 0) {
+            const president = exec.find(member => member.position === 'President');
+            const vicePresident = exec.find(member => member.position === 'Vice President');
+            const rushChair = exec.find(member => member.position === 'Recruitment Chair');
+            const philoChair = exec.find(member => member.position === 'Philanthropy Chair');
+            if (president) setPresidentEmail(president.email ?? '');
+            if (vicePresident) setVicePresidentEmail(vicePresident.email ?? '');
+            if (rushChair) setRushChairEmail(rushChair.email ?? '');
+            if (philoChair) setPhiloChairEmail(philoChair.email ?? '');
+        }
+    }, [exec]);
+
+    useEffect(() => {
+        console.log('President Email:', presidentEmail);
+        console.log('Vice President Email:', vicePresidentEmail);
+        console.log('Rush Chair Email:', rushChairEmail);
+        console.log('Philo Chair Email:', philoChairEmail);
+    }, [presidentEmail, vicePresidentEmail, rushChairEmail, philoChairEmail]);
+    
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
+    };
+
+    const handleReasonChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedReason(e.target.value);
     };
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setResult("Sending...");
 
-        const serviceID = 'service_fto2w6n'; // Replace with your Email.js service ID
-        const templateID = 'template_fpor0bm'; // Replace with your Email.js template ID
-        const userID = 'Z7RWu-QLsuqQbgV0H'; // Replace with your Email.js user ID
+        const serviceID = 'service_fto2w6n'; 
+        const templateID = 'template_fpor0bm'; 
+        const userID = 'Z7RWu-QLsuqQbgV0H'; 
 
         // Creating a JavaScript object from form data
         const form = event.target as HTMLFormElement;
@@ -33,8 +60,20 @@ function ContactPage() {
             formObject[key] = value;
         });
 
-        // Adding dynamic recipient email addresses
-        formObject['to_email'] = "csmatoea@gmail.com";
+        const emailRecipients = [
+            'csmatoea@gmail.com', 
+            presidentEmail, 
+            vicePresidentEmail
+        ];
+    
+        if (selectedReason === 'Rush and Recruitment') {
+            emailRecipients.push(rushChairEmail);
+        } else if (selectedReason === 'Philanthropy') {
+            emailRecipients.push(philoChairEmail);
+        }
+
+
+        formObject['to_email'] = emailRecipients.filter(email => email).join(',');
 
         emailjs.send(serviceID, templateID, formObject, userID)
             .then((response) => {
@@ -96,6 +135,8 @@ function ContactPage() {
                         <label className="block text-white text-xl">How Can We Help You?</label>
                         <select
                             name="reason"
+                            value={selectedReason}
+                            onChange={handleReasonChange}
                             className="w-full p-3 border border-gray-300 rounded-full mt-1 bg-white"
                             required
                         >
@@ -124,7 +165,7 @@ function ContactPage() {
                         </button>
                     </div>
                 </form>
-                <span>{result}</span>
+                <span className="text-black text-xl">{result}</span>
             </motion.div>
         </div>
     );
