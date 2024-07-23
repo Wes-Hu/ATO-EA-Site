@@ -136,8 +136,16 @@ function HistoryPage() {
                             <div className="text-xl font-medium leading-loose">Read More</div>
                         </a>
                     </div>
-                    <div data-aos="fade-up" id="EAHistory" className="h-screen bg-gray-100 flex justify-center items-center">
-                        <div>Need Joe to send me the fucking local chapter history :(</div>
+                    <div data-aos="fade-up" id="EAHistory" className="flex flex-col">
+                        <h1 className="text-black mb-10 text-5xl font-bold">Local Chapter History</h1>
+                        <div className="flex flex-col lg:flex-row items-start gap-5">
+                            <p className="w-full lg:w-1/2 text-black text-xl font-medium">The Epsilon Alpha Chapter of Alpha Tau Omega (ATO) at the School of Mines has a rich history that dates back to its founding in 1929. Originally known as Metallikos, symbolized by the Greek letters Mu Epsilon Tau, the organization was established with a vision to foster strong fellowship and a high standard of school spirit among its members. Interestingly, Metallikos was not initially intended to be a fraternity.<br/><br/>The journey began at "The Livingstone House" located at 922 14th St., where the first meeting took place on November 19th, 1919. After ten years of building a tight-knit community, Metallikos officially joined ATO on May 3rd, 1929, becoming the Epsilon Alpha Chapter. This significant transition was led by the local chapter founder, George R. McCormack.<br/><br/>The charter of the chapter bears the signature of Emerson H. Packard, a testament to its recognized stature within the ATO fraternity. Initially, ATO denied Metallikos' application because the School of Mines did not have an "A" rating. Nevertheless, the application was eventually accepted, and Metallikos became a proud part of the ATO family.<br/><br/>Throughout the years, the chapter has moved around various locations around the Mines campus, even once being located where Brown Hall currently stands. Now, the chapter resides at its current location on 1751 W Campus Rd, continuing to uphold the values and traditions that have been passed down through generations of brothers.</p>
+                            <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
+                                <img src="src/assets/livingstone.jpeg" className="w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
+                                <p>Livingtone House</p>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
