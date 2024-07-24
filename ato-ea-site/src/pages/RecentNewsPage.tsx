@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { parseISO, format } from 'date-fns';
 import { useDataContext } from '../utils/DataContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import AOS from "aos";
 
 function RecentNewsPage() {
     const { recentNews } = useDataContext();
@@ -12,11 +13,20 @@ function RecentNewsPage() {
         setExpandedIndex(expandedIndex === index ? null : index);
     }
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true, // Ensures the animation happens only once
+        });
+    }, []);
+
     return (
         <div className="flex flex-col justify-center items-center">
-            <h1 className="text-center mt-10 mb-5 text-black text-5xl font-bold">Recent News</h1>
-            <p className="w-screen md:w-1/2 mb-24 text-center text-black text-xl font-medium">Stay up-to-date with the latest news, upcoming events, and important announcements from the Epsilon Alpha chapter of Alpha Tau Omega.</p>
-            <div className="flex flex-col gap-14">
+            <div data-aos="zoom-in" className="flex flex-col justify-center items-center">
+                <h1 className="text-center mt-10 mb-5 text-black text-5xl font-bold">Recent News</h1>
+                <p className="w-screen md:w-1/2 mb-24 text-center text-black text-xl font-medium">Stay up-to-date with the latest news, upcoming events, and important announcements from the Epsilon Alpha chapter of Alpha Tau Omega.</p>
+            </div>
+            <motion.div initial={{y: '100%' ,}} animate={{y: '0%',}} transition={{ duration: 1.8, ease: 'backInOut' }} className="flex flex-col gap-14">
                 {recentNews.map((news, index) => (
                     <div key={news.id} className="w-screen relative group px-3 md:px-14 lg:px-32 2xl:px-96">
                         <div className="w-full flex flex-col">
@@ -55,7 +65,7 @@ function RecentNewsPage() {
                         </AnimatePresence>
                     </div>
                 ))}
-            </div>
+            </motion.div>
         </div>
     );
 }
