@@ -65,14 +65,17 @@ function PhilanthropyPage() {
 
     return (
         <div id="ChapterValues" className="flex flex-col justify-center items-center">
-            <div id="Image" className="w-screen h-[60vh] mb-24 md:h-[80vh] relative bg-azure group">
+            <div id="Image" className="w-screen h-[60vh] mb-10 lg:mb-16 md:h-[80vh] relative bg-azure group">
                 <div className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center bg-[url(src/assets/philo/Philo.jpg)]">
                     <div className="bg-azure bg-opacity-50 py-16 px-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
                         <div className="text-white text-4xl font-bold leading-9">Philanthropy</div>
                     </div>
                 </div>
             </div>
-            <p className="w-screen lg:w-1/2 mb-20 text-center text-black text-xl font-medium">For the brothers of the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy embodies our commitment to give back to our community. Our brothers actively engage in servicing our local communities as well as national partnerships. Every school year we are proud to partner with Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation. These partnerships highlight our commitment to service and display the profound impact we can make together.</p>
+            <div data-aos="fade-up" className="flex flex-col justify-center items-center">
+                <h1 className="text-center mb-5 text-black text-4xl md:text-5xl font-bold">Our Commitment to Service</h1>
+                <p className="w-screen lg:w-1/2 mb-20 text-center text-black text-xl font-medium">For the brothers of the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy embodies our commitment to give back to our community. Our brothers actively engage in servicing our local communities as well as national partnerships. Every school year we are proud to partner with Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation. These partnerships highlight our commitment to service and display the profound impact we can make together.</p>
+            </div>
             <div id="SideBar" className="w-screen 2xl:w-3/5 px-3 mt-10 md:px-10 flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-2 mb-10">
                 <div className="w-screen hidden md:w-[25%] md:flex flex-col">
                     <Sticky enabled={true} top={140} bottomBoundary={stickyBoundaryRef.current ? stickyBoundaryRef.current.offsetTop - 104 : undefined}>
@@ -154,7 +157,7 @@ function PhilanthropyPage() {
                     </div>
                 </div>
             </div>
-            <div ref={stickyBoundaryRef} className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
+            <div ref={stickyBoundaryRef} className="w-screen md:h-96 px-3 bg-old-gold flex flex-col items-center justify-start">
                 <h1 className="text-black text-5xl font-bold mt-10 text-center mb-10">Make a Difference with Us</h1>
                 <p className="md:w-1/2 text-center text-black text-xl font-medium leading-loose mb-10">Contact our current Philanthropy Chair {exec.find(member => member.position === 'Philanthropy Chair')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Philanthropy Chair')?.email}`} className="hover:text-azure duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Philanthropy Chair')?.email}</a> or visit our contact form</p>
                 <a href="/contact-us" className="w-auto px-5 h-14 mb-10 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">

@@ -78,7 +78,7 @@ function HowToJoinPage() {
 
     return (
         <div id="ChapterValues" className="flex flex-col justify-center items-center">
-            <h1 className="text-center mt-10 mb-5 text-black text-5xl font-bold">Interested in Joining?</h1>
+            <h1 className="text-center mt-10 mb-5 text-black text-4xl md:text-5xl font-bold">Interested in Joining?</h1>
             <p className="w-screen lg:w-1/2 mb-10 text-center text-black text-xl font-medium">If you're seeking a place to belong, have fun, and grow alongside like-minded individuals in meaningful ways, Alpha Tau Omega is that place. As America’s Leadership Development Fraternity, ATO offers a unique fraternity experience and a tremendous opportunity for young men.</p>
             <a href="/join-us" className="h-14 mb-20 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
                 <div className=" text-xl font-medium leading-loose">Join Us</div>
@@ -262,7 +262,7 @@ function HowToJoinPage() {
                     </div>
                 </div>
             </div>
-            <div ref={stickyBoundaryRef} className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
+            <div ref={stickyBoundaryRef} className="w-screen md:h-96 px-3 bg-old-gold flex flex-col items-center justify-start">
                 <h1 className="text-black text-5xl font-bold mt-10 text-center mb-10">Have More Questions?</h1>
                 <p className="md:w-1/2 text-center text-black text-xl font-medium leading-loose mb-10">Contact our current recruitment chair {exec.find(member => member.position === 'Recruitment Chair')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Recruitment Chair')?.email}`} className="hover:text-azure duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Recruitment Chair')?.email}</a> or visit our contact form</p>
                 <a href="/contact-us" className="w-auto px-5 h-14 mb-10 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">
