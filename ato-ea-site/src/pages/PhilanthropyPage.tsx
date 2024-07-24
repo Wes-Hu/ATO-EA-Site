@@ -3,7 +3,7 @@ import Sticky from 'react-stickynode';
 import ScrollSpy from 'react-ui-scrollspy';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useDataContext } from '../utils/DataContext';
 import { Parallax } from 'react-parallax';
 
@@ -11,6 +11,7 @@ import { Parallax } from 'react-parallax';
 function PhilanthropyPage() {
     const { exec } = useDataContext();
     const [activeSection, setActiveSection] = useState('');
+    const stickyBoundaryRef = useRef<HTMLDivElement>(null);
 
    
     useEffect(() => {
@@ -74,7 +75,7 @@ function PhilanthropyPage() {
             <p className="w-screen lg:w-1/2 mb-20 text-center text-black text-xl font-medium">For the brothers of the Epsilon Alpha chapter of Alpha Tau Omega, philanthropy embodies our commitment to give back to our community. Our brothers actively engage in servicing our local communities as well as national partnerships. Every school year we are proud to partner with Habitat for Humanity, Gift of Life, and the Colon Cancer Foundation. These partnerships highlight our commitment to service and display the profound impact we can make together.</p>
             <div id="SideBar" className="w-screen 2xl:w-3/5 px-3 mt-10 md:px-10 flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-2 mb-10">
                 <div className="w-screen hidden md:w-[25%] md:flex flex-col">
-                    <Sticky enabled={true} top={140}>
+                    <Sticky enabled={true} top={140} bottomBoundary={stickyBoundaryRef.current ? stickyBoundaryRef.current.offsetTop - 104 : undefined}>
                         <div data-aos="fade-right" className="w-4/5 flex flex-col gap-3">
                             <ScrollSpy>
                                 <ul className="nav-list flex flex-col gap-3">
@@ -118,7 +119,7 @@ function PhilanthropyPage() {
                 </div>
                 <div className="w-full md:w-[75%] flex flex-col gap-20">
                     <div id="Habitat" className="">
-                        <Parallax bgImage='src/assets/philo/Habitat.jpg' strength={500} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[50vh] mb-10">
+                        <Parallax bgImage='src/assets/philo/Habitat.jpg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Habitat for Humanity</div>
                         </Parallax>
                         <div className="w-full flex flex-col lg:flex-row px-3 md:px-0 gap-5">
@@ -127,13 +128,13 @@ function PhilanthropyPage() {
                         </div>
                     </div>
                     <div id="GiftOfLife" className="">
-                        <Parallax bgImage='src/assets/philo/gol.jpeg' strength={500} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[50vh] mb-10">
+                        <Parallax bgImage='src/assets/philo/gol.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Gift of Life</div>
                         </Parallax>    
                         <div className="text-black text-xl font-medium leading-loose">Through our partnership with Gift of Life, we actively encourage our fellow students at the Colorado School of Mines to join the national bone marrow registry. By signing up, they become potential lifesavers, offering hope to patients in need of bone marrow transplants. Our chapter is dedicated to raising awareness about the critical need for bone marrow donors and the life-saving potential that each registration holds. Each semester, we set up a table on campus for a week to inform and register new donors. Our brothers engage with students, explaining the simple yet impactful process of joining the registry. By sharing the importance of bone marrow donations, we hope to inspire more individuals to participate and potentially save lives</div>                
                     </div>
                     <div id="WheelToHeal" className="">
-                        <Parallax bgImage='src/assets/philo/wth.jpeg' strength={500} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[50vh] mb-10">
+                        <Parallax bgImage='src/assets/philo/wth.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Wheel to Heal</div>
                         </Parallax>  
                         <div className="w-full flex flex-col-reverse lg:flex-row gap-5">
@@ -146,14 +147,14 @@ function PhilanthropyPage() {
                         </div>
                     </div>
                     <div id="TrashCleanup" className="flex flex-col mb-20">
-                        <Parallax bgImage='src/assets/philo/cleanup.jpeg' strength={500} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[50vh] mb-10">
+                        <Parallax bgImage='src/assets/philo/cleanup.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }} className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Trash Cleanup</div>
                         </Parallax> 
                         <div className="text-black text-xl font-medium leading-loose">In addition to our other philanthropic efforts, we actively participate in trash cleanups on local highways, Clear Creek, and nearby hiking trails. Our brothers regularly organize and join cleanup events to help maintain the natural beauty of our community. By removing litter and debris, we contribute to a healthier environment and ensure that these public spaces remain enjoyable for everyone. Our dedication to environmental stewardship reflects our commitment to preserving the natural surroundings of the Colorado School of Mines and fostering a cleaner, greener future.</div>                 
                     </div>
                 </div>
             </div>
-            <div className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
+            <div ref={stickyBoundaryRef} className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
                 <h1 className="text-black text-5xl font-bold mt-10 text-center mb-10">Make a Difference with Us</h1>
                 <p className="md:w-1/2 text-center text-black text-xl font-medium leading-loose mb-10">Contact our current Philanthropy Chair {exec.find(member => member.position === 'Philanthropy Chair')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Philanthropy Chair')?.email}`} className="hover:text-azure duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Philanthropy Chair')?.email}</a> or visit our contact form</p>
                 <a href="/contact-us" className="w-auto px-5 h-14 mb-10 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">

@@ -11,6 +11,8 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 function HowToJoinPage() {
     const { exec } = useDataContext();
     const [activeSection, setActiveSection] = useState('');
+    const stickyBoundaryRef = useRef<HTMLDivElement>(null);
+
 
    
     useEffect(() => {
@@ -84,7 +86,7 @@ function HowToJoinPage() {
             <div className="w-screen h-28 mb-28 bg-azure items-center flex justify-center text-center text-white font-bold text-4xl md:text-5xl">How To Join ATO</div>
             <div id="SideBar" className="w-screen 2xl:w-3/5 px-3 mt-10 md:px-10 flex flex-col md:flex-row justify-center items-center md:items-start gap-10 md:gap-2 mb-10">
                 <div className="w-screen hidden md:w-[25%] md:flex flex-col">
-                    <Sticky enabled={true} top={140}>
+                    <Sticky enabled={true} top={140} bottomBoundary={stickyBoundaryRef.current ? stickyBoundaryRef.current.offsetTop - 104 : undefined}>
                         <div data-aos="fade-right" className="w-4/5 flex flex-col gap-3">
                             <ScrollSpy>
                                 <ul className="nav-list flex flex-col gap-3">
@@ -260,7 +262,7 @@ function HowToJoinPage() {
                     </div>
                 </div>
             </div>
-            <div className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
+            <div ref={stickyBoundaryRef} className="w-screen md:h-96 bg-old-gold flex flex-col items-center justify-start">
                 <h1 className="text-black text-5xl font-bold mt-10 text-center mb-10">Have More Questions?</h1>
                 <p className="md:w-1/2 text-center text-black text-xl font-medium leading-loose mb-10">Contact our current recruitment chair {exec.find(member => member.position === 'Recruitment Chair')?.name} at <a href={`mailto:${exec.find(member => member.position === 'Recruitment Chair')?.email}`} className="hover:text-azure duration-300 transition-all ease-in-out">{exec.find(member => member.position === 'Recruitment Chair')?.email}</a> or visit our contact form</p>
                 <a href="/contact-us" className="w-auto px-5 h-14 mb-10 flex justify-center items-center text-black bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue hover:text-old-gold">
