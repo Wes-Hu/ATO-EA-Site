@@ -104,8 +104,8 @@ function App() {
           </Routes>
         </main>
         <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
-          <div className="CR text-nowrap text-dark-blue text-sm font-normal leading-tight">© 2024 ATO Epsilon Alpha. All rights reserved</div>
-          <div className="CR text-nowrap text-dark-blue text-sm font-normal leading-tight">Website created by ATO member Wesley Hu.</div>
+          <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">© 2024 ATO Epsilon Alpha. All rights reserved</div>
+          <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">Website created by ATO member Wesley Hu.</div>
         </footer>
       </div>
     </DataProvider>
