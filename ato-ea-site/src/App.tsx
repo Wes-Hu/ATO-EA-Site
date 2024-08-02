@@ -17,9 +17,11 @@ import PhilanthropyPage from "./pages/PhilanthropyPage";
 import JoinUsPage from "./pages/JoinUsPage";
 import AlumniPage from "./pages/AlumniPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { FaInstagram } from "react-icons/fa";
 
 
 function App() {
+  const currentYear = new Date().getFullYear();
   const [menuOpen, setMenuOpen] = useState(false);
   const handleOnClose = () => setMenuOpen(false);
   const toggleMenu = () => {
@@ -103,9 +105,15 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
-        <footer className="w-full h-28 mt-20 flex flex-col gap-2 justify-center items-center bg-old-gold">
-          <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">© 2024 ATO Epsilon Alpha. All rights reserved</div>
-          <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">Website created by ATO member Wesley Hu.</div>
+        <footer className="w-full h-28 mt-20 flex flex-row gap-2 justify-evenly items-center bg-old-gold">
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">© {currentYear} ATO Epsilon Alpha. All rights reserved</div>
+            <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">1751 W. Campus Rd, Golden, CO 80401</div>
+          </div>
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <a href="https://www.instagram.com/ato_mines/" className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out"><FaInstagram size={20}/></a>
+            <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">Website by Wesley Hu, ATO member.</div>
+          </div>
         </footer>
       </div>
     </DataProvider>

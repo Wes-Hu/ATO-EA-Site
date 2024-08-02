@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
+import { useDataContext } from "../utils/DataContext";
 
 function JoinUsPage() {
-    const interestForm = "https://app.chapterbuilder.com/forms/9622/view/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDEzOTQ2OSwianRpIjoiYjI3ZjkxZjUtOGE1Yy00ZmE5LWIzNjMtNzMyN2IxNmQ5ZDE4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6OTYyMiwibmJmIjoxNzIwMTM5NDY5LCJjbGFpbXNfdHlwZSI6ImZvcm0ifQ.DfVVtWNBLO0GqQYqijHiDHvqfsOCf-LyoACPGD9gUfw"
+    const { interestFormLink } = useDataContext();
     return (
         <div className="flex flex-col justify-center items-center">
             <div className="w-screen h-[40vh] mb-20 bg-[url(src/assets/Contact.jpeg)] md:bg-cover xl:bg-bottom bg-fixed flex justify-center items-center overflow-hidden">
@@ -13,7 +14,7 @@ function JoinUsPage() {
                 <h1 className="text-black font-bold text-4xl text-center md:text-5xl mb-5">Ready To Be a Member?</h1>
                 <p className="text-black font-medium text-xl text-center mb-10">Fill out our interest form or attend events during Rush Week!</p>
                 <div className="flex flex-col justify-center items-center md:flex-row gap-10">
-                    <a href={interestForm} className="h-14 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
+                    <a href={interestFormLink} className="h-14 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
                         <div className=" text-xl font-medium leading-loose">Interest Form</div>
                     </a>
                     <a href="/rush" className="h-14 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">

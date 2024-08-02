@@ -126,17 +126,17 @@ function ChapterValuesPage() {
                         <h1 className="text-white text-5xl font-bold mb-10">The Creed of Alpha Tau Omega</h1>
                         <p className=" text-white text-xl font-medium leading-loose">To bind men together in a brotherhood based upon eternal and immutable principles, with a bond as strong as right itself and as lasting as humanity; to know no North, no South, no East, no West, but to know man as man, to teach that true men the world over should stand together and contend for supremacy of good over evil; to teach, not politics, but morals; to foster, not partisanship, but the recognition of true merit wherever found; to have no narrower limits within which to work together for the elevation of man than the outlines of the world: these were the thoughts and hopes uppermost in the minds of the founders of the Alpha Tau Omega Fraternity.<br/><br/>-Otis Allan Glazebrook<br/>1880</p>
                     </div>
-                    <div id="OurValues" className="flex flex-col justify-center items-center md:items-start gap-5">
+                    <div id="OurValues" className="md:px-0 flex flex-col justify-center items-center md:items-start gap-5">
                         <div data-aos="zoom-in">
                             <h1 className="text-5xl font-bold mb-5">Our Values</h1>
                             <p className="text-xl font-medium leading-loose">At the Epsilon Alpha chapter of Alpha Tau Omega, our core values are the foundation of our brotherhood. They guide our actions, shape our community, and inspire us to make a positive impact. Here are the values that define who we are:</p>
                         </div>
                         
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-40 flex-grow py-5 flex items-center justify-center bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none text-azure">
+                            <div className="w-full md:w-40 flex-grow py-5 flex items-center justify-center bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none text-azure">
                                 <MdHandshake size={100} />
                             </div>
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[0]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[0] ? '0%' : '-100%' }: { x: inViews[0] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Brotherhood</h1>
@@ -146,7 +146,7 @@ function ChapterValuesPage() {
                             </div>
                         </div>
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[1]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[1] ? '0%' : '-100%' }: { x: inViews[1] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Leadership</h1>
@@ -154,7 +154,7 @@ function ChapterValuesPage() {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
                                     <MdGroups size={100} />
                                 </div>
@@ -162,12 +162,12 @@ function ChapterValuesPage() {
                         </div>
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
                                     <FaBook size={80} />
                                 </div>
                             </div>
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[2]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[2] ? '0%' : '-100%' }: { x: inViews[2] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Scholarship</h1>
@@ -178,7 +178,7 @@ function ChapterValuesPage() {
                         </div>
 
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[3]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[3] ? '0%' : '-100%' }: { x: inViews[3] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Service</h1>
@@ -186,7 +186,7 @@ function ChapterValuesPage() {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
                                     <FaHandsHelping size={100} />
                                 </div>
@@ -194,12 +194,12 @@ function ChapterValuesPage() {
                         </div>
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
                                     <FaBalanceScale size={80} />
                                 </div>
                             </div>
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[4]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[4] ? '0%' : '-100%' }: { x: inViews[4] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Integrity</h1>
@@ -210,7 +210,7 @@ function ChapterValuesPage() {
                         </div>
 
                         <div className="w-full flex flex-col-reverse md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[5]} initial={isMobile ? { y: '-100%' } : { x: '100%' }} animate={isMobile ? { y: inViews[5] ? '0%' : '-100%' }: { x: inViews[5] ? '0%' : '100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tl-3xl rounded-bl-3xl rounded-br-3xl md:rounded-br-none flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Respect</h1>
@@ -218,7 +218,7 @@ function ChapterValuesPage() {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tr-3xl rounded-tl-3xl md:rounded-tl-none rounded-br-none md:rounded-br-3xl flex items-center justify-center text-azure">
                                     <FaHeart size={80} />
                                 </div>
@@ -226,12 +226,12 @@ function ChapterValuesPage() {
                         </div>
 
                         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-start">
-                            <div className="w-screen md:w-40 flex-grow flex items-stretch">
+                            <div className="w-full md:w-40 flex-grow flex items-stretch">
                                 <div className="flex-grow py-5 bg-old-gold rounded-tl-3xl rounded-tr-3xl md:rounded-bl-3xl md:rounded-tr-none flex items-center justify-center text-azure">
                                     <FaUserGraduate size={80} />
                                 </div>
                             </div>
-                            <div className="w-screen md:w-4/5 flex-grow overflow-hidden">
+                            <div className="w-full md:w-4/5 flex-grow overflow-hidden">
                                 <motion.div ref={refs[6]} initial={isMobile ? { y: '-100%' } : { x: '-100%' }} animate={isMobile ? { y: inViews[6] ? '0%' : '-100%' }: { x: inViews[6] ? '0%' : '-100%' }} transition={{ duration: 1 }} className="h-full py-5 bg-azure md:rounded-tr-3xl rounded-bl-3xl md:rounded-bl-none rounded-br-3xl flex items-center">
                                     <div className="flex flex-col justify-start items-start px-3 gap-1">
                                         <h1 className="text-white text-left text-2xl font-bold">Personal Development</h1>

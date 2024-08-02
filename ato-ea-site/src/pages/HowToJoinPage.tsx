@@ -204,7 +204,7 @@ function HowToJoinPage() {
                         <div className="w-full">
                         <div className="w-full flex flex-col">
                             <button onClick={() => toggleAccordion(0)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
-                            <div className="text-3xl font-bold font-['Inter'] leading-10">What is the time commitment?</div>
+                            <div className="text-3xl font-bold font-['Inter'] leading-10 text-left">What is the time commitment?</div>
                             <motion.div key={isOpen[0] ? 'minus0' : 'plus0'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[0] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
                             </button>
                             <AnimatePresence>
@@ -219,7 +219,7 @@ function HowToJoinPage() {
                         </div>
                         <div className="w-full flex flex-col">
                             <button onClick={() => toggleAccordion(1)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
-                                <div className="text-3xl font-bold font-['Inter'] leading-10">Is living in House a requirement?</div>
+                                <div className="text-3xl font-bold font-['Inter'] leading-10 text-left">Is living in House a requirement?</div>
                                 <motion.div key={isOpen[1] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[1] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
                             </button>
                             <AnimatePresence>
@@ -233,7 +233,7 @@ function HowToJoinPage() {
                         <hr className="border-2 border-black my-4"></hr>
                         <div className="w-full flex flex-col">
                             <button onClick={() => toggleAccordion(2)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
-                                <div className="text-3xl font-bold font-['Inter'] leading-10">How much are dues?</div>
+                                <div className="text-3xl font-bold font-['Inter'] leading-10 text-left">How much are dues?</div>
                                 <motion.div key={isOpen[2] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[2] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
                             </button>
                             <AnimatePresence>
@@ -247,7 +247,7 @@ function HowToJoinPage() {
                         <hr className="border-2 border-black my-4"></hr>
                         <div className="w-full flex flex-col">
                             <button onClick={() => toggleAccordion(3)} className="w-full flex items-center justify-between text-dark-blue rounded-full focus:outline-none">
-                                <div className="text-3xl font-bold font-['Inter'] leading-10">How do I pay dues?</div>
+                                <div className="text-3xl font-bold font-['Inter'] leading-10 text-left">How do I pay dues?</div>
                                 <motion.div key={isOpen[3] ? 'minus1' : 'plus1'} initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>{isOpen[3] ? <FaMinus size={30} /> : <FaPlus size={30} />}</motion.div>
                             </button>
                             <AnimatePresence>

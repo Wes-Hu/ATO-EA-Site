@@ -26,12 +26,14 @@ interface DataContextProps {
     exec: ExecBoard[];
     recentNews: RecentNews[];
     leadershipImage: string | null;
-    rushImage: string | undefined;
+    rushImage: string | null;
+    interestFormLink: string | undefined;
     fetchImages: () => Promise<void>;
     fetchExec: () => Promise<void>;
     fetchRecentNews: () => Promise<void>;
     fetchLeadershipImage: () => Promise<void>;
     fetchRushImage: () => Promise<void>;
+    fetchInterestFormLink: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -174,6 +176,24 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
             console.error("Error fetching leadership image", error);
         }
     };
+    const [interestFormLink, setInterestFormLink] = useState<string | undefined>(undefined);
+
+    const fetchInterestFormLink = async () => {
+        try {
+            const { data, error } = await supabase
+                .from("RushLink") 
+                .select("link")
+                .single();
+            
+            if (error) {
+                console.error('Error fetching interest form link from Supabase:', error);
+                throw error;
+            }
+            setInterestFormLink(data?.link || undefined);
+        } catch (error) {
+            console.error("Error fetching interest form link", error);
+        }
+    };
 
     useEffect(() => {
         fetchImages();
@@ -181,10 +201,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         fetchRecentNews();
         fetchLeadershipImage();
         fetchRushImage();
+        fetchInterestFormLink();
     }, []);
 
     return (
-        <DataContext.Provider value={{ images, exec, recentNews, isLoading, leadershipImage, rushImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage, fetchRushImage }}>
+        <DataContext.Provider value={{ images, exec, recentNews, isLoading, leadershipImage, rushImage, interestFormLink, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage, fetchRushImage, fetchInterestFormLink }}>
             {children}
         </DataContext.Provider>
     );

@@ -8,7 +8,7 @@ import CreateNewsModal from '../components/CreateNewsModal';
 import ScrollSpy from 'react-ui-scrollspy';
 
 const AdminPage: React.FC = () => {
-  const { images, exec, recentNews, isLoading, leadershipImage, rushImage, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage, fetchRushImage } = useDataContext();
+  const { images, exec, recentNews, isLoading, leadershipImage, rushImage, interestFormLink, fetchImages, fetchExec, fetchRecentNews, fetchLeadershipImage, fetchRushImage, fetchInterestFormLink } = useDataContext();
   const [image, setImage] = useState<File | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -19,6 +19,8 @@ const AdminPage: React.FC = () => {
   const [selectedNews, setSelectedNews] = useState<number[]>([]);
   const [editingNews, setEditingNews] = useState<any | null>(null);
   const [creatingNews, setCreatingNews] = useState(false);
+  const [editInterestFormLink, setEditInterestFormLink] = useState(false);
+  const [newInterestFormLink, setNewInterestFormLink] = useState<string | null>(interestFormLink);
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
@@ -33,6 +35,7 @@ const AdminPage: React.FC = () => {
           fetchRecentNews();
           fetchLeadershipImage();
           fetchRushImage();
+          fetchInterestFormLink();
         } else {
           setAuthenticated(false);
           navigate('/admin-login');
@@ -52,6 +55,29 @@ const AdminPage: React.FC = () => {
       setEditedExec(sortedExec);
     }
   }, [exec, editMode]);
+
+  const handleSaveInterestFormLink = async () => {
+    setSaving(true);
+    try {
+      const { error } = await supabase
+        .from('RushLink')
+        .update({ link: newInterestFormLink })
+        .eq('id', 1);  // Assuming the id of the row you want to update is 1.
+      
+      if (error) {
+        throw error;
+      }
+      alert('Interest form link updated successfully!');
+      fetchInterestFormLink();
+      setEditInterestFormLink(false);
+    } catch (error) {
+      console.error('Error updating interest form link:', error);
+      alert('Error updating interest form link');
+    } finally {
+      setSaving(false);
+    }
+  };
+  
 
   const handleExecChange = (index: number, field: keyof typeof exec[0], value: string) => {
     setEditedExec(prevExec => {
@@ -722,20 +748,49 @@ const AdminPage: React.FC = () => {
       )}
       <hr className="border-t-1 border-gray-300 w-full mt-10" />
       <div id="RushImageUpdate" className='flex flex-col mb-10 justify-center items-center'>
-          <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Rush Page</h2>
-          <p className='w-screen md:w-1/2 mb-10 text-center'>You can view and update the rush schedule here.</p>
-          {rushImage && (
-            <div className='mb-10'>
-              <img src={rushImage} alt="Rush" style={{ width: '200px', height: '200px' }} />
+        <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Rush Page</h2>
+        <p className='w-screen md:w-1/2 mb-10 text-center'>You can view and update the rush schedule here.</p>
+        {rushImage && (
+          <div className='mb-10'>
+            <img src={rushImage} alt="Rush" style={{ width: '200px', height: '200px' }} />
+          </div>
+        )}
+        <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
+          <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
+          <button onClick={handleRushImageUpload} disabled={uploading === 'rush'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+            {uploading === 'rush' ? 'Uploading...' : 'Upload New Rush Image'}
+          </button>
+        </div>
+        <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
+          <h3 className='text-2xl font-bold mb-3'>Interest Form Link</h3>
+          {editInterestFormLink ? (
+            <div className='flex flex-col justify-center items-center'>
+              <input
+                className='mb-3 border border-black rounded-md p-2'
+                type="text"
+                value={newInterestFormLink || ''}
+                onChange={(e) => setNewInterestFormLink(e.target.value)}
+              />
+              <div className='flex gap-3'>
+                <button onClick={handleSaveInterestFormLink} disabled={saving} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+                  {saving ? 'Saving...' : 'Save Link'}
+                </button>
+                <button onClick={() => setEditInterestFormLink(false)} className='w-auto h-auto p-3 rounded-full bg-gray-500 text-white text-lg mb-10 transition-all duration-300 hover:bg-gray-700 group'>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className='flex flex-col justify-center items-center'>
+              <p>Current Interest Form Link:</p>
+              <p className='break-words break-all mb-3 text-center w-full px-3'>{interestFormLink || 'No link set'}</p>
+              <button onClick={() => setEditInterestFormLink(true)} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
+                Edit Link
+              </button>
             </div>
           )}
-          <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
-            <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
-            <button onClick={handleRushImageUpload} disabled={uploading === 'rush'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
-              {uploading === 'rush' ? 'Uploading...' : 'Upload New Rush Image'}
-            </button>
-          </div>
         </div>
+      </div>
     </div>
   );
 };
