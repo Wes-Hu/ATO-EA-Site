@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['framer-motion', 'date-fns', 'react-input-mask']
+      external: ['framer-motion', 'date-fns', 'react-input-mask', 'emailjs-com']
     }
   }
 })
