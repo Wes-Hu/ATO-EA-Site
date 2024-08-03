@@ -1,12 +1,24 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['framer-motion', 'date-fns', 'react-input-mask', 'emailjs-com', 'react-ui-scrollspy', 'react-parallax']
+      external: [
+        'date-fns',
+        'react-ui-scrollspy',
+        'emailjs-com',
+        '@supabase/supabase-js',
+        'react-input-mask',
+        'react-parallax',
+        'framer-motion'
+      ],
+      output: {
+        globals: {
+          'framer-motion': 'framerMotion'
+        }
+      }
     }
   }
 })
