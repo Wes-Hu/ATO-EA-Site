@@ -76,12 +76,12 @@ function ContactPage() {
         formObject['to_email'] = emailRecipients.filter(email => email).join(',');
 
         emailjs.send(serviceID, templateID, formObject, userID)
-            .then((response) => {
+            .then((response:any) => {
                 console.log('SUCCESS!', response.status, response.text);
                 setResult("Form Submitted Successfully");
                 form.reset();
                 setPhone('');
-            }, (error) => {
+            }, (error:any) => {
                 console.log('FAILED...', error);
                 setResult("Failed to send form");
             });
