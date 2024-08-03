@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['date-fns', 'react-input-mask', 'emailjs-com', 'react-ui-scrollspy', 'react-parallax']
+      external: ['framer-motion', 'date-fns', 'react-input-mask', 'emailjs-com', 'react-ui-scrollspy', 'react-parallax']
     }
   }
 })
