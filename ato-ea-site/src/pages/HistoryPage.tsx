@@ -59,7 +59,7 @@ function HistoryPage() {
     return (
         <div id="HistoryPageContainer" className="flex flex-col justify-center items-center">
             <div id="Image" className="w-screen h-[60vh] mb-24 md:h-[80vh] relative bg-azure group">
-                <div className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center bg-[url(src/assets/ATOold.jpeg)]">
+                <div className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center bg-ato-old">
                     <div className="bg-azure bg-opacity-50 py-16 px-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
                         <div className="text-white text-4xl font-bold leading-9">HISTORY</div>
                     </div>
@@ -115,15 +115,15 @@ function HistoryPage() {
                         <h1 className="text-black mb-5 text-5xl font-bold">Founders</h1>
                         <div className="w-full flex flex-col justify-center items-start md:flex-row gap-5 md:gap-3">
                             <div className="w-screen px-3 md:px-0 md:w-1/3 flex flex-col justify-center items-center">
-                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-[url(src/assets/EMR.jpg)]"></div>
+                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-oag"></div>
                                 <h2 className="text-black text-center text-2xl font-medium">Otis Allen Glazebrook</h2>
                             </div>
                             <div className="w-screen px-3 md:px-0 md:w-1/3 flex flex-col justify-center items-center">
-                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-[url(src/assets/AM.jpg)]"></div>
+                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-am"></div>
                                 <h2 className="text-black text-center text-2xl font-medium">Alfred Marshall</h2>
                             </div>
                             <div className="w-screen px-3 md:px-0 md:w-1/3 flex flex-col justify-center items-center">
-                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-[url(src/assets/OAG.jpg)]"></div>
+                                <div className="w-full h-[564px] md:h-[40vh] xl:h-[50vh] rounded-3xl bg-center bg-cover bg-emr"></div>
                                 <h2 className="text-black text-center text-2xl font-medium">Erskine Mayo Ross</h2>
                             </div>
                         </div>

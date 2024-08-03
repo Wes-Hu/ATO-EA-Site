@@ -79,7 +79,7 @@ function ChapterValuesPage() {
     return (
         <div id="ChapterValues" className="flex flex-col justify-center items-center">
             <div id="Image" className="w-screen h-[60vh] mb-24 md:h-[80vh] relative bg-azure group">
-                <div className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center bg-[url(src/assets/ATOHouse.png)]">
+                <div className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center bg-ato-house">
                     <div className="bg-azure bg-opacity-50 py-16 px-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
                         <div className="text-white text-4xl font-bold leading-9">Chapter Values</div>
                     </div>

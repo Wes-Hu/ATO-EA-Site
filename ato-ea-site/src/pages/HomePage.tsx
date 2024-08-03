@@ -89,7 +89,7 @@ function HomePage() {
                         </a>
                     </div>
                 </div>
-                <div className="w-full lg:w-2/5 h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl bg-[url(src/assets/ATOold.jpeg)] bg-cover bg-no-repeat bg-center"></div>
+                <div className="w-full lg:w-2/5 h-52 md:h-96 lg:h-auto rounded-tl-3xl rounded-tr-3xl rounded-bl-none lg:rounded-bl-3xl rounded-br-none lg:rounded-br-3xl bg-ato-old bg-cover bg-no-repeat bg-center"></div>
             </div>
 
             <div data-aos="fade-up" id="Philo" className="w-full 2xl:max-w-[80%] mb-10 lg:mb-20 h-auto px-3 md:px-10 flex flex-col lg:flex-row gap-0 lg:gap-5 relative">
