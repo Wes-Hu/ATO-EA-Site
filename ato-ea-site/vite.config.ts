@@ -10,7 +10,6 @@ export default defineConfig({
         'date-fns',
         'react-ui-scrollspy',
         'emailjs-com',
-        '@supabase/supabase-js',
         'react-input-mask',
         'react-parallax'
       ]
