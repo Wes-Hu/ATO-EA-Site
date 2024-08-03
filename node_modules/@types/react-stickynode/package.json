@@ -1,0 +1,42 @@
+{
+    "name": "@types/react-stickynode",
+    "version": "4.0.3",
+    "description": "TypeScript definitions for react-stickynode",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-stickynode",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Tim Stirrat",
+            "githubUsername": "tstirrat",
+            "url": "https://github.com/tstirrat"
+        },
+        {
+            "name": "Kamil Socha",
+            "githubUsername": "ksocha",
+            "url": "https://github.com/ksocha"
+        },
+        {
+            "name": "Mirek Ciastek",
+            "githubUsername": "mciastek",
+            "url": "https://github.com/mciastek"
+        },
+        {
+            "name": "Yanick Dickbauer",
+            "githubUsername": "yanickdi",
+            "url": "https://github.com/yanickdi"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/react-stickynode"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/react": "*"
+    },
+    "typesPublisherContentHash": "e5ccc59220933444b493e7ddf851829bc6f962278e23ac9e417075f5b70e36fe",
+    "typeScriptVersion": "4.5"
+}
