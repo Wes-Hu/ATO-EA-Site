@@ -6,6 +6,14 @@ import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDataContext } from '../utils/DataContext';
 import { Parallax } from 'react-parallax';
+import Habitat from '../assets/philo/Habitat.jpg';
+import Hbt from '../assets/philo/hbt.jpg';
+import GiftOfLife from '../assets/philo/gol.jpeg';
+import WheelToHeal from '../assets/philo/wth.jpeg';
+import WheelToHeal2 from '../assets/philo/wth2.jpg';
+import WTHLogo from '../assets/philo/WTHLogo.jpg';
+import Cleanup from '../assets/philo/cleanup.jpeg';
+
 
 
 function PhilanthropyPage() {
@@ -122,35 +130,35 @@ function PhilanthropyPage() {
                 </div>
                 <div className="w-full md:w-[75%] flex flex-col gap-20">
                     <div id="Habitat" className="">
-                        <Parallax bgImage='src/assets/philo/Habitat.jpg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
+                        <Parallax bgImage={Habitat} strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Habitat for Humanity</div>
                         </Parallax>
                         <div className="w-full flex flex-col lg:flex-row px-3 md:px-0 gap-5">
-                            <Parallax bgImage='src/assets/philo/hbt.jpg' strength={300} bgImageStyle={{ objectFit: 'cover' }} className="w-full lg:w-1/2 h-[40vh]"></Parallax>
+                            <Parallax bgImage={Hbt} strength={300} bgImageStyle={{ objectFit: 'cover' }} className="w-full lg:w-1/2 h-[40vh]"></Parallax>
                             <div className="w-full lg:w-1/2 text-black text-xl font-medium leading-loose">Our brothers at Alpha Tau Omega actively engage with Habitat for Humanity, contributing their time and effort to build homes for families in need. Through this partnership, we provide hands-on labor, working diligently to ensure that every family has a safe, affordable place to live. By participating in these builds, our members not only learn valuable skills and teamwork but also make a lasting impact on our community, fostering a sense of service and responsibility.</div>
                         </div>
                     </div>
                     <div id="GiftOfLife" className="">
-                        <Parallax bgImage='src/assets/philo/gol.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
+                        <Parallax bgImage={GiftOfLife} strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Gift of Life</div>
                         </Parallax>    
                         <div className="text-black text-xl font-medium leading-loose">Through our partnership with Gift of Life, we actively encourage our fellow students at the Colorado School of Mines to join the national bone marrow registry. By signing up, they become potential lifesavers, offering hope to patients in need of bone marrow transplants. Our chapter is dedicated to raising awareness about the critical need for bone marrow donors and the life-saving potential that each registration holds. Each semester, we set up a table on campus for a week to inform and register new donors. Our brothers engage with students, explaining the simple yet impactful process of joining the registry. By sharing the importance of bone marrow donations, we hope to inspire more individuals to participate and potentially save lives</div>                
                     </div>
                     <div id="WheelToHeal" className="">
-                        <Parallax bgImage='src/assets/philo/wth.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
+                        <Parallax bgImage={WheelToHeal} strength={300} bgImageStyle={{ objectFit: 'cover' }}  className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Wheel to Heal</div>
                         </Parallax>  
                         <div className="w-full flex flex-col-reverse lg:flex-row gap-5">
                             <div className="w-full lg:w-1/2 flex flex-col gap-5">
                                 <div className="text-black text-xl font-medium font-['Inter'] leading-loose">We raise funds for the Colon Cancer Foundation through our annual signature bikeathon event Wheel to Heal. During this event, our brothers bike nonstop on stationary bikes, day and night, in the center of the Mines campus. Every donation increases the duration of the event, capping at two weeks. This continuous effort not only raises funds but also draws significant attention to the cause, engaging the entire campus community. Our involvement with the Colon Cancer Foundation allows our chapter to support research and education that prevents colon cancer and improves the lives of those affected by it.</div>
-                                <img src="src/assets/philo/wth2.jpg" className="w-full"/>
+                                <img src={WheelToHeal2} className="w-full"/>
                             </div>
 
-                            <img src="src/assets/philo/WTHLogo.jpg" className="w-full lg:w-1/2 h-1/2"/>
+                            <img src={WTHLogo} className="w-full lg:w-1/2 h-1/2"/>
                         </div>
                     </div>
                     <div id="TrashCleanup" className="flex flex-col mb-20">
-                        <Parallax bgImage='src/assets/philo/cleanup.jpeg' strength={300} bgImageStyle={{ objectFit: 'cover' }} className="w-full h-[60vh] mb-10">
+                        <Parallax bgImage={Cleanup} strength={300} bgImageStyle={{ objectFit: 'cover' }} className="w-full h-[60vh] mb-10">
                             <div className="bg-azure bg-opacity-50 w-full h-28 text-white items-center flex justify-start px-3 text-5xl font-bold">Trash Cleanup</div>
                         </Parallax> 
                         <div className="text-black text-xl font-medium leading-loose">In addition to our other philanthropic efforts, we actively participate in trash cleanups on local highways, Clear Creek, and nearby hiking trails. Our brothers regularly organize and join cleanup events to help maintain the natural beauty of our community. By removing litter and debris, we contribute to a healthier environment and ensure that these public spaces remain enjoyable for everyone. Our dedication to environmental stewardship reflects our commitment to preserving the natural surroundings of the Colorado School of Mines and fostering a cleaner, greener future.</div>                 

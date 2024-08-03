@@ -4,6 +4,13 @@ import ScrollSpy from 'react-ui-scrollspy';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import ATOFlag from '../assets/ATOFlag.jpg';
+import ATOCrest from '../assets/ATOCrest.png';
+import Livingstone from '../assets/livingstone.jpeg';
+import House1968 from '../assets/1968ATO.jpg'
+import ATOOld from '../assets/ATOold.jpeg'
+import BrownHall from '../assets/BrownHalljpg.jpg'
+
 
 function HistoryPage() {
     const [activeSection, setActiveSection] = useState('');
@@ -67,11 +74,11 @@ function HistoryPage() {
             </div>
             <div data-aos="fade-up" id="FlagCrest" className="w-screen mb-24 2xl:w-3/5 px-3 md:px-16 lg:px-28 flex flex-col md:flex-row items-center gap-1 justify-between">
                 <div className="md:w-[75%] flex flex-col justify-center items-center gap-6">
-                    <img src="src/assets/ATOFlag.jpg" alt="ATO Flag"/>
+                    <img src={ATOFlag} alt="ATO Flag"/>
                     <div className="text-black text-center text-2xl font-bold">ATO Flag</div>
                 </div>
                 <div className="md:w-[28.8%] flex flex-col justify-center items-center gap-6">
-                    <img src="src/assets/ATOCrest.png" alt="ATO Crest"/>
+                    <img src={ATOCrest} alt="ATO Crest"/>
                     <div className="text-black text-center text-2xl font-bold">ATO Crest</div>
                 </div>
             </div>
@@ -141,13 +148,13 @@ function HistoryPage() {
                         <div className="flex flex-col lg:flex-row items-start gap-5">
                             <p className="w-full lg:w-1/2 text-black text-xl font-medium">The Epsilon Alpha Chapter of Alpha Tau Omega (ATO) at the School of Mines has a rich history that dates back to its founding in 1929. Originally known as Metallikos, symbolized by the Greek letters Mu Epsilon Tau, the organization was established with a vision to foster strong fellowship and a high standard of school spirit among its members. Interestingly, Metallikos was not initially intended to be a fraternity.<br/><br/>The journey began at "The Livingstone House" located at 922 14th St., where the first meeting took place on November 19th, 1919. After ten years of building a tight-knit community, Metallikos officially joined ATO on May 3rd, 1929, becoming the Epsilon Alpha Chapter. This significant transition was led by the local chapter founder, George R. McCormack.<br/><br/>The charter of the chapter bears the signature of Emerson H. Packard, a testament to its recognized stature within the ATO fraternity. Initially, ATO denied Metallikos' application because the School of Mines did not have an "A" rating. Nevertheless, the application was eventually accepted, and Metallikos became a proud part of the ATO family.<br/><br/>Throughout the years, the chapter has moved around various locations around the Mines campus, even once being located where Brown Hall currently stands. Now, the chapter resides at its current location on 1751 W Campus Rd, continuing to uphold the values and traditions that have been passed down through generations of brothers.</p>
                             <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
-                                <img src="src/assets/livingstone.jpeg" className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
+                                <img src={Livingstone} className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
                                 <p className="mb-3">Livingtone House</p>
-                                <img src="src/assets/1968ATO.jpg" className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="ATO House"/>
+                                <img src={House1968} className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="ATO House"/>
                                 <p className="mb-3">ATO House 1968</p>
-                                <img src="src/assets/ATOold.jpg" className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
+                                <img src={ATOOld} className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
                                 <p className="mb-3">ATO House 1970s</p>
-                                <img src="src/assets/BrownHalljpg.jpg" className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
+                                <img src={BrownHall} className="border-2 border-neutral-300 w-full h-auto object-contain rounded-3xl" alt="Livingstone House"/>
                                 <p className="mb-3">ATO House Next to Brown Hall</p>
                             </div>
                         </div>

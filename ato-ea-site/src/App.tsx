@@ -105,7 +105,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
-        <footer className="w-full h-28 mt-20 flex flex-row gap-2 justify-evenly items-center bg-old-gold">
+        <footer className="w-full h-28 mt-20 flex flex-col md:flex-row gap-2 justify-evenly items-center bg-old-gold">
           <div className="flex flex-col gap-2 justify-center items-center">
             <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">© {currentYear} ATO Epsilon Alpha. All rights reserved</div>
             <div className="CR text-nowrap text-black text-sm font-normal leading-tight hover:text-dark-blue transition-all duration-300 ease-in-out">1751 W. Campus Rd, Golden, CO 80401</div>

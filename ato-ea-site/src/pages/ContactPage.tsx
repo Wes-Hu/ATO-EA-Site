@@ -28,14 +28,6 @@ function ContactPage() {
         }
     }, [exec]);
 
-    useEffect(() => {
-        console.log('President Email:', presidentEmail);
-        console.log('Vice President Email:', vicePresidentEmail);
-        console.log('Rush Chair Email:', rushChairEmail);
-        console.log('Philo Chair Email:', philoChairEmail);
-    }, [presidentEmail, vicePresidentEmail, rushChairEmail, philoChairEmail]);
-    
-
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
     };
@@ -89,7 +81,7 @@ function ContactPage() {
 
     return (
         <div className="overflow-hidden">
-            <div className="w-screen h-[40vh] bg-contact md:bg-cover xl:bg-bottom bg-fixed flex justify-center items-center overflow-hidden">
+            <div className="w-screen h-[40vh] mb-20 bg-contact md:bg-cover xl:bg-bottom bg-fixed flex justify-center items-center overflow-hidden">
                 <div className="bg-azure bg-opacity-50 py-16 px-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
                     <div className="text-white text-4xl font-bold leading-9">Contact Us</div>
                 </div>
