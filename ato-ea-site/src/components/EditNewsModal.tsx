@@ -37,11 +37,9 @@ const EditNewsModal: React.FC<EditNewsModalProps> = ({ news, isOpen, onClose, on
 
         if (uploadError) throw uploadError;
 
-        const { data: publicUrlData, error: urlError } = supabase.storage
+        const { data: publicUrlData} = supabase.storage
           .from('ImageStorage')
           .getPublicUrl(`RecentNewsImages/${fileName}`);
-
-        if (urlError) throw urlError;
 
         newImgSrc = publicUrlData.publicUrl;
 

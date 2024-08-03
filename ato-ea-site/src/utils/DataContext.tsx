@@ -20,13 +20,17 @@ type RecentNews = {
     image_src: string | undefined;
 }
 
+type ImageItem = {
+    img_src: string;
+};
+
 interface DataContextProps {
     isLoading: boolean;
     images: ImageUrls;
     exec: ExecBoard[];
     recentNews: RecentNews[];
     leadershipImage: string | null;
-    rushImage: string | null;
+    rushImage: string | undefined;
     interestFormLink: string | undefined;
     fetchImages: () => Promise<void>;
     fetchExec: () => Promise<void>;
@@ -44,7 +48,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [exec, setExec] = useState<ExecBoard[]>([]);
     const [recentNews, setRecentNews] = useState<RecentNews[]>([]);
     const [leadershipImage, setLeadershipImage] = useState<string | null>(null);
-    const [rushImage, setRushImage] = useState<string | null>(null);
+    const [rushImage, setRushImage] = useState<string | undefined>(undefined);
 
     const preloadImages = (imageUrls: string[]) => {
         imageUrls.forEach((url) => {
@@ -122,15 +126,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 const fileName = listData[0].name;
     
                 // Fetch the public URL of the listed file
-                const { data: publicUrlData, error: urlError } = supabase
+                const { data: publicUrlData,} = supabase
                     .storage
                     .from('ImageStorage')
                     .getPublicUrl(`LeadershipImage/${fileName}`);
     
-                if (urlError) {
-                    console.error('Error fetching public URL for leadership image from Supabase:', urlError);
-                    throw urlError;
-                }
                 setLeadershipImage(publicUrlData.publicUrl);
             } else {
                 console.warn('No images found in the LeadershipImage folder.');
@@ -158,19 +158,15 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 const fileName = listData[0].name;
     
                 // Fetch the public URL of the listed file
-                const { data: publicUrlData, error: urlError } = supabase
+                const { data: publicUrlData} = supabase
                     .storage
                     .from('ImageStorage')
                     .getPublicUrl(`RushImage/${fileName}`);
-    
-                if (urlError) {
-                    console.error('Error fetching public URL for leadership image from Supabase:', urlError);
-                    throw urlError;
-                }
+
                 setRushImage(publicUrlData.publicUrl);
             } else {
                 console.warn('No images found in the LeadershipImage folder.');
-                setRushImage(null);
+                setRushImage(undefined);
             }
         } catch (error) {
             console.error("Error fetching leadership image", error);

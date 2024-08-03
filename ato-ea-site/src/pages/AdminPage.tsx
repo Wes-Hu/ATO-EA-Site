@@ -12,7 +12,6 @@ const AdminPage: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editedExec, setEditedExec] = useState(exec);
   const [selectedImages, setSelectedImages] = useState<{ [key: number]: File | null }>({});
@@ -20,16 +19,14 @@ const AdminPage: React.FC = () => {
   const [editingNews, setEditingNews] = useState<any | null>(null);
   const [creatingNews, setCreatingNews] = useState(false);
   const [editInterestFormLink, setEditInterestFormLink] = useState(false);
-  const [newInterestFormLink, setNewInterestFormLink] = useState<string | null>(interestFormLink);
+  const [newInterestFormLink, setNewInterestFormLink] = useState<string | null>(interestFormLink || null);
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const checkUser = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         if (session) {
-          setAuthenticated(true);
           fetchImages();
           fetchExec();
           fetchRecentNews();
@@ -37,12 +34,10 @@ const AdminPage: React.FC = () => {
           fetchRushImage();
           fetchInterestFormLink();
         } else {
-          setAuthenticated(false);
           navigate('/admin-login');
         }
       } catch (error) {
         console.error('Error checking user session:', error);
-        setError('Failed to check user session');
       }
     };
 
@@ -119,7 +114,7 @@ const AdminPage: React.FC = () => {
 
   const handleImageChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedImages((prev) => ({ ...prev, [index]: e.target.files[0] }));
+      setSelectedImages((prev) => ({ ...prev, [index]: e.target.files![0] }));
     }
   };
 
@@ -136,11 +131,9 @@ const AdminPage: React.FC = () => {
 
       if (uploadError) throw uploadError;
 
-      const { data: publicUrlData, error: urlError } = supabase.storage
+      const { data: publicUrlData,} = supabase.storage
         .from('ImageStorage')
         .getPublicUrl(`HomePageImages/${fileName}`);
-
-      if (urlError) throw urlError;
 
       const publicUrl = publicUrlData.publicUrl;
 
@@ -154,7 +147,7 @@ const AdminPage: React.FC = () => {
       fetchImages();
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert(`Error uploading image: ${error.message}`);
+      alert(`Error uploading image`);
     } finally {
       setUploading(null);
       setImage(null);
@@ -188,44 +181,6 @@ const AdminPage: React.FC = () => {
     }
   };
 
-  const handleReplaceImage = async (imgSrc: string) => {
-    if (!image) return;
-
-    try {
-      setUploading('replace');
-
-      const fileName = `${Date.now()}_${image.name}`;
-      const { error: uploadError } = await supabase.storage
-        .from('ImageStorage')
-        .upload(`HomePageImages/${fileName}`, image);
-
-      if (uploadError) throw uploadError;
-
-      const { data: publicUrlData, error: urlError } = supabase.storage
-        .from('ImageStorage')
-        .getPublicUrl(`HomePageImages/${fileName}`);
-
-      if (urlError) throw urlError;
-
-      const publicUrl = publicUrlData.publicUrl;
-
-      const { error: updateError } = await supabase
-        .from('HomePage')
-        .update({ img_src: publicUrl })
-        .eq('img_src', imgSrc);
-
-      if (updateError) throw updateError;
-
-      alert('Image replaced successfully!');
-      fetchImages();
-    } catch (error) {
-      console.error('Error replacing image:', error);
-      alert('Error replacing image');
-    } finally {
-      setUploading(null);
-      setImage(null);
-    }
-  };
 
   const handleExecImageUpload = async (index: number) => {
     const image = selectedImages[index];
@@ -241,11 +196,9 @@ const AdminPage: React.FC = () => {
 
       if (uploadError) throw uploadError;
 
-      const { data: publicUrlData, error: urlError } = supabase.storage
+      const { data: publicUrlData} = supabase.storage
         .from('ImageStorage')
         .getPublicUrl(`ExecBoardImages/${fileName}`);
-
-      if (urlError) throw urlError;
 
       const publicUrl = publicUrlData.publicUrl;
 
@@ -396,7 +349,7 @@ const AdminPage: React.FC = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = recentNews.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleClick = (event, pageNumber) => {
+  const handleClick = (event: any, pageNumber: any) => {
     event.preventDefault();
     setCurrentPage(pageNumber);
   };
@@ -435,20 +388,11 @@ const AdminPage: React.FC = () => {
 
         if (uploadError) throw uploadError;
 
-        // Step 3: Get the public URL of the new leadership image
-        const { data: publicUrlData, error: urlError } = supabase.storage
-            .from('ImageStorage')
-            .getPublicUrl(`LeadershipImage/${fileName}`);
-
-        if (urlError) throw urlError;
-
-        const publicUrl = publicUrlData.publicUrl;
-
         alert('Leadership image uploaded successfully!');
         fetchLeadershipImage(); // Refresh the leadership image
     } catch (error) {
         console.error('Error uploading leadership image:', error);
-        alert(`Error uploading leadership image: ${error.message}`);
+        alert(`Error uploading leadership image`);
     } finally {
         setUploading(null);
         setImage(null);
@@ -484,20 +428,11 @@ const AdminPage: React.FC = () => {
 
         if (uploadError) throw uploadError;
 
-        // Step 3: Get the public URL of the new rush image
-        const { data: publicUrlData, error: urlError } = supabase.storage
-            .from('ImageStorage')
-            .getPublicUrl(`RushImage/${fileName}`);
-
-        if (urlError) throw urlError;
-
-        const publicUrl = publicUrlData.publicUrl;
-
         alert('Rush image uploaded successfully!');
         fetchRushImage(); // Refresh the rush image
     } catch (error) {
         console.error('Error uploading rush image:', error);
-        alert(`Error uploading rush image: ${error.message}`);
+        alert(`Error uploading rush image`);
     } finally {
         setUploading(null);
         setImage(null);
@@ -534,7 +469,7 @@ const AdminPage: React.FC = () => {
 
       <div id="HomePageUpdate" className='w-screen px-3 md:w-1/2 flex flex-col my-10 justify-center items-center'>
         <h2 className='mt-10 text-black text-3xl font-bold text-center leading-normal'>Home Page Carousel</h2>
-        <p className='mb-10 text-center'>Upload a new image or replace/delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image or click "Replace" on any of the existing image to replace it</p>
+        <p className='mb-10 text-center'>Upload a new image or delete any of the existing photos here. First click choose file and select an image. Once an image is chosen then click "Upload New Image" to post a new image.</p>
         <div className='w-screen md:w-1/2 flex flex-col justify-center items-center'>
           <input className='mb-5 border border-black rounded-md p-2' type="file" accept="image/*" onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)} />
           <button onClick={handleImageUpload} disabled={uploading === 'home'} className='w-auto h-auto p-3 rounded-full bg-azure text-white text-lg mb-10 transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold'>
@@ -550,9 +485,8 @@ const AdminPage: React.FC = () => {
               {images.map((imgSrc) => (
                 <div key={imgSrc} className="image-item flex flex-col border-black border-2 p-3 rounded-3xl gap-2">
                   <img className='rounded-3xl' src={imgSrc} alt="Home Page" style={{ width: '200px', height: '200px' }} />
-                  <div className='flex flex-row gap-3'>
+                  <div className='flex flex-row'>
                     <button onClick={() => handleDeleteImage(imgSrc)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Delete</button>
-                    <button onClick={() => handleReplaceImage(imgSrc)} className='w-full h-auto p-3 rounded-full bg-azure text-white hover:bg-dark-blue group hover:text-old-gold'>Replace</button>
                   </div>
                 </div>
               ))}
