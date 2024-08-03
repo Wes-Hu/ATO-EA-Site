@@ -18,7 +18,7 @@ import JoinUsPage from "./pages/JoinUsPage";
 import AlumniPage from "./pages/AlumniPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { FaInstagram } from "react-icons/fa";
-
+import ATOLogo from './assets/ATOLogo.png';
 
 function App() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +33,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <header className="fixed top-0 left-0 w-screen h-28 bg-azure px-3 md:px-20 lg:px-3 xl:px-0 flex flex-row justify-between lg:justify-evenly items-center z-50">
           <a href="/" className="HomeButton flex flex-row gap-2">
-            <div className="Image w-40 h-14" style={{ backgroundImage: "url('/src/assets/ATOLogo.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
+            <div className="Image w-40 h-14" style={{ backgroundImage: `url(${ATOLogo})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
             <div className="h-14 flex flex-col">
               <div className="text-white text-xl font-bold">Epsilon</div>
               <div className="text-white text-xl font-bold">Alpha</div>
