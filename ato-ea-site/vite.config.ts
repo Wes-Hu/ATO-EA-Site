@@ -7,10 +7,6 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: [
-        'date-fns',
-        'emailjs-com',
-        'react-input-mask',
-        'react-parallax'
       ]
     }
   }
