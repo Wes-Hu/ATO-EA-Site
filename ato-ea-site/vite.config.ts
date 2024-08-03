@@ -8,7 +8,6 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'date-fns',
-        'react-ui-scrollspy',
         'emailjs-com',
         'react-input-mask',
         'react-parallax'
