@@ -13,7 +13,9 @@ function AlumniPage() {
                 <p className="max-w-3xl text-black font-medium text-xl text-left mb-5">Are you an ATO Alumni from Mines? We’d love to keep in touch with you! Please send us your information to stay connected with the chapter.</p>
                 <p className="max-w-3xl text-black font-medium text-xl text-left mb-10">If you’re not already part of our LinkedIn page or Geneva group, let us know, and we’ll add you so you can remain an active part of our community.</p>
                 <div className="flex flex-col justify-center items-center md:flex-row gap-10">
-
+                    <a href="https://www.linkedin.com/groups/14206132/" className="h-14 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
+                        <div className=" text-xl font-medium leading-loose">Join Linked In Page</div>
+                    </a>
                     <a href="/rush" className="h-14 flex px-5 justify-center items-center text-white bg-azure rounded-full transition-all duration-300 hover:bg-dark-blue group hover:text-old-gold">
                         <div className=" text-xl font-medium leading-loose">Contact Us Here</div>
                     </a>
