@@ -151,10 +151,10 @@ function PhilanthropyPage() {
                         <div className="w-full flex flex-col-reverse lg:flex-row gap-5">
                             <div className="w-full lg:w-1/2 flex flex-col gap-5">
                                 <div className="text-black text-xl font-medium font-['Inter'] leading-loose">We raise funds for the Colon Cancer Foundation through our annual signature bikeathon event Wheel to Heal. During this event, our brothers bike nonstop on stationary bikes, day and night, in the center of the Mines campus. Every donation increases the duration of the event, capping at two weeks. This continuous effort not only raises funds but also draws significant attention to the cause, engaging the entire campus community. Our involvement with the Colon Cancer Foundation allows our chapter to support research and education that prevents colon cancer and improves the lives of those affected by it.</div>
-                                <img src={WheelToHeal2} className="w-full"/>
+                                <img src={WheelToHeal2} alt="wheeltoheal" className="w-full"/>
                             </div>
 
-                            <img src={WTHLogo} className="w-full lg:w-1/2 h-1/2"/>
+                            <img src={WTHLogo} alt="logo" className="w-full lg:w-1/2 h-1/2"/>
                         </div>
                     </div>
                     <div id="TrashCleanup" className="flex flex-col mb-20">
