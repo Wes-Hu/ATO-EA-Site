@@ -1,4 +1,4 @@
-# Welcome to the ATO-EA Website
+# Welcome to the Website for Alpha Tau Omega, Epsilon Alpha Chapter
 
 This is the GitHub repository for the ATO-EA website.
 
