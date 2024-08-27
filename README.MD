@@ -1,6 +1,4 @@
 Welcome to the ATO-EA website 
 
-If you are working on this please run: npm install
-make sure to also run the install command in ./ato-ea-site
-
-To run the website through local host, cd to ./ato-ea-site and run: npm run dev
+This is the GitHub repository I used to make this website.
+This website was made using ReactJS, Typescript, TailwindCSS, and many other packages.
