@@ -1,6 +1,14 @@
-Welcome to the ATO-EA website 
+# Welcome to the Website for Alpha Tau Omega, Epsilon Alpha Chapter
 
-If you are working on this please run: npm install
-make sure to also run the install command in ./ato-ea-site
+This is the GitHub repository for the ATO-EA website.
 
-To run the website through local host, cd to ./ato-ea-site and run: npm run dev
+This website was created using ReactJS, TypeScript, TailwindCSS, and various other packages.
+
+## License
+
+This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License (CC BY-ND 4.0)][cc-by-nd].
+
+[![CC BY-ND 4.0][cc-by-nd-image]][cc-by-nd]
+
+[cc-by-nd]: https://creativecommons.org/licenses/by-nd/4.0/
+[cc-by-nd-image]: https://licensebuttons.net/l/by-nd/4.0/88x31.png

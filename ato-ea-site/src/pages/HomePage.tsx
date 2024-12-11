@@ -52,7 +52,7 @@ function HomePage() {
                 <div style={{ backgroundImage: `url(${images[currentIndex]})` }} className="w-full h-full bg-center bg-cover duration-500 flex justify-center items-center">
                     <div className="bg-azure bg-opacity-50 p-9 scale-75 md:scale-100 lg:scale-125 xl:scale-150 text-center">
                         <div className="text-white text-2xl font-bold leading-9">ALPHA TAU OMEGA<br />AT</div>
-                        <img className="w-60" src={CSMLogo} />
+                        <img className="w-60" alt="csmlogo" src={CSMLogo} />
                     </div>
                 </div>
                 {/** Left Arrow */}

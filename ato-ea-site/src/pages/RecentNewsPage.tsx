@@ -56,7 +56,7 @@ function RecentNewsPage() {
                 >
                   <div className="w-full bg-old-gold text-black shadow-lg rounded-bl-3xl rounded-br-3xl p-3 md:p-10">
                     <div className="w-full bg-white rounded-3xl flex flex-col cusxl:flex-row justify-normal p-3 md:p-10 gap-3 md:gap-14">
-                      <img className={`${!news.image_src ? 'w-0' : 'w-full cusxl:w-2/5'} rounded-3xl`} src={news.image_src ?? undefined} alt="" />
+                      <img className={`${!news.image_src ? 'w-0' : 'w-full cusxl:w-2/5'} rounded-3xl`} src={news.image_src ?? undefined} alt="img" />
                       <div className="text-black text-xl font-medium">{news.description}</div>
                     </div>
                   </div>
